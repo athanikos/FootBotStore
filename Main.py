@@ -1,5 +1,6 @@
 
 import requests
+import time
 
 
 class ApiCaller:
@@ -22,6 +23,15 @@ class ApiCaller:
         url = "https://apifootball.com/api/?action=get_events&APIkey="
         return requests.post(url + ApiCaller.KEY)
 
+    @staticmethod
+    def get_leagues():
+        url = "https://apifootball.com/api/?action=get_leagues&APIkey="
+        return requests.post(url + ApiCaller.KEY)
+
+    @staticmethod
+    def get_live_scores():
+        url = "https://apifootball.com/api/?action=get_events&&from=2019-03-03&to=2019-03-04&APIkey="
+        return requests.post(url + ApiCaller.KEY)
 
     @staticmethod
     def printResponseContent(response):
@@ -29,6 +39,12 @@ class ApiCaller:
 
 
 caller = ApiCaller()
-caller.printResponseContent(caller.get_all_countries())
-caller.printResponseContent(caller.get_odds())
-caller.printResponseContent(caller.get_events())
+#caller.printResponseContent(caller.get_all_countries())
+#caller.printResponseContent(caller.get_odds())
+#caller.printResponseContent(caller.get_events())
+#caller.printResponseContent(caller.get_live_scores())
+
+while True:
+    caller.printResponseContent(caller.get_live_scores())
+    time.sleep(30)
+
