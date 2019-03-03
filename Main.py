@@ -30,7 +30,7 @@ class ApiCaller:
 
     @staticmethod
     def get_live_scores():
-        url = "https://apifootball.com/api/?action=get_events&&from=2019-03-03&to=2019-03-04&APIkey="
+        url = "https://apifootball.com/api/?action=get_events&&from=2018-01-01&to=2018-01-01&APIkey="
         return requests.post(url + ApiCaller.KEY)
 
     @staticmethod
