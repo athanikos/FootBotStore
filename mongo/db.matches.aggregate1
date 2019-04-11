@@ -1,0 +1,38 @@
+
+db.matches.aggregate
+(
+         
+    [
+        { "$addFields": {
+            "time.starting_at.date": {
+                "$toDate": "$time.starting_at.date"
+            }
+        } },
+    
+        {
+            $match:
+            {
+                $and:
+                [
+                    {"time.starting_at.date": {"$gte":new Date("2017-01-01"), "$lte": new Date("2017-02-20") }    },
+                   {
+                            {"localTeam.data.name" : {"$eq":"Anderlecht"}}
+                    }
+                ]}
+            }
+        },
+        {
+        $project: 
+        {
+            'time':"$time.starting_at.date" ,
+            'localteam':"$localTeam.data.name"   ,
+            'awayteam':"$visitorTeam.data.name",
+            'ht':"$scores.ht_score",
+            'ft':"$scores.ft_score"
+            'leagueid':"$league_id"
+        }
+     
+     
+    ]
+
+);
