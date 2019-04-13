@@ -1,3 +1,21 @@
+Skip to content
+ 
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@athanikos 
+1
+0 0 athanikos/book Private
+ Code  Issues 0  Pull requests 0  Projects 0  Insights  Settings
+book/mongo/db.matches.aggregate1
+@athanikos athanikos Update db.matches.aggregate1
+6fac04c 15 minutes ago
+72 lines (67 sloc)  4.13 KB
+  
 function getMatches()
 {
  return  db.matches.aggregate
@@ -69,3 +87,4 @@ function getMatches()
 
 
 getMatches();
+
