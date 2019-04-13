@@ -1,38 +1,23 @@
-Skip to content
- 
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@athanikos 
-1
-0 0 athanikos/book Private
- Code  Issues 0  Pull requests 0  Projects 0  Insights  Settings
-book/mongo/db.matches.aggregate1
-@athanikos athanikos Update db.matches.aggregate1
-6fac04c 15 minutes ago
-72 lines (67 sloc)  4.13 KB
-  
 function getMatches()
 {
  return  db.matches.aggregate
     (
         [
             {"$addFields": {"time.starting_at.date": {"$toDate": "$time.starting_at.date"} }}
-            ,{$match: {id:10419910}}
             ,{$unwind:  "$events.data"}
-            ,{"$addFields": {"events.data.team_id" : {"$toInt": "$events.data.team_id"}}}
-            ,{$project: {
+            ,{"$addFields": {"localTeam.data.id" : {"$toString": "$localTeam.data.id"}}}
+            ,{"$addFields": {"awayTeam.data.id" : {"$toString": "$visitorTeam.data.id"}}}
+            ,{
+               $project: 
+               {
                            matchId:"$id", 
                            eventtype:"$events.data.type", 
                            eventMinute:"$events.data.minute",
                            eventTeamId:"$events.data.team_id",
                            localTeamId:"$localTeam.data.id", 
-                           visitorTeamId:"$visitorTeam.data.id",
+                           visitorTeamId:"$awayTeam.data.id",
                            pitch:"$pitch",
+                           leg:"$leg",
                            localteamPosition:"$standings.localteam_position",
                            visitorTeamPosition:"$standings.visitorteam_position",
                            finalHomeGoals:"$scores.localteam_score",
@@ -46,8 +31,12 @@ function getMatches()
                         daid:"$matchId",
                         eventTeamId:"$eventTeamId",
                         localTeamId:"$localTeamId",
+                        visitorTeamId:"$visitorTeamId",
                         finalHomeGoals:"$finalHomeGoals",
                         finalAwayGoals:"$finalAwayGoals",
+                        localteamPosition:"$localteamPosition",
+                        visitorTeamPosition:"$visitorTeamPosition",
+                        leg:"$leg",
                         homeGoalsUpTo15: { $cond: [ {$and: [{$lt:['$eventMinute',16]},{$eq:["$eventtype","goal"]},{$eq:["$eventTeamId":"$localTeamId"]}]},1,0]},      
                         homeGoalsUpTo30: { $cond: [ {$and: [{$lt:['$eventMinute',31]},{$eq:["$eventtype","goal"]},{$eq:["$eventTeamId":"$localTeamId"]}]},1,0]},      
                         homeGoalsUpTo45: { $cond: [ {$and: [{$lt:['$eventMinute',46]},{$eq:["$eventtype","goal"]},{$eq:["$eventTeamId":"$localTeamId"]}]},1,0]},      
@@ -64,8 +53,11 @@ function getMatches()
                 $group : 
                 {
                         _id:"$daid",
-                        eventTeamId:{$max: "$eventTeamId"},
                         localTeamId:{$max: "$localTeamId"},
+                        visitorTeamId:{$max:"$visitorTeamId"},
+                        localteamPosition:{$max: "$localteamPosition"},
+                        visitorTeamPosition:{$max:"$visitorTeamPosition"},
+                        leg:{$max:"$leg"},
                         homeGoalsUpTo15: {$sum:"$homeGoalsUpTo15"},    
                         homeGoalsUpTo30: {$sum:"$homeGoalsUpTo30"},
                         homeGoalsUpTo45: {$sum:"$homeGoalsUpTo45"},
@@ -87,4 +79,3 @@ function getMatches()
 
 
 getMatches();
-
