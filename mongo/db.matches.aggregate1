@@ -103,4 +103,23 @@ function getMatches()
 }
 
 
+function CountGoalsPerLeague()
+{
+    db.events.aggregate
+    (
+            [
+             {
+                 
+                 $group: 
+                 {
+                     _id: "$league_id",
+                     homeGoalsLast15:{$sum:"$homeGoalsLast15"},    
+                     awayGoalsLast15:{$sum:"$awayGoalsLast15"},
+                     count:{$sum:1}
+                 } 
+             }    
+            ]
+    )
+}    
+
 getMatches();
