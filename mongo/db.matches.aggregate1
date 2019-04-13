@@ -23,7 +23,7 @@ function getMatches()
                            finalHomeGoals:"$scores.localteam_score",
                            finalAwayGoals:"$scores.visitorteam_score",
                            homeTeamFormation:"$formations.localteam_formation",
-                           awayTeamFormation:"$formations.visitorteam_formation"
+                           awayTeamFormation:"$formations.visitorteam_formation",
                            homeGoalsUpTo15: { $cond: [ {$and: [{$lt:['$events.data.minute',16]},{$eq:["$events.data.type","goal"]},{$eq:["$events.data.team_id":"$localTeam.data.id"]}]},1,0]},      
                            homeGoalsUpTo30: { $cond: [ {$and: [{$lt:['$events.data.minute',31]},{$eq:["$events.data.type","goal"]},{$eq:["$events.data.team_id":"$localTeam.data.id"]}]},1,0]},      
                            homeGoalsUpTo45: { $cond: [ {$and: [{$lt:['$events.data.minute',46]},{$eq:["$events.data.type","goal"]},{$eq:["$events.data.team_id":"$localTeam.data.id"]}]},1,0]},      
@@ -47,6 +47,11 @@ function getMatches()
                            awayyellowUpTo45: { $cond: [ {$and: [{$lt:['$events.data.minute',46]},{$eq:["$events.data.type","yellowcard"]},{$eq:["$events.data.team_id":"$awayTeam.data.id"]}]},1,0]},      
                            awayyellowUpTo60: { $cond: [ {$and: [{$lt:['$events.data.minute',61]},{$eq:["$events.data.type","yellowcard"]},{$eq:["$events.data.team_id":"$awayTeam.data.id"]}]},1,0]},      
                            awayyellowUpTo75: { $cond: [ {$and: [{$lt:['$events.data.minute',76]},{$eq:["$events.data.type","yellowcard"]},{$eq:["$events.data.team_id":"$awayTeam.data.id"]}]},1,0]}   
+                            
+                           homeGoalsLast15: { $cond: [ {$and: [{$gt:['$events.data.minute',75]},{$eq:["$events.data.type","goal"]},{$eq:["$events.data.team_id":"$localTeam.data.id"]}]},1,0]},      
+                           awayGoalsLast15: { $cond: [ {$and: [{$gt:['$events.data.minute',75]},{$eq:["$events.data.type","goal"]},{$eq:["$events.data.team_id":"$awayTeam.data.id"]}]},1,0]}
+                           
+                   
                }
                 
             }
@@ -82,11 +87,13 @@ function getMatches()
                         awayyellowUpTo60: {$sum:"$awayyellowUpTo60"},    
                         awayyellowUpTo75: {$sum:"$awayyellowUpTo75"},    
                         finalHomeGoals:{$max:"$finalHomeGoals"},
-                        finalAwayGoals:{$max:"$finalAwayGoals"}
+                        finalAwayGoals:{$max:"$finalAwayGoals"},
+                        homeGoalsLast15:{$max:"$homeGoalsLast15"},    
+                        awayGoalsLast15:{$max:"$awayGoalsLast15"}
                 }
             },
             {
-            $out: "events"
+                $out:"events"
             }
         ]
     ,     {allowDiskUse:true,cursor:{}}
