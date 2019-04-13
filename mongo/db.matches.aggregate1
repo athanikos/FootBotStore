@@ -11,6 +11,7 @@ function getMatches()
                $project: 
                {
                            matchId:"$id", 
+                           league_id:"$league_id",
                            eventtype:"$events.data.type", 
                            eventMinute:"$events.data.minute",
                            eventTeamId:"$events.data.team_id",
@@ -59,6 +60,7 @@ function getMatches()
                 $group : 
                 {
                         _id:"$matchId",
+                        league_id:{$max: "$league_id"},
                         localTeamId:{$max: "$localTeamId"},
                         visitorTeamId:{$max:"$visitorTeamId"},
                         localteamPosition:{$max: "$localteamPosition"},
