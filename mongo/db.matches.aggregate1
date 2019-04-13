@@ -1,39 +1,71 @@
-
-db.matches.aggregate
-(
-         
-    [
-                
-                { "$addFields": {
-                    "time.starting_at.date": {
-                        "$toDate": "$time.starting_at.date"
-                    }
-                } }
-        ,
-                {
-                    $match:
-                    {
-                        $and:
-                        [
-                            {"time.starting_at.date": {"$gte":new Date("2017-01-01"), "$lte": new Date("2017-02-20") } },
-                            
-                            { "localTeam.data.name" : {"$eq":"Anderlecht"} }
-                        ]
-                    }
+function getMatches()
+{
+ return  db.matches.aggregate
+    (
+        [
+            {"$addFields": {"time.starting_at.date": {"$toDate": "$time.starting_at.date"} }}
+            ,{$match: {id:10419910}}
+            ,{$unwind:  "$events.data"}
+            ,{"$addFields": {"events.data.team_id" : {"$toInt": "$events.data.team_id"}}}
+            ,{$project: {
+                           matchId:"$id", 
+                           eventtype:"$events.data.type", 
+                           eventMinute:"$events.data.minute",
+                           eventTeamId:"$events.data.team_id",
+                           localTeamId:"$localTeam.data.id", 
+                           visitorTeamId:"$visitorTeam.data.id",
+                           pitch:"$pitch",
+                           localteamPosition:"$standings.localteam_position",
+                           visitorTeamPosition:"$standings.visitorteam_position",
+                           finalHomeGoals:"$scores.localteam_score",
+                           finalAwayGoals:"$scores.visitorteam_score"
                 }
-        ,
+                
+            }
+           ,{
+                $project:
                 {
-                    $project: 
-                    {
-                        'time':"$time.starting_at.date" ,
-                        'localteam':"$localTeam.data.name"   ,
-                        'awayteam':"$visitorTeam.data.name",
-                        'ht':"$scores.ht_score",
-                        'ft':"$scores.ft_score",
-                        'leagueid':"$league_id",
-                    }
-                } 
-     
-    ]
+                        daid:"$matchId",
+                        eventTeamId:"$eventTeamId",
+                        localTeamId:"$localTeamId",
+                        finalHomeGoals:"$finalHomeGoals",
+                        finalAwayGoals:"$finalAwayGoals",
+                        homeGoalsUpTo15: { $cond: [ {$and: [{$lt:['$eventMinute',16]},{$eq:["$eventtype","goal"]},{$eq:["$eventTeamId":"$localTeamId"]}]},1,0]},      
+                        homeGoalsUpTo30: { $cond: [ {$and: [{$lt:['$eventMinute',31]},{$eq:["$eventtype","goal"]},{$eq:["$eventTeamId":"$localTeamId"]}]},1,0]},      
+                        homeGoalsUpTo45: { $cond: [ {$and: [{$lt:['$eventMinute',46]},{$eq:["$eventtype","goal"]},{$eq:["$eventTeamId":"$localTeamId"]}]},1,0]},      
+                        homeGoalsUpTo60: { $cond: [ {$and: [{$lt:['$eventMinute',61]},{$eq:["$eventtype","goal"]},{$eq:["$eventTeamId":"$localTeamId"]}]},1,0]},      
+                        homeGoalsUpTo75: { $cond: [ {$and: [{$lt:['$eventMinute',76]},{$eq:["$eventtype","goal"]},{$eq:["$eventTeamId":"$localTeamId"]}]},1,0]},      
+                        awayGoalsUpTo15: { $cond: [ {$and: [{$lt:['$eventMinute',16]},{$eq:["$eventtype","goal"]},{$eq:["$eventTeamId":"$visitorTeamId"]}]},1,0]},      
+                        awayGoalsUpTo30: { $cond: [ {$and: [{$lt:['$eventMinute',31]},{$eq:["$eventtype","goal"]},{$eq:["$eventTeamId":"$visitorTeamId"]}]},1,0]},      
+                        awayGoalsUpTo45: { $cond: [ {$and: [{$lt:['$eventMinute',46]},{$eq:["$eventtype","goal"]},{$eq:["$eventTeamId":"$visitorTeamId"]}]},1,0]},      
+                        awayGoalsUpTo60: { $cond: [ {$and: [{$lt:['$eventMinute',61]},{$eq:["$eventtype","goal"]},{$eq:["$eventTeamId":"$visitorTeamId"]}]},1,0]},      
+                        awayGoalsUpTo75: { $cond: [ {$and: [{$lt:['$eventMinute',76]},{$eq:["$eventtype","goal"]},{$eq:["$eventTeamId":"$visitorTeamId"]}]},1,0]}   
+                }
+            }
+           ,{
+                $group : 
+                {
+                        _id:"$daid",
+                        eventTeamId:{$max: "$eventTeamId"},
+                        localTeamId:{$max: "$localTeamId"},
+                        homeGoalsUpTo15: {$sum:"$homeGoalsUpTo15"},    
+                        homeGoalsUpTo30: {$sum:"$homeGoalsUpTo30"},
+                        homeGoalsUpTo45: {$sum:"$homeGoalsUpTo45"},
+                        homeGoalsUpTo60: {$sum:"$homeGoalsUpTo60"},
+                        homeGoalsUpTo75: {$sum:"$homeGoalsUpTo75"},
+                        awayGoalsUpTo15: {$sum:"$awayGoalsUpTo15"},    
+                        awayGoalsUpTo30: {$sum:"$awayGoalsUpTo30"},
+                        awayGoalsUpTo45: {$sum:"$awayGoalsUpTo45"},
+                        awayGoalsUpTo60: {$sum:"$awayGoalsUpTo60"},
+                        awayGoalsUpTo75: {$sum:"$awayGoalsUpTo75"},
+                        finalHomeGoals:{$max:"$finalHomeGoals"},
+                        finalAwayGoals:{$max:"$finalAwayGoals"}
+                }
+            }
+        ]
+    
+    );
+}
 
-);
+
+getMatches();
