@@ -90,6 +90,8 @@ function getMatches()
                         homeGoalsLast15:{$sum:"$homeGoalsLast15"},    
                         awayGoalsLast15:{$sum:"$awayGoalsLast15"},
                         goalScoredLast15:{$max:"$goalScoredLast15"},
+                        resultAt15:{$max:        { $cond: [ {$gt:["$homeGoalsUpTo15","$awayGoalsUpTo15"]},"WIN",  {$cond: [ {$lt:["$homeGoalsUpTo15","$awayGoalsUpTo15"]},"LOOSE",  "DRAW"   }   }},
+                        resultAt30:{$max:        { $cond: [ {$gt:["$homeGoalsUpTo30","$awayGoalsUpTo30"]},"WIN",  {$cond: [ {$lt:["$homeGoalsUpTo30","$awayGoalsUpTo30"]},"LOOSE",  "DRAW"   }   }},
                         resultAt45:{$max:        { $cond: [ {$gt:["$homeGoalsUpTo45","$awayGoalsUpTo45"]},"WIN",  {$cond: [ {$lt:["$homeGoalsUpTo45","$awayGoalsUpTo45"]},"LOOSE",  "DRAW"   }   }},
                         resultAt60:{$max:        { $cond: [ {$gt:["$homeGoalsUpTo60","$awayGoalsUpTo60"]},"WIN",  {$cond: [ {$lt:["$homeGoalsUpTo60","$awayGoalsUpTo60"]},"LOOSE",  "DRAW"   }   }},
                         resultAt75:{$max:        { $cond: [ {$gt:["$homeGoalsUpTo75","$awayGoalsUpTo75"]},"WIN",  {$cond: [ {$lt:["$homeGoalsUpTo75","$awayGoalsUpTo75"]},"LOOSE",  "DRAW"   }   }}
