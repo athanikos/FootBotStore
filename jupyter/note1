@@ -9,3 +9,8 @@ cursor = collection.find()
 df =  pd.DataFrame(list(cursor))
 #df.count()
 df.groupby(['league_name']).size() 
+
+
+df.groupby(['league_name','homeGoalsUpTo75'])['goalScoredLast15'].sum() / df.groupby(['league_name','homeGoalsUpTo75']).size()
+
+df.groupby(['league_name','awayGoalsUpTo75'])['goalScoredLast15'].sum() / df.groupby(['league_name','awayGoalsUpTo75']).size()
