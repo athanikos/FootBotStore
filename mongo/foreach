@@ -1,16 +1,26 @@
 db.events.find({}).forEach(function (doc) 
 {
     var differenceAt75 = doc.homeGoalsUpTo75- doc.awayGoalsUpTo75;
-    var positionDifferenceWithin3 =doc.localteamPosition - doc.visitorTeamPosition<4 && doc.localteamPosition - doc.visitorTeamPosition>-4;
-    var positionDifferenceMoreThan3 =doc.localteamPosition - doc.visitorTeamPosition>3 || doc.localteamPosition - doc.visitorTeamPosition<-3;
+    var positionDifference ="";
+    if (doc.localteamPosition - doc.visitorTeamPosition>-5 && doc.localteamPosition - doc.visitorTeamPosition<5 )
+        positionDifference ="-4To4";
+    else if (doc.localteamPosition - doc.visitorTeamPosition>5)
+      positionDifference ="MoreThan5";
+    else if (doc.localteamPosition - doc.visitorTeamPosition<-4  )
+      positionDifference ="-5Too-inf";
+    
+   
     var minuteOfLastGoalMoreThan64 = doc.minuteOfLastGoal > 64;
+    var minuteOfLastRedMoreThan64 = doc.minuteOfLastRed > 64;
+    var homeTeamIBetter = doc.localteamPosition - doc.visitorTeamPosition <0;
     
-    
+   
     db.events.update({_id: doc._id},
     {$set:{
+    "homeTeamIBetter":homeTeamIBetter,
     "differenceAt75": differenceAt75, 
-    "positionDifferenceWithin3": positionDifferenceWithin3,
-    "positionDifferenceMoreThan3":positionDifferenceMoreThan3,
-    "minuteOfLastGoalMoreThan64":minuteOfLastGoalMoreThan64  
+    "positionDifference": positionDifference,
+    "minuteOfLastGoalMoreThan64":minuteOfLastRedMoreThan64,
+    "minuteOfLastRedMoreThan64":minuteOfLastRedMoreThan64
     }});
 });
