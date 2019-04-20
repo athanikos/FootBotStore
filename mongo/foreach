@@ -1,9 +1,16 @@
 db.events.find({}).forEach(function (doc) 
 {
-    var differenceAt75 = doc.homeGoalsUpTo75- doc.awayGoalsUpTo75   ;
-    var positionDifference =doc.localteamPosition - doc.awayteamPosition  ;
+    var differenceAt75 = doc.homeGoalsUpTo75- doc.awayGoalsUpTo75;
+    var positionDifferenceWithin3 =doc.localteamPosition - doc.visitorTeamPosition<4 && doc.localteamPosition - doc.visitorTeamPosition>-4;
+    var positionDifferenceMoreThan3 =doc.localteamPosition - doc.visitorTeamPosition>3 || doc.localteamPosition - doc.visitorTeamPosition<-3;
     var minuteOfLastGoalMoreThan64 = doc.minuteOfLastGoal > 64;
-    db.events.update({_id: doc._id},{$set:{"differenceAt75": differenceAt75, 
-    "positionDifference": positionDifference,
-    "minuteOfLastGoalMoreThan64":minuteOfLastGoalMoreThan64  }});
+    
+    
+    db.events.update({_id: doc._id},
+    {$set:{
+    "differenceAt75": differenceAt75, 
+    "positionDifferenceWithin3": positionDifferenceWithin3,
+    "positionDifferenceMoreThan3":positionDifferenceMoreThan3,
+    "minuteOfLastGoalMoreThan64":minuteOfLastGoalMoreThan64  
+    }});
 });
