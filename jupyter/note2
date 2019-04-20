@@ -16,3 +16,11 @@ df_lastGoal60orMore = df[(df.minuteOfLastGoal <= 64) & (df.minuteOfLastGoal >= 4
 pd.set_option('display.max_rows', 1500)
 df_Eredevisie =  df_lastGoal60orMore[df_lastGoal60orMore.league_name == 'Eredivisie'  ]
 df_Eredevisie.groupby(['differenceAt75','positionDifferenceWithin3'])['goalScoredLast15'].sum() / df_Eredevisie.groupby(['differenceAt75','positionDifferenceWithin3']).size()
+
+#reds 
+df_lastGoal60orMore = df
+pd.set_option('display.max_rows', 1500)
+df_Eredevisie =  df_lastGoal60orMore[ (df_lastGoal60orMore.league_name == 'Eredivisie') & (df_lastGoal60orMore.minuteOfLastRed>0) ]
+df_Eredevisie.groupby(['differenceAt75','homeTeamIBetter'])['goalScoredLast15'].sum()/df_Eredevisie.groupby(['differenceAt75','homeTeamIBetter'])['goalScoredLast15'].size()
+
+
