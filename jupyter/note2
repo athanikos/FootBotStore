@@ -29,6 +29,11 @@ pd.set_option('display.max_rows', 1500)
 df_Eredevisie =  df_lastGoal60orMore[df_lastGoal60orMore.league_name == 'Eredivisie'  ]
 df_Eredevisie.groupby(['differenceAt75','homeTeamIBetter'])['goalScoredLast15'].sum()/df_Eredevisie.groupby(['differenceAt75','homeTeamIBetter'])['goalScoredLast15'].size()
 
+df_lastGoal60orMore = df
+pd.set_option('display.max_rows', 1500)
+df_Eredevisie =  df_lastGoal60orMore[ (df_lastGoal60orMore.league_name == 'Eredivisie')  ]
+df_Eredevisie.groupby(['differenceAt75','homeGoalsUpTo75'])['goalScoredLast15'].sum()/df_Eredevisie.groupby(['differenceAt75','homeGoalsUpTo75'])['goalScoredLast15'].size()
+
 
 import pandas as pd
 import numpy as np
