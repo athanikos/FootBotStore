@@ -1,0 +1,12 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from pymongo import MongoClient
+client = MongoClient("localhost", 27017, maxPoolSize=50)
+db = client.book
+collection = db['events']
+cursor = collection.find()
+df =  pd.DataFrame(list(cursor))
+df_lastGoal60orMore = df[df.minuteOfLastGoal >= 65]
+pd.set_option('display.max_rows', 1500)
+df_lastGoal60orMore.groupby(['league_name','homeGoalsUpTo75','awayGoalsUpTo75'])['goalScoredLast15'].sum() / df_lastGoal60orMore.groupby(['league_name','homeGoalsUpTo75','awayGoalsUpTo75']).size()
