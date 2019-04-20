@@ -1,6 +1,9 @@
-db.events.find({}).forEach(function (doc) {
+db.events.find({}).forEach(function (doc) 
+{
     var differenceAt75 = doc.homeGoalsUpTo75- doc.awayGoalsUpTo75   ;
     var positionDifference =doc.localteamPosition - doc.awayteamPosition  ;
-    db.events.update({_id: doc._id},{$set:{"differenceAt75": differenceAt75}});
-    db.events.update({_id: doc._id},{$set:{"positionDifference": positionDifference}});
+    var minuteOfLastGoalMoreThan64 = doc.minuteOfLastGoal > 64;
+    db.events.update({_id: doc._id},{$set:{"differenceAt75": differenceAt75, 
+    "positionDifference": positionDifference,
+    "minuteOfLastGoalMoreThan64":minuteOfLastGoalMoreThan64  }});
 });
