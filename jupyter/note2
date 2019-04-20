@@ -10,3 +10,9 @@ df =  pd.DataFrame(list(cursor))
 df_lastGoal60orMore = df[df.minuteOfLastGoal >= 65]
 pd.set_option('display.max_rows', 1500)
 df_lastGoal60orMore.groupby(['league_name','homeGoalsUpTo75','awayGoalsUpTo75'])['goalScoredLast15'].sum() / df_lastGoal60orMore.groupby(['league_name','homeGoalsUpTo75','awayGoalsUpTo75']).size()
+
+# 66% at -1 
+df_lastGoal60orMore = df[(df.minuteOfLastGoal <= 64) & (df.minuteOfLastGoal >= 45)  ]
+pd.set_option('display.max_rows', 1500)
+df_Eredevisie =  df_lastGoal60orMore[df_lastGoal60orMore.league_name == 'Eredivisie'  ]
+df_Eredevisie.groupby(['differenceAt75','positionDifferenceWithin3'])['goalScoredLast15'].sum() / df_Eredevisie.groupby(['differenceAt75','positionDifferenceWithin3']).size()
