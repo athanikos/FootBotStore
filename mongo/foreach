@@ -2,4 +2,5 @@ db.events.find({}).forEach(function (doc) {
     var differenceAt75 = doc.homeGoalsUpTo75- doc.awayGoalsUpTo75   ;
     var positionDifference =doc.localteamPosition - doc.awayteamPosition  ;
     db.events.update({_id: doc._id},{$set:{"differenceAt75": differenceAt75}});
+    db.events.update({_id: doc._id},{$set:{"positionDifference": positionDifference}});
 });
