@@ -128,7 +128,7 @@ db.events.remove({})
                 }
             },
             {
-                $out:"events"
+                $out:"events" 
             }
         ]
     ,     {allowDiskUse:true,cursor:{}}
