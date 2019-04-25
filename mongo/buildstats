@@ -1,26 +1,47 @@
 
+db.events.update({},{$unset:{stats:""}  })
+
 db.events.find({league_name:"Eredivisie"}).sort({ startingat:1 }).forEach((it)=> { 
    var team1 = it.hometeamname;
    var team2 = it.awayteamname;
-   var dt = it.starting_at;
-   var team1last5matches = db.events.find( {$and:  [{$or:[{hometeamname:team1} ,{awayteamname:team1}]}, {startingat:{$lt:it.startingat}}  ]  } ).sort({ startingat:-1 }).limit(10);
-   print(team1);
-   team1last5matches.forEach((it)=> { 
-      
-      print(it.startingat);
-   });
+   var dt = it.startingat;
+   var historicalMatches = db.events.find( {$and:  [{$or:[{hometeamname:team1} ,{awayteamname:team1}]}, {startingat:{$lt:it.startingat}}  ]  } ).sort({ startingat:-1 }).limit(20);
    
-   
-
-
-   // get team get league and date 
-   // get five last matches 
-   // output to array bookstats.goalsScored
-   //                 bookstats.goalsConceded 
-   //                 bookstats.goalsScroredLast15
-   //                 bookstats.goalsConcededLast15    
-   //                 bookstats.gamenumber
-   // calculate last game if empty or more than 3 months back   set to points to 0 
+  
+             
+    historicalMatches.forEach((historicalMatch)=> { 
+        if (historicalMatch.hometeamne==team1)
+        db.events.update({_id:it._id},{$push : { stats: [{"homeOrAway":"H" },{"GoalsScoredUpTo75":historicalMatch.homeGoalsUpTo75 }, 
+                                                                             {"GoalsConcededUpTo75":historicalMatch.awayGoalsUpTo75 }
+        ]     }  })        
+        else if (historicalMatch.hometeamne==team2)
+        db.events.update({_id:it._id},{$push : { stats: [{"homeOrAway":"A" },{"GoalsScoredUpTo75":historicalMatch.awayGoalsUpTo75 }, 
+                                                                             {"GoalsConcededUpTo75":historicalMatch.homeGoalsUpTo75 }
+        ]     }  })   
+                    
+     });
 });
 
+
+
+function  isStartOfSeason(currentDate, games)
+{
+    if (games===null)
+        return true;
+    var thegame =  games.limit(1).toArray();
+
+    if (thegame.length==0)
+        return true;
+    //    print(thegame);
+    //    print(currentDate);
+    //    print(thegame[0].startingat);
+    var dt1 = new Date(currentDate);
+    var dt2 = new Date(thegame[0].startingat);
+    var days = Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
+    print(days);
+    
+    if (days<-30)
+        return false;
+    return true;
+}
 
