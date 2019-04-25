@@ -1,23 +1,27 @@
 
+db.events.updateMany({},{$unset:{AwayTeamStats:""}  })
+db.events.updateMany({},{$unset:{HomeTeamStats:""}  })
 db.events.updateMany({},{$unset:{stats:""}  })
+
 
 
 db.events.find({league_name:"Eredivisie"}).sort({ startingat:1 }).forEach((it)=> { 
    var team1 = it.hometeamname;
    var team2 = it.awayteamname;
    var dt = it.startingat;
-   var historicalMatches = db.events.find( {$and:  [{$or:[{hometeamname:team1} ,{awayteamname:team1}]}, {startingat:{$lt:it.startingat}}  ]  } ).sort({ startingat:-1 }).limit(20);
+   var HomeTeamhistoricalMatches = db.events.find( {$and:  [{$or:[{hometeamname:team1} ,{awayteamname:team1}]}, {startingat:{$lt:it.startingat}}  ]  } ).sort({ startingat:-1 }).limit(20);
+   var AwayTeamhistoricalMatches = db.events.find( {$and:  [{$or:[{hometeamname:team1} ,{awayteamname:team1}]}, {startingat:{$lt:it.startingat}}  ]  } ).sort({ startingat:-1 }).limit(20);
+
    
-   var MatchNumber =   getMatchNumber(it.startingat,historicalMatches);
-   db.events.update({_id:it._id},{$set:{"MatchNumber":MatchNumber}});
+   var HomeTeamMatchNumber =   getMatchNumber(it.startingat,HomeTeamhistoricalMatches);
+   db.events.update({_id:it._id},{$set:{"MatchNumber":HomeTeamMatchNumber}});
              
              
              
-    historicalMatches.forEach((historicalMatch)=> 
+    HomeTeamhistoricalMatches.forEach((historicalMatch)=> 
     { 
         
-        if (historicalMatch.hometeamname==team1)
-        db.events.update({_id:it._id},{$push : { stats: {"date":historicalMatch.startingat,
+        db.events.update({_id:it._id},{$push : { HomeTeamStats: {"date":historicalMatch.startingat,
                                                          "PlaysAtHomeOrAway":"H",
                                                          "GoalsScoredUpTo75":historicalMatch.homeGoalsUpTo75, 
                                                          "GoalsConcededUpTo75":historicalMatch.awayGoalsUpTo75,
@@ -28,10 +32,16 @@ db.events.find({league_name:"Eredivisie"}).sort({ startingat:1 }).forEach((it)=>
                                                          
                                                 }
                                       } 
-                        });
+                         }
+                        );
                         
-        else if (historicalMatch.hometeamname==team2)
-        db.events.update({_id:it._id},{$push : { stats: {"date":historicalMatch.startingat,
+    });
+    
+
+    AwayTeamhistoricalMatches.forEach((historicalMatch)=> 
+    { 
+    
+            db.events.update({_id:it._id},{$push : { AwayTeamStats: {"date":historicalMatch.startingat,
                                                          "PlaysAtHomeOrAway":"A",
                                                          "GoalsScoredUpTo75":historicalMatch.awayGoalsUpTo75, 
                                                          "GoalsConcededUpTo75":historicalMatch.homeGoalsUpTo75,
@@ -39,11 +49,14 @@ db.events.find({league_name:"Eredivisie"}).sort({ startingat:1 }).forEach((it)=>
                                                          "GoalsConceded":historicalMatch.finalHomeGoals, 
                                                          "ResultAt75":historicalMatch.resultAt75,
                                                          "MatchNumber":historicalMatch.MatchNumber
-                                                }
-                                        }
-                        });   
+                                                   }
+                                           }
+                              }
+                             );   
                     
     });
+
+    
     
 });
 
@@ -51,21 +64,24 @@ db.events.find({league_name:"Eredivisie"}).sort({ startingat:1 }).forEach((it)=>
 
 function  getMatchNumber(currentDate, games)
 {
+    
     if (games===null)
         return 1;
     
-    
-    var thegame =  games.limit(1).toArray();
-    if (thegame===null)
+    if (games.count()==0)
         return 1;
-    if (thegame.length==0)
-        return 1;
+
+    var thegame = games[0];  
+   
+  
     var dt1 = new Date(currentDate);
-    var dt2 = new Date(thegame[0].startingat);
+    var dt2 = new Date(thegame.startingat);
     var days = Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
 
     if (days<-45)
         return 1;
-    return thegame[0].MatchNumber+1;
+  
+  return 1;
+  //  return thegame[0].MatchNumber+1;
 }
 
