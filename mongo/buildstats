@@ -10,7 +10,7 @@ db.events.find({league_name:"Eredivisie"}).sort({ startingat:1 }).forEach((it)=>
    var team2 = it.awayteamname;
    var dt = it.startingat;
    var HomeTeamhistoricalMatches = db.events.find( {$and:  [{$or:[{hometeamname:team1} ,{awayteamname:team1}]}, {startingat:{$lt:it.startingat}}  ]  } ).sort({ startingat:-1 }).limit(20);
-   var AwayTeamhistoricalMatches = db.events.find( {$and:  [{$or:[{hometeamname:team1} ,{awayteamname:team1}]}, {startingat:{$lt:it.startingat}}  ]  } ).sort({ startingat:-1 }).limit(20);
+   var AwayTeamhistoricalMatches = db.events.find( {$and:  [{$or:[{hometeamname:team2} ,{awayteamname:team2}]}, {startingat:{$lt:it.startingat}}  ]  } ).sort({ startingat:-1 }).limit(20);
 
    
    var HomeTeamMatchNumber =   getMatchNumber(it.startingat,HomeTeamhistoricalMatches);
@@ -21,7 +21,7 @@ db.events.find({league_name:"Eredivisie"}).sort({ startingat:1 }).forEach((it)=>
     HomeTeamhistoricalMatches.forEach((historicalMatch)=> 
     { 
         
-        db.events.update({_id:it._id},{$push : { HomeTeamStats: {"date":historicalMatch.startingat,
+        db.events.update({_id:it._id},{$push : { HomeTeamStats: {"Date":historicalMatch.startingat,
                                                          "PlaysAtHomeOrAway":"H",
                                                          "GoalsScoredUpTo75":historicalMatch.homeGoalsUpTo75, 
                                                          "GoalsConcededUpTo75":historicalMatch.awayGoalsUpTo75,
@@ -41,7 +41,7 @@ db.events.find({league_name:"Eredivisie"}).sort({ startingat:1 }).forEach((it)=>
     AwayTeamhistoricalMatches.forEach((historicalMatch)=> 
     { 
     
-            db.events.update({_id:it._id},{$push : { AwayTeamStats: {"date":historicalMatch.startingat,
+            db.events.update({_id:it._id},{$push : { AwayTeamStats: {"Date":historicalMatch.startingat,
                                                          "PlaysAtHomeOrAway":"A",
                                                          "GoalsScoredUpTo75":historicalMatch.awayGoalsUpTo75, 
                                                          "GoalsConcededUpTo75":historicalMatch.homeGoalsUpTo75,
