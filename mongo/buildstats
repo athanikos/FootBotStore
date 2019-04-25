@@ -11,25 +11,40 @@ db.events.find({league_name:"Eredivisie"}).sort({ startingat:1 }).forEach((it)=>
    var MatchNumber =   getMatchNumber(it.startingat,historicalMatches);
    db.events.update({_id:it._id},{$set:{"MatchNumber":MatchNumber}});
              
+             
+             
     historicalMatches.forEach((historicalMatch)=> 
     { 
+        
         if (historicalMatch.hometeamname==team1)
-        db.events.update({_id:it._id},{$push : { stats: {"date":historicalMatch.startingat,"PlaysAtHomeOrAway":"H","GoalsScoredUpTo75":historicalMatch.homeGoalsUpTo75, 
+        db.events.update({_id:it._id},{$push : { stats: {"date":historicalMatch.startingat,
+                                                         "PlaysAtHomeOrAway":"H",
+                                                         "GoalsScoredUpTo75":historicalMatch.homeGoalsUpTo75, 
                                                          "GoalsConcededUpTo75":historicalMatch.awayGoalsUpTo75,
-                                                         "GoalsScored":historicalMatch.finalHomeGoals,"GoalsConceded":historicalMatch.finalAwayGoals,  
-                                                         "ResultAt75":historicalMatch.resultAt75                                             
-        }
-    } 
-    })        
+                                                         "GoalsScored":historicalMatch.finalHomeGoals,
+                                                         "GoalsConceded":historicalMatch.finalAwayGoals,  
+                                                         "ResultAt75":historicalMatch.resultAt75,
+                                                         "MatchNumber":historicalMatch.MatchNumber
+                                                         
+                                                }
+                                      } 
+                        });
+                        
         else if (historicalMatch.hometeamname==team2)
-        db.events.update({_id:it._id},{$push : { stats: {"date":historicalMatch.startingat,"PlaysAtHomeOrAway":"A","GoalsScoredUpTo75":historicalMatch.awayGoalsUpTo75, 
+        db.events.update({_id:it._id},{$push : { stats: {"date":historicalMatch.startingat,
+                                                         "PlaysAtHomeOrAway":"A",
+                                                         "GoalsScoredUpTo75":historicalMatch.awayGoalsUpTo75, 
                                                          "GoalsConcededUpTo75":historicalMatch.homeGoalsUpTo75,
-                                                         "GoalsScored":historicalMatch.finalAwayGoals,"GoalsConceded":historicalMatch.finalHomeGoals, 
-                                                         "ResultAt75":historicalMatch.resultAt75  
-        }
-           }  })   
+                                                         "GoalsScored":historicalMatch.finalAwayGoals,
+                                                         "GoalsConceded":historicalMatch.finalHomeGoals, 
+                                                         "ResultAt75":historicalMatch.resultAt75,
+                                                         "MatchNumber":historicalMatch.MatchNumber
+                                                }
+                                        }
+                        });   
                     
     });
+    
 });
 
 
@@ -38,13 +53,13 @@ function  getMatchNumber(currentDate, games)
 {
     if (games===null)
         return 1;
+    
+    
     var thegame =  games.limit(1).toArray();
-
+    if (thegame===null)
+        return 1;
     if (thegame.length==0)
         return 1;
-    //    print(thegame);
-    //    print(currentDate);
-    //    print(thegame[0].startingat);
     var dt1 = new Date(currentDate);
     var dt2 = new Date(thegame[0].startingat);
     var days = Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
