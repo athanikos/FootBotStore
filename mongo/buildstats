@@ -1,5 +1,6 @@
 
-db.events.update({},{$unset:{stats:""}  })
+db.events.updateMany({},{$unset:{stats:""}  })
+
 
 db.events.find({league_name:"Eredivisie"}).sort({ startingat:1 }).forEach((it)=> { 
    var team1 = it.hometeamname;
@@ -7,49 +8,49 @@ db.events.find({league_name:"Eredivisie"}).sort({ startingat:1 }).forEach((it)=>
    var dt = it.startingat;
    var historicalMatches = db.events.find( {$and:  [{$or:[{hometeamname:team1} ,{awayteamname:team1}]}, {startingat:{$lt:it.startingat}}  ]  } ).sort({ startingat:-1 }).limit(20);
    
-  
+   var MatchNumber =   getMatchNumber(it.startingat,historicalMatches);
+   db.events.update({_id:it._id},{$set:{"MatchNumber":MatchNumber}});
              
-    historicalMatches.forEach((historicalMatch)=> { 
+    historicalMatches.forEach((historicalMatch)=> 
+    { 
         if (historicalMatch.hometeamname==team1)
         db.events.update({_id:it._id},{$push : { stats: {"date":historicalMatch.startingat,"PlaysAtHomeOrAway":"H","GoalsScoredUpTo75":historicalMatch.homeGoalsUpTo75, 
                                                          "GoalsConcededUpTo75":historicalMatch.awayGoalsUpTo75,
                                                          "GoalsScored":historicalMatch.finalHomeGoals,"GoalsConceded":historicalMatch.finalAwayGoals,  
                                                          "ResultAt75":historicalMatch.resultAt75                                             
-            
         }
-           }  })        
+    } 
+    })        
         else if (historicalMatch.hometeamname==team2)
         db.events.update({_id:it._id},{$push : { stats: {"date":historicalMatch.startingat,"PlaysAtHomeOrAway":"A","GoalsScoredUpTo75":historicalMatch.awayGoalsUpTo75, 
                                                          "GoalsConcededUpTo75":historicalMatch.homeGoalsUpTo75,
                                                          "GoalsScored":historicalMatch.finalAwayGoals,"GoalsConceded":historicalMatch.finalHomeGoals, 
                                                          "ResultAt75":historicalMatch.resultAt75  
-                                                         }
-
+        }
            }  })   
                     
-     });
+    });
 });
 
 
 
-function  isStartOfSeason(currentDate, games)
+function  getMatchNumber(currentDate, games)
 {
     if (games===null)
-        return true;
+        return 1;
     var thegame =  games.limit(1).toArray();
 
     if (thegame.length==0)
-        return true;
+        return 1;
     //    print(thegame);
     //    print(currentDate);
     //    print(thegame[0].startingat);
     var dt1 = new Date(currentDate);
     var dt2 = new Date(thegame[0].startingat);
     var days = Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
-    print(days);
-    
-    if (days<-30)
-        return false;
-    return true;
+
+    if (days<-45)
+        return 1;
+    return thegame[0].MatchNumber+1;
 }
 
