@@ -10,14 +10,22 @@ db.events.find({league_name:"Eredivisie"}).sort({ startingat:1 }).forEach((it)=>
   
              
     historicalMatches.forEach((historicalMatch)=> { 
-        if (historicalMatch.hometeamne==team1)
-        db.events.update({_id:it._id},{$push : { stats: [{"homeOrAway":"H" },{"GoalsScoredUpTo75":historicalMatch.homeGoalsUpTo75 }, 
-                                                                             {"GoalsConcededUpTo75":historicalMatch.awayGoalsUpTo75 }
-        ]     }  })        
-        else if (historicalMatch.hometeamne==team2)
-        db.events.update({_id:it._id},{$push : { stats: [{"homeOrAway":"A" },{"GoalsScoredUpTo75":historicalMatch.awayGoalsUpTo75 }, 
-                                                                             {"GoalsConcededUpTo75":historicalMatch.homeGoalsUpTo75 }
-        ]     }  })   
+        if (historicalMatch.hometeamname==team1)
+        db.events.update({_id:it._id},{$push : { stats: {"date":historicalMatch.startingat,"PlaysAtHomeOrAway":"H","GoalsScoredUpTo75":historicalMatch.homeGoalsUpTo75, 
+                                                         "GoalsConcededUpTo75":historicalMatch.awayGoalsUpTo75,
+                                                         "GoalsScored":historicalMatch.finalHomeGoals,"GoalsConceded":historicalMatch.finalAwayGoals,  
+                                                         "ResultAt75":historicalMatch.resultAt75                                             
+            
+        }
+           }  })        
+        else if (historicalMatch.hometeamname==team2)
+        db.events.update({_id:it._id},{$push : { stats: {"date":historicalMatch.startingat,"PlaysAtHomeOrAway":"A","GoalsScoredUpTo75":historicalMatch.awayGoalsUpTo75, 
+                                                         "GoalsConcededUpTo75":historicalMatch.homeGoalsUpTo75,
+                                                         "GoalsScored":historicalMatch.finalAwayGoals,"GoalsConceded":historicalMatch.finalHomeGoals, 
+                                                         "ResultAt75":historicalMatch.resultAt75  
+                                                         }
+
+           }  })   
                     
      });
 });
