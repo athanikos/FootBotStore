@@ -75,8 +75,8 @@ db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it
          
          AvgGoalsScoredUpTo75 +=historicalMatch.awayGoalsUpTo75;
          AvgGoalsConcededUpTo75 += historicalMatch.homeGoalsUpTo75;
-         AvgGoalsConceded += historicalMatch.finalAwayGoals;
-         AvgGoalsScored +=historicalMatch.finalHomeGoals ;
+         AvgGoalsConceded += historicalMatch.finalHomeGoals;
+         AvgGoalsScored +=historicalMatch.finalAwayGoals ;
         
     
             db.events.update({_id:it._id},{$push : { AwayTeamStats: {"Date":historicalMatch.startingat,
