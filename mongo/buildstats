@@ -31,7 +31,6 @@ db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it
     
     HomeTeamhistoricalMatches.limit(5).forEach((historicalMatch)=> 
     { 
-         AvgGoalsScored +=historicalMatch.finalAwayGoals ;
         
         if (it.hometeamname ==historicalMatch.hometeamname)
         {
