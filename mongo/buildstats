@@ -43,7 +43,7 @@ db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it
         else     
         {
              AvgGoalsScoredUpTo75 +=historicalMatch.awayGoalsUpTo75;
-             AvgGoalsScored +=historicalMatch.finalawayGoals; 
+             AvgGoalsScored +=historicalMatch.finalAwayGoals; 
              AvgGoalsConcededUpTo75 += historicalMatch.homeGoalsUpTo75;
              AvgGoalsConceded += historicalMatch.finalHomeGoals ;
              PlaysAtHomeorAway = "A";
@@ -94,7 +94,7 @@ db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it
         if (it.awayteamname ==historicalMatch.awayteamname)
         {
              AvgGoalsScoredUpTo75 +=historicalMatch.awayGoalsUpTo75;
-             AvgGoalsScored +=historicalMatch.finalawayGoals; 
+             AvgGoalsScored +=historicalMatch.finalAwayGoals; 
              AvgGoalsConcededUpTo75 += historicalMatch.homeGoalsUpTo75;
              AvgGoalsConceded += historicalMatch.finalHomeGoals ;
              PlaysAtHomeorAway = "A";
