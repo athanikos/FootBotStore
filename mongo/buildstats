@@ -10,32 +10,39 @@ db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it
    var team1 = it.hometeamname;
    var team2 = it.awayteamname;
    var dt = it.startingat;
-   var HomeTeamhistoricalMatches = db.events.find( {$and:  [{$or:[{hometeamname:team1} ,{awayteamname:team1}]}, {startingat:{$lt:it.startingat}}, {league_name:inputLeagueName}  ]  } ).
-   sort({ startingat:-1 });
-   var AwayTeamhistoricalMatches = db.events.find( {$and:  [{$or:[{hometeamname:team2} ,{awayteamname:team2}]}, {startingat:{$lt:it.startingat}}, {league_name:inputLeagueName}  ]  } ).
-   sort({ startingat:-1 });
+   
+   
+    var HomeTeamhistoricalMatches = db.events.find( {$and:  [{$or:[{hometeamname:team1} ,{awayteamname:team1}]}, {startingat:{$lt:it.startingat}}, {league_name:inputLeagueName}  ]  } ).
+    sort({ startingat:-1 });
+   
+    var AwayTeamhistoricalMatches = db.events.find( {$and:  [{$or:[{hometeamname:team2} ,{awayteamname:team2}]}, {startingat:{$lt:it.startingat}}, {league_name:inputLeagueName}  ]  } ).
+    sort({ startingat:-1 });
 
-   var HomeTeamMatchNumber =   getMatchNumber(it.startingat,HomeTeamhistoricalMatches);
-   db.events.update({_id:it._id},{$set:{"MatchNumber":HomeTeamMatchNumber}});
+    var HomeTeamMatchNumber =   getMatchNumber(it.startingat,HomeTeamhistoricalMatches);
+    db.events.update({_id:it._id},{$set:{"MatchNumber":HomeTeamMatchNumber}});
         
         
     var AvgGoalsScoredUpTo75 = 0;
     var AvgGoalsConcededUpTo75 = 0;
     var AvgGoalsConceded = 0;
     var AvgGoalsScored = 0;
-      
+    var PlaysAtHomeorAway ="";
+    var TotalMatchCount =0;
+    
     HomeTeamhistoricalMatches.limit(5).forEach((historicalMatch)=> 
     { 
-
-         
          AvgGoalsScoredUpTo75 +=historicalMatch.homeGoalsUpTo75;
          AvgGoalsConcededUpTo75 += historicalMatch.awayGoalsUpTo75;
          AvgGoalsConceded += historicalMatch.finalHomeGoals;
          AvgGoalsScored +=historicalMatch.finalAwayGoals ;
+         TotalMatchCount+=1;
+   
+        if (it.hometeamname ==historicalMatch.hometeamname)
+            PlaysAtHomeorAway = "H";
+        else     
+            PlaysAtHomeorAway = "A";
         
-    
-        
-        db.events.update({_id:it._id},{$push : { HomeTeamStats: {"Date":historicalMatch.startingat,
+         db.events.update({_id:it._id},{$push : { HomeTeamStats: {"Date":historicalMatch.startingat,
                                                          "PlaysAtHomeOrAway":"H",
                                                          "GoalsScoredUpTo75":historicalMatch.homeGoalsUpTo75, 
                                                          "GoalsConcededUpTo75":historicalMatch.awayGoalsUpTo75,
@@ -51,10 +58,11 @@ db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it
                         
     });
     
-        AvgGoalsScoredUpTo75 = AvgGoalsScoredUpTo75/5;
-        AvgGoalsConcededUpTo75 = AvgGoalsConcededUpTo75/5;
-        AvgGoalsConceded =AvgGoalsConceded/5;
-        AvgGoalsScored =AvgGoalsScored/5;
+        AvgGoalsScoredUpTo75 = AvgGoalsScoredUpTo75/TotalMatchCount;
+        AvgGoalsConcededUpTo75 = AvgGoalsConcededUpTo75/TotalMatchCount;
+        AvgGoalsConceded =AvgGoalsConceded/TotalMatchCount;
+        AvgGoalsScored =AvgGoalsScored/TotalMatchCount;
+    
         
         db.events.update({_id:it._id},
         {$set:
@@ -70,11 +78,16 @@ db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it
          AvgGoalsConcededUpTo75 = 0;
          AvgGoalsConceded =0;
          AvgGoalsScored =0;
-    
+         TotalMatchCount =0;
+        
     AwayTeamhistoricalMatches.limit(5).forEach((historicalMatch)=> 
     { 
-        
-         
+      
+        if (it.awayteamname==historicalMatch.awayteamname)
+            PlaysAtHomeorAway = "A";
+        else     
+            PlaysAtHomeorAway = "H";
+        TotalMatchCount+=1;
         AvgGoalsScoredUpTo75 +=historicalMatch.awayGoalsUpTo75;
         AvgGoalsConcededUpTo75 += historicalMatch.homeGoalsUpTo75;
         AvgGoalsConceded += historicalMatch.finalHomeGoals;
@@ -82,7 +95,7 @@ db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it
         
     
         db.events.update({_id:it._id},{$push : { AwayTeamStats: {"Date":historicalMatch.startingat,
-                                                         "PlaysAtHomeOrAway":"A",
+                                                         "PlaysAtHomeOrAway":PlaysAtHomeorAway,
                                                          "GoalsScoredUpTo75":historicalMatch.awayGoalsUpTo75, 
                                                          "GoalsConcededUpTo75":historicalMatch.homeGoalsUpTo75,
                                                          "GoalsScored":historicalMatch.finalAwayGoals,
@@ -97,10 +110,10 @@ db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it
     });
 
         
-        AvgGoalsScoredUpTo75 = AvgGoalsScoredUpTo75/5;
-        AvgGoalsConcededUpTo75 = AvgGoalsConcededUpTo75/5;
-        AvgGoalsConceded =AvgGoalsConceded/5;
-        AvgGoalsScored =AvgGoalsScored/5;
+        AvgGoalsScoredUpTo75 = AvgGoalsScoredUpTo75/TotalMatchCount;
+        AvgGoalsConcededUpTo75 = AvgGoalsConcededUpTo75/TotalMatchCount;
+        AvgGoalsConceded =AvgGoalsConceded/TotalMatchCount;
+        AvgGoalsScored =AvgGoalsScored/TotalMatchCount;
     
         db.events.update({_id:it._id},
         {$set:
@@ -138,4 +151,3 @@ function  getMatchNumber(currentDate, games)
   
     return thegame.MatchNumber+1;
 }
-
