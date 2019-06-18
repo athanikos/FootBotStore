@@ -31,17 +31,28 @@ db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it
     
     HomeTeamhistoricalMatches.limit(5).forEach((historicalMatch)=> 
     { 
-         AvgGoalsScoredUpTo75 +=historicalMatch.homeGoalsUpTo75;
-         AvgGoalsConcededUpTo75 += historicalMatch.awayGoalsUpTo75;
-         AvgGoalsConceded += historicalMatch.finalHomeGoals;
          AvgGoalsScored +=historicalMatch.finalAwayGoals ;
+        
+        if (it.hometeamname ==historicalMatch.hometeamname)
+        {
+            AvgGoalsScoredUpTo75 +=historicalMatch.homeGoalsUpTo75;
+            AvgGoalsScored +=historicalMatch.finalHomeGoals ;
+            AvgGoalsConcededUpTo75 += historicalMatch.awayGoalsUpTo75;
+            AvgGoalsConceded += historicalMatch.finalHomeGoals;
+        
+            PlaysAtHomeorAway = "H";
+        }
+        else     
+        {
+             AvgGoalsScoredUpTo75 +=historicalMatch.awayGoalsUpTo75;
+             AvgGoalsScored +=historicalMatch.finalHomeGoals; 
+             AvgGoalsConcededUpTo75 += historicalMatch.homeGoalsUpTo75;
+             AvgGoalsConceded += historicalMatch.finalHomeGoals ;
+             PlaysAtHomeorAway = "A";
+        }
+        
          TotalMatchCount+=1;
    
-        if (it.hometeamname ==historicalMatch.hometeamname)
-            PlaysAtHomeorAway = "H";
-        else     
-            PlaysAtHomeorAway = "A";
-        
          db.events.update({_id:it._id},{$push : { HomeTeamStats: {"Date":historicalMatch.startingat,
                                                          "PlaysAtHomeOrAway":"H",
                                                          "GoalsScoredUpTo75":historicalMatch.homeGoalsUpTo75, 
@@ -82,11 +93,23 @@ db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it
         
     AwayTeamhistoricalMatches.limit(5).forEach((historicalMatch)=> 
     { 
-      
-        if (it.awayteamname==historicalMatch.awayteamname)
-            PlaysAtHomeorAway = "A";
+        if (it.awayteamname ==historicalMatch.awayteamname)
+        {
+             AvgGoalsScoredUpTo75 +=historicalMatch.awayGoalsUpTo75;
+             AvgGoalsScored +=historicalMatch.finalHomeGoals; 
+             AvgGoalsConcededUpTo75 += historicalMatch.homeGoalsUpTo75;
+             AvgGoalsConceded += historicalMatch.finalHomeGoals ;
+             PlaysAtHomeorAway = "A";
+        }
         else     
+        {
+            AvgGoalsScoredUpTo75 +=historicalMatch.homeGoalsUpTo75;
+            AvgGoalsScored +=historicalMatch.finalHomeGoals ;
+            AvgGoalsConcededUpTo75 += historicalMatch.awayGoalsUpTo75;
+            AvgGoalsConceded += historicalMatch.finalHomeGoals;
             PlaysAtHomeorAway = "H";
+    
+        }    
         TotalMatchCount+=1;
         AvgGoalsScoredUpTo75 +=historicalMatch.awayGoalsUpTo75;
         AvgGoalsConcededUpTo75 += historicalMatch.homeGoalsUpTo75;
