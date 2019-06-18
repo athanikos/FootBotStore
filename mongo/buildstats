@@ -52,7 +52,7 @@ db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it
          TotalMatchCount+=1;
    
          db.events.update({_id:it._id},{$push : { HomeTeamStats: {"Date":historicalMatch.startingat,
-                                                         "PlaysAtHomeOrAway":"H",
+                                                         "PlaysAtHomeOrAway":PlaysAtHomeorAway,
                                                          "GoalsScoredUpTo75":historicalMatch.homeGoalsUpTo75, 
                                                          "GoalsConcededUpTo75":historicalMatch.awayGoalsUpTo75,
                                                          "GoalsScored":historicalMatch.finalHomeGoals,
