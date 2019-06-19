@@ -4,21 +4,21 @@ db.events.updateMany({},{$unset:{stats:""}  })
 var inputLeagueName = "Eredivisie";
 
 db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it)=> { 
-   var team1 = it.hometeamname;
-   var team2 = it.awayteamname;
-   var dt = it.startingat;
-   
-   
-    var HomeTeamhistoricalMatches = db.events.find( {$and:  [{$or:[{hometeamname:team1} ,{awayteamname:team1}]}, {startingat:{$lt:it.startingat}}, {league_name:inputLeagueName}  ]  } ).
+    var team1 = it.hometeamname;
+    var team2 = it.awayteamname;
+  
+    var dt = it.startingat;
+    var HomeTeamhistoricalMatches = db.events.
+    find( {$and:  [{$or:[{hometeamname:team1} ,{awayteamname:team1}]}, {startingat:{$lt:it.startingat}}, {league_name:inputLeagueName}  ]  } ).
     sort({ startingat:-1 });
-   
-    var AwayTeamhistoricalMatches = db.events.find( {$and:  [{$or:[{hometeamname:team2} ,{awayteamname:team2}]}, {startingat:{$lt:it.startingat}}, {league_name:inputLeagueName}  ]  } ).
+  
+    var AwayTeamhistoricalMatches = db.events.
+    find( {$and:  [{$or:[{hometeamname:team2} ,{awayteamname:team2}]}, {startingat:{$lt:it.startingat}}, {league_name:inputLeagueName}  ]  } ).
     sort({ startingat:-1 });
-
+  
     var HomeTeamMatchNumber =   getMatchNumber(it.startingat,HomeTeamhistoricalMatches);
     db.events.update({_id:it._id},{$set:{"MatchNumber":HomeTeamMatchNumber}});
-        
-        
+  
     var AvgGoalsScoredUpTo75 = 0;
     var AvgGoalsConcededUpTo75 = 0;
     var AvgGoalsConceded = 0;
@@ -28,7 +28,6 @@ db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it
     
     HomeTeamhistoricalMatches.limit(5).forEach((historicalMatch)=> 
     { 
-        
         if (it.hometeamname ==historicalMatch.hometeamname)
         {
             AvgGoalsScoredUpTo75 +=historicalMatch.homeGoalsUpTo75;
@@ -45,23 +44,24 @@ db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it
              AvgGoalsConceded += historicalMatch.finalHomeGoals ;
              PlaysAtHomeorAway = "A";
         }
-        
-         TotalMatchCount+=1;
-   
-         db.events.update({_id:it._id},{$push : { HomeTeamStats: {"Date":historicalMatch.startingat,
+
+        TotalMatchCount+=1;
+ 
+    
+        db.events.update({_id:it._id},{$push : { HomeTeamStats: {"Date":historicalMatch.startingat,
                                                          "PlaysAtHomeOrAway":PlaysAtHomeorAway,
-                                                         "GoalsScoredUpTo75":historicalMatch.homeGoalsUpTo75, 
-                                                         "GoalsConcededUpTo75":historicalMatch.awayGoalsUpTo75,
-                                                         "GoalsScored":historicalMatch.finalHomeGoals,
-                                                         "GoalsConceded":historicalMatch.finalAwayGoals,  
+                                                         "awayGoalsUpTo75":historicalMatch.awayGoalsUpTo75, 
+                                                         "homeGoalsUpTo75":historicalMatch.homeGoalsUpTo75,
+                                                         "finalAwayGoals":historicalMatch.finalAwayGoals,
+                                                         "finalHomeGoals":historicalMatch.finalHomeGoals, 
                                                          "ResultAt75":historicalMatch.resultAt75,
                                                          "MatchNumber":historicalMatch.MatchNumber
-                                                }
-                                      } 
-                         }
-                        );
-                        
-                        
+                                                   }
+                                           }
+                              }
+                             );   
+                    
+
     });
     
         AvgGoalsScoredUpTo75 = AvgGoalsScoredUpTo75/TotalMatchCount;
@@ -73,11 +73,10 @@ db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it
         {
                 $set:
                 {
-                    "HomeAvgGoalsScoredUpTo75":AvgGoalsScoredUpTo75,
+                     "HomeAvgGoalsScoredUpTo75":AvgGoalsScoredUpTo75,
                      "HomeAvgGoalsConcededUpTo75":AvgGoalsConcededUpTo75,
                      "HomeAvgGoalsConceded":AvgGoalsConceded,
                      "HomeAvgGoalsScored":AvgGoalsScored,
-            
                 }
         });
 
@@ -111,10 +110,10 @@ db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it
     
         db.events.update({_id:it._id},{$push : { AwayTeamStats: {"Date":historicalMatch.startingat,
                                                          "PlaysAtHomeOrAway":PlaysAtHomeorAway,
-                                                         "GoalsScoredUpTo75":historicalMatch.awayGoalsUpTo75, 
-                                                         "GoalsConcededUpTo75":historicalMatch.homeGoalsUpTo75,
-                                                         "GoalsScored":historicalMatch.finalAwayGoals,
-                                                         "GoalsConceded":historicalMatch.finalHomeGoals, 
+                                                         "awayGoalsUpTo75":historicalMatch.awayGoalsUpTo75, 
+                                                         "homeGoalsUpTo75":historicalMatch.homeGoalsUpTo75,
+                                                         "finalAwayGoals":historicalMatch.finalAwayGoals,
+                                                         "finalHomeGoals":historicalMatch.finalHomeGoals, 
                                                          "ResultAt75":historicalMatch.resultAt75,
                                                          "MatchNumber":historicalMatch.MatchNumber
                                                    }
@@ -132,13 +131,12 @@ db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it
     
         db.events.update({_id:it._id},
         {
-                        $set:
+                    $set:
                     {
                          "AwayAvgGoalsScoredUpTo75":AvgGoalsScoredUpTo75,
                          "AwayAvgGoalsConcededUpTo75":AvgGoalsConcededUpTo75,
                          "AwayAvgGoalsConceded":AvgGoalsConceded,
                          "AwayAvgGoalsScored":AvgGoalsScored,
-                
                     }
                         
         });
