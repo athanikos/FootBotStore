@@ -1,10 +1,7 @@
-
 db.events.updateMany({},{$unset:{AwayTeamStats:""}  })
 db.events.updateMany({},{$unset:{HomeTeamStats:""}  })
 db.events.updateMany({},{$unset:{stats:""}  })
-
 var inputLeagueName = "Eredivisie";
-
 
 db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it)=> { 
    var team1 = it.hometeamname;
@@ -37,7 +34,7 @@ db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it
             AvgGoalsScoredUpTo75 +=historicalMatch.homeGoalsUpTo75;
             AvgGoalsScored +=historicalMatch.finalHomeGoals ;
             AvgGoalsConcededUpTo75 += historicalMatch.awayGoalsUpTo75;
-            AvgGoalsConceded += historicalMatch.finalHomeGoals;
+            AvgGoalsConceded += historicalMatch.finalAwayGoals;
             PlaysAtHomeorAway = "H";
         }
         else     
@@ -72,16 +69,17 @@ db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it
         AvgGoalsConceded =AvgGoalsConceded/TotalMatchCount;
         AvgGoalsScored =AvgGoalsScored/TotalMatchCount;
     
-        
         db.events.update({_id:it._id},
-        {$set:
         {
-            "HomeAvgGoalsScoredUpTo75":AvgGoalsScoredUpTo75,
-             "HomeAvgGoalsConcededUpTo75":AvgGoalsConcededUpTo75,
-             "HomeAvgGoalsConceded":AvgGoalsConceded,
-             "HomeAvgGoalsScored":AvgGoalsScored,
-    
-        }});
+                $set:
+                {
+                    "HomeAvgGoalsScoredUpTo75":AvgGoalsScoredUpTo75,
+                     "HomeAvgGoalsConcededUpTo75":AvgGoalsConcededUpTo75,
+                     "HomeAvgGoalsConceded":AvgGoalsConceded,
+                     "HomeAvgGoalsScored":AvgGoalsScored,
+            
+                }
+        });
 
          AvgGoalsScoredUpTo75 = 0;
          AvgGoalsConcededUpTo75 = 0;
@@ -104,7 +102,7 @@ db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it
             AvgGoalsScoredUpTo75 +=historicalMatch.homeGoalsUpTo75;
             AvgGoalsScored +=historicalMatch.finalHomeGoals ;
             AvgGoalsConcededUpTo75 += historicalMatch.awayGoalsUpTo75;
-            AvgGoalsConceded += historicalMatch.finalHomeGoals;
+            AvgGoalsConceded += historicalMatch.finalAwayGoals;
             PlaysAtHomeorAway = "H";
     
         }    
@@ -133,14 +131,17 @@ db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it
         AvgGoalsScored =AvgGoalsScored/TotalMatchCount;
     
         db.events.update({_id:it._id},
-        {$set:
         {
-             "AwayAvgGoalsScoredUpTo75":AvgGoalsScoredUpTo75,
-             "AwayAvgGoalsConcededUpTo75":AvgGoalsConcededUpTo75,
-             "AwayAvgGoalsConceded":AvgGoalsConceded,
-             "AwayAvgGoalsScored":AvgGoalsScored,
-    
-        }});
+                        $set:
+                    {
+                         "AwayAvgGoalsScoredUpTo75":AvgGoalsScoredUpTo75,
+                         "AwayAvgGoalsConcededUpTo75":AvgGoalsConcededUpTo75,
+                         "AwayAvgGoalsConceded":AvgGoalsConceded,
+                         "AwayAvgGoalsScored":AvgGoalsScored,
+                
+                    }
+                        
+        });
 
     
 });
