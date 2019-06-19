@@ -96,7 +96,7 @@ db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it
                      "AwayAvgGoalsScoredUpTo75":AwayAvgGoalsScoredUpTo75,
                      "AwayAvgGoalsConcededUpTo75":AwayAvgGoalsConcededUpTo75,
                      "AwayAvgGoalsConceded":AwayAvgGoalsConceded,
-                     "AwayAvgGoalsScored":AwayAvgGoalsScored,
+                     "AwayAvgGoalsScored":AwayAvgGoalsScored
                 }
         });
 
@@ -162,6 +162,7 @@ db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it
         HomeAvgGoalsConcededUpTo75 = HomeAvgGoalsConcededUpTo75/HomeTotalMatchCount;
         HomeAvgGoalsConceded =HomeAvgGoalsConceded/HomeTotalMatchCount;
         HomeAvgGoalsScored =HomeAvgGoalsScored/HomeTotalMatchCount;
+
         AwayAvgGoalsScoredUpTo75 = AwayAvgGoalsScoredUpTo75/AwayTotalMatchCount;
         AwayAvgGoalsConcededUpTo75 = AwayAvgGoalsConcededUpTo75/AwayTotalMatchCount;
         AwayAvgGoalsConceded =AwayAvgGoalsConceded/AwayTotalMatchCount;
@@ -178,7 +179,7 @@ db.events.find({league_name:inputLeagueName}).sort({ startingat:1 }).forEach((it
                      "AwayAvgGoalsScoredUpTo75":AwayAvgGoalsScoredUpTo75,
                      "AwayAvgGoalsConcededUpTo75":AwayAvgGoalsConcededUpTo75,
                      "AwayAvgGoalsConceded":AwayAvgGoalsConceded,
-                     "AwayAvgGoalsScored":AwayAvgGoalsScored,
+                     "AwayAvgGoalsScored":AwayAvgGoalsScored
                 }
         });
 
