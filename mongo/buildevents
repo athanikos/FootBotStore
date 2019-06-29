@@ -5,6 +5,7 @@ db.events.remove({})
         [
              {$match: {"time.status":"FT"}}
             ,{"$addFields": {"time.starting_at.date": {"$toDate": "$time.starting_at.date"} }}
+            ,{"$addFields": {"time.starting_at.date_time": {"$toDate": "$time.starting_at.date_time"} }}
             ,{$unwind:  "$events.data"}
             ,{"$addFields": {"localTeam.data.id" : {"$toString": "$localTeam.data.id"}}}
             ,{"$addFields": {"awayTeam.data.id" : {"$toString": "$visitorTeam.data.id"}}}
@@ -25,7 +26,8 @@ db.events.remove({})
                {
                            
                            matchId:"$id", 
-                           startingat:"$time.starting_at.date_time",
+                           startingatwithtime:"$time.starting_at.date_time",
+                           startingat:"$time.starting_at.date",
                            hometeamname:"$localTeam.data.name",
                            awayteamname:"$visitorTeam.data.name",
                            league_id:"$league_id",
@@ -80,6 +82,7 @@ db.events.remove({})
                         
                         _id: "$matchId",
                         startingat:{$max:"$startingat"},
+                        startingatwithtime:{$max:"$startingatwithtime"},
                         hometeamname:{$max:"$hometeamname"},
                         awayteamname:{$max:"$awayteamname"},
                         league_name:{$max:"$league_name"},
