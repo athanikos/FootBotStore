@@ -5,7 +5,7 @@
     "pipelineId" : "PutMonksMatchesToMongoFromKafkaa947185b-eff0-4701-9f0c-088094bef3c2",
     "title" : "PutMonksMatchesToMongoFromKafka",
     "description" : "",
-    "uuid" : "6aafbe89-1b03-44b6-a95c-d7323c7be7bd",
+    "uuid" : "722c6324-ea1a-469b-99c6-f21283e77cd4",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -393,7 +393,7 @@
         "value" : "darth.galaxy.com:2181"
       }, {
         "name" : "kafkaConfigBean.consumerGroup",
-        "value" : "MonksLiveMatches"
+        "value" : "MonksLiveMatches99999999"
       }, {
         "name" : "kafkaConfigBean.topic",
         "value" : "MonksLiveMatches"
@@ -432,7 +432,7 @@
         "value" : "DISCARD"
       } ],
       "uiInfo" : {
-        "yPos" : 75,
+        "yPos" : 77,
         "stageType" : "SOURCE",
         "rawSource" : {
           "configuration" : [ {
@@ -454,7 +454,7 @@
         },
         "description" : "",
         "label" : "MonkMatches_1",
-        "xPos" : 189
+        "xPos" : 237
       },
       "inputLanes" : [ ],
       "outputLanes" : [ "KafkaConsumer_01OutputLane15516231938920" ],
@@ -641,8 +641,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "MongoDB Lookup 1",
-        "xPos" : 820,
-        "yPos" : 79,
+        "xPos" : 819,
+        "yPos" : 78,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "ExpressionEvaluator_01OutputLane15540545523570" ],
@@ -676,8 +676,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Stream Selector 1",
-        "xPos" : 1111,
-        "yPos" : 78,
+        "xPos" : 1123.0535888671875,
+        "yPos" : 73,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "MongoDBLookup_01OutputLane15541452244100" ],
@@ -789,8 +789,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "MongoDB 1",
-        "xPos" : 1419,
-        "yPos" : 175.00000762939453,
+        "xPos" : 1420,
+        "yPos" : 176.00000762939453,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "StreamSelector_01OutputLane1554141839483" ],
@@ -807,7 +807,7 @@
         "description" : "",
         "label" : "Trash 1",
         "xPos" : 1417,
-        "yPos" : 56,
+        "yPos" : 54,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "StreamSelector_01OutputLane1554141871331" ],
@@ -838,11 +838,11 @@
       "title" : "PutMonksMatchesToMongoFromKafka",
       "description" : "",
       "created" : 1554047785816,
-      "lastModified" : 1555264211627,
+      "lastModified" : 1562495981868,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "6aafbe89-1b03-44b6-a95c-d7323c7be7bd",
+      "uuid" : "722c6324-ea1a-469b-99c6-f21283e77cd4",
       "valid" : true,
       "metadata" : {
         "labels" : [ ]
@@ -1145,8 +1145,8 @@
     },
     "valid" : true,
     "issues" : {
-      "issueCount" : 0,
       "pipelineIssues" : [ ],
+      "issueCount" : 0,
       "stageIssues" : { }
     },
     "previewable" : true
