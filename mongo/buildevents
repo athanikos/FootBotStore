@@ -1,5 +1,4 @@
-db.events.remove({})
-
+  db.events.remove({})
   db.backup_matches.aggregate
     (
         [
