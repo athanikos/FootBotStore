@@ -7,7 +7,7 @@ The purpose of the project is to fetch live football data store and analyze.
 
 # Architecture
 
-Sources ---https--> Kafka ------> Mongo 
+Sources ------> Kafka ------> Mongo 
                                   
 StreamSets is used for pipeline development.
 SportMonks is used as a live data provider.
