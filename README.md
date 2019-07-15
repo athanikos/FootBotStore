@@ -1,4 +1,4 @@
-# Football_Stats_Storage_And_Pipelines
+# Football Stats (Storage And Pipelines)
 
 # Introduction 
 This repository contains the Storage and Pipelines part of the FootBallStats project.
