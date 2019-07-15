@@ -22,10 +22,11 @@ SportMonks is used as a live data provider.
 
 # StreamSets Pipelines 
 GetMonksLiveScoresToKafka
-https://github.com/athanikos/Football_Stats_Storage_And_Pipelines/blob/master/screenshots/GetMonksLiveScoresToKafka.png
+![alt text](https://github.com/athanikos/Football_Stats_Storage_And_Pipelines/blob/master/screenshots/GetMonksLiveScoresToKafka.png)
+
 
 PutMonksMatchesToMongoFromKafka
-https://github.com/athanikos/Football_Stats_Storage_And_Pipelines/blob/master/screenshots/PutMonksMatchesToMongoFromKafka.png
+![alt text(https://github.com/athanikos/Football_Stats_Storage_And_Pipelines/blob/master/screenshots/PutMonksMatchesToMongoFromKafka.png)
 
 
 
