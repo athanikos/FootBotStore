@@ -18,7 +18,7 @@ SportMonks is used as a live data provider.
 2.  Create a kafka topic called  MonksLiveMatches
 3.  Deploy  GetMonksLiveScoresToKafka & PutMonksMatchesToMongoFromKafka pipelines contained in streamsets folder 
 4.  Replace the api token with your sportMonks Api token in GetMonksLiveScoresToKafka
-5.  To create a collection in mongo that holds FT Matches only run BuildFootballMatchesFromMatches.js  aggregation pipeline that adds a number of statistics 
+5.  To create a collection in mongo that holds FT Matches only run BuildFootballMatchesFromMatches.js  aggregation pipeline that groups matches by status = FT and adds a number of statistics 
 
 # StreamSets Pipelines 
 ## GetMonksLiveScoresToKafka 
