@@ -1,4 +1,0 @@
-db.events.find( {$or: [  {"league_name":"Eredivisie","hometeamname":"Ajax"}, {"league_name":"Eredivisie","awayteamname":"Ajax"}]})
-    .projection({})
-    .sort({ startingat: 1 })
-    .limit(1000)
