@@ -23,7 +23,9 @@ SportMonks is used as a live data provider.
 
 # StreamSets Pipelines 
 ## GetMonksLiveScoresToKafka 
-The source json contains all macthes within data node in json.
+The source json contains all matches within one data node in json.
+![alt text](https://github.com/athanikos/Football_Stats_Storage_And_Pipelines/blob/master/screenshots/GetMonkLiveScoresToKafka_one_to_many.png)
+
 The unique key of the match is (status, id , minute)
 Therefore, for a match you should expect to see 1 record per minute. 
 The java script evaluator is used to produce N data records from 1 record.
