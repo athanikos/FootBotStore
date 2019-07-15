@@ -130,7 +130,7 @@
                 }
             },
             {
-                $out:"FootballMatches" 
+                $out:"FullTimeMatches" 
             }
         ]
     ,     {allowDiskUse:true,cursor:{}}
