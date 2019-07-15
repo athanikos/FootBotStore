@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from pymongo import MongoClient
 client = MongoClient("localhost", 27017, maxPoolSize=50)
 db = client.book
-collection = db['events']
+collection = db['FullTimeMatches']
 cursor = collection.find()
 df =  pd.DataFrame(list(cursor))
 df_lastGoal60orMore = df
