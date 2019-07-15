@@ -26,7 +26,7 @@ GetMonksLiveScoresToKafka
 
 
 PutMonksMatchesToMongoFromKafka
-![alt text(https://github.com/athanikos/Football_Stats_Storage_And_Pipelines/blob/master/screenshots/PutMonksMatchesToMongoFromKafka.png)
+![alt_text](https://github.com/athanikos/Football_Stats_Storage_And_Pipelines/blob/master/screenshots/PutMonksMatchesToMongoFromKafka.png)
 
 
 
