@@ -1,5 +1,5 @@
-  db.events.remove({})
-  db.backup_matches.aggregate
+  db.FullTimeMatches.remove({})
+  db.Matches.aggregate
     (
         [
              {$match: {"time.status":"FT"}}
@@ -135,4 +135,4 @@
         ]
     ,     {allowDiskUse:true,cursor:{}}
     );
-//CountGoalsPerLeague();
+
