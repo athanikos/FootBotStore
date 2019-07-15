@@ -17,7 +17,7 @@ SportMonks is used as a live data provider.
 1.  Install Kafka, StreamSets and Mongo.
 2.  Create a kafka topic called  MonksLiveMatches.
 3.  Deploy  GetMonksLiveScoresToKafka & PutMonksMatchesToMongoFromKafka pipelines contained in streamsets folder 
-4.  Replace your sportMonks Api token in GetMonksLiveScoresToKafka
+4.  Replace the api token with your sportMonks Api token in GetMonksLiveScoresToKafka
 
 
 # StreamSets Pipelines 
