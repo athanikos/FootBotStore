@@ -5,7 +5,7 @@ This repository contains the Storage and Pipelines part of the FootBallStats pro
 The purpose of the project is to fetch live football data store and analyze.
 
 
-# Architecture
+# Design 
 
 Sources ------> Kafka ------> Mongo 
                                   
