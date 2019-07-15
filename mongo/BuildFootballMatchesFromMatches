@@ -130,7 +130,7 @@
                 }
             },
             {
-                $out:"events" 
+                $out:"FootballMatches" 
             }
         ]
     ,     {allowDiskUse:true,cursor:{}}
