@@ -2,7 +2,7 @@
 
 # Introduction 
 This repository contains the Storage and Pipelines part of the FootBallStats project.
-The purpose of the project is to fetch live football data store and analyze.
+The purpose of the project is to fetch live football data for further analysis.
 
 
 # Design 
