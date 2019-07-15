@@ -393,7 +393,7 @@
         "value" : null
       }, {
         "name" : "conf.resourceUrl",
-        "value" : "https://soccer.sportmonks.com/api/v2.0/livescores?api_token=Qal7sJVVVm0Cd77tTTOttYjFw5h3OzrA90ZWKgFHANajoXmzqePWJB0KNaKt&include=localTeam,visitorTeam,events,inplay,stats"
+        "value" : "https://soccer.sportmonks.com/api/v2.0/livescores?api_token=<YourApiToken>&include=localTeam,visitorTeam,events,inplay,stats"
       }, {
         "name" : "conf.headers",
         "value" : [ ]
