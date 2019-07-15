@@ -29,7 +29,7 @@ Therefore, for a match you should expect to see 1 record per minute.
 
 ![alt text](https://github.com/athanikos/Football_Stats_Storage_And_Pipelines/blob/master/screenshots/GetMonksLiveScoresToKafka.png)
 ## PutMonksMatchesToMongoFromKafka  
-Uses mopngo db as a lookup storage to decide whether to upsert. 
+Uses mongo db as a lookup storage to decide whether to upsert. 
 The triple (status, id , minute) is used to lookup.
 If exists then data is sent to trash.
 ![alt_text](https://github.com/athanikos/Football_Stats_Storage_And_Pipelines/blob/master/screenshots/PutMonksMatchesToMongoFromKafka.png)
