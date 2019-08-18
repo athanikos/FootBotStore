@@ -15,9 +15,15 @@ SportMonks is used as a live data provider.
 
 # QuickStart 
 1.  Install Java, Kafka, StreamSets and Mongo
-    a. Install Java on ubuntu : https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-18-04
+    a. Install Java (open jdk 1.8 required by streamsets)  on ubuntu : https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-18-04
+    
     b. Install Kafka : https://www.digitalocean.com/community/tutorials/how-to-install-apache-kafka-on-ubuntu-18-04
     
+    c. Install Streamsets 
+    Set limits
+    https://superuser.com/questions/1200539/cannot-increase-open-file-limit-past-4096-ubuntu
+    Set Streamsets to run on boot with crontab add a line on  crontab -e 
+    @reboot  /pathtosdcbin/streamsets dc 
     
 2.  Create a kafka topic called  MonksLiveMatches
 3.  Deploy  GetMonksLiveScoresToKafka & PutMonksMatchesToMongoFromKafka pipelines contained in streamsets folder 
