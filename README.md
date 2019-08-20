@@ -27,7 +27,11 @@ SportMonks is used as a live data provider.
     Set Streamsets to run on boot with crontab add a line on  crontab -e 
     @reboot  /pathtosdcbin/streamsets dc 
     
-2.  Create a kafka topic called  MonksLiveMatches
+    d. Install mongo 
+    https://itsfoss.com/install-mongodb-ubuntu/#install-from-ubuntu-repository
+    
+    
+2.  Create a kafka topic named MonksLiveMatches
 3.  Deploy  GetMonksLiveScoresToKafka & PutMonksMatchesToMongoFromKafka pipelines contained in streamsets folder 
 4.  Replace the api token with your sportMonks Api token in GetMonksLiveScoresToKafka
 5.  To create a collection in mongo that holds FT Matches only run BuildFootballMatchesFromMatches.js  aggregation pipeline that groups matches by status = FT and adds a number of statistics 
