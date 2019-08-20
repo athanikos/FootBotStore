@@ -29,6 +29,8 @@ SportMonks is used as a live data provider.
     
     d. Install mongo 
     https://itsfoss.com/install-mongodb-ubuntu/#install-from-ubuntu-repository
+    modify /etc/mongod.conf to allow remote connections (bind_ip) 
+    
     
     
 2.  Create a kafka topic named MonksLiveMatches
