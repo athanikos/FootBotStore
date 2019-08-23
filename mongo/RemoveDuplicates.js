@@ -2,7 +2,7 @@
 db.Matches.find({}).forEach(
     function (doc) 
     {
-        var count = db.matches.find({"time.status":"FT",id:doc.id}).count();
+        var count = db.Matches.find({"time.status":"FT",id:doc.id}).count();
         if (count>1)
         {
              print ("count " + count +  " " + doc.id ) 
