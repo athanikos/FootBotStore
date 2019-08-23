@@ -10,7 +10,7 @@ db.Matches.find({}).forEach(
                  
                  function(doc2)
                  {
-                     db.matches.remove({_id:doc2._id});
+                     db.Matches.remove({_id:doc2._id});
                  }
              )
         }
