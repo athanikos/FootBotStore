@@ -6,7 +6,7 @@ db.Matches.find({}).forEach(
         if (count>1)
         {
              print ("count " + count +  " " + doc.id ) 
-             db.matches.find({"time.status":"FT",id:doc.id}).limit(count-1).forEach(
+             db.Matches.find({"time.status":"FT",id:doc.id}).limit(count-1).forEach(
                  
                  function(doc2)
                  {
