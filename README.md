@@ -15,7 +15,9 @@ SportMonks is used as a live data provider.
 
 # QuickStart 
 [Install open jdk 8](https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-18-04)
+
 [Install Kafka](https://www.digitalocean.com/community/tutorials/how-to-install-apache-kafka-on-ubuntu-18-04)
+
 Install Streamsets 
    [Set limits:](https://superuser.com/questions/1200539/cannot-increase-open-file-limit-past-4096-ubuntu)
    by modifying the conf file /etc/security/limits.conf
@@ -24,6 +26,7 @@ Install Streamsets
                 *                soft    nofile          65535
                 root             soft    nofile          65535
                 root             hard    nofile          65535
+
 [Install mongo](https://itsfoss.com/install-mongodb-ubuntu/#install-from-ubuntu-repository)
    modify /etc/mongod.conf to allow remote connections (bind_ip) 
 [secure mongo](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-mongodb-on-ubuntu-16-04)
