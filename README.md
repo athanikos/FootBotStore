@@ -32,11 +32,11 @@ c. Install Streamsets
                 root             hard    nofile          65535
                 
     
-    Set Streamsets to run on boot with crontab add a line on  crontab -e 
-    @reboot  /pathtosdcbin/streamsets dc 
+Set Streamsets to run on boot with crontab add a line on  crontab -e 
+@reboot  /pathtosdcbin/streamsets dc 
 
 d. [Install mongo]     (https://itsfoss.com/install-mongodb-ubuntu/#install-from-ubuntu-repository)
-    modify /etc/mongod.conf to allow remote connections (bind_ip) 
+   modify /etc/mongod.conf to allow remote connections (bind_ip) 
    [secure mongo]:(https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-mongodb-on-ubuntu-16-04)
     
     
