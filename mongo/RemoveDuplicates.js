@@ -1,5 +1,5 @@
 
-db.matches.find({}).forEach(
+db.Matches.find({}).forEach(
     function (doc) 
     {
         var count = db.matches.find({"time.status":"FT",id:doc.id}).count();
