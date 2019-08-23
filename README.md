@@ -16,9 +16,9 @@ SportMonks is used as a live data provider.
 # QuickStart 
 1.  Install Java, Kafka, StreamSets and Mongo
 
-a. [Install Java (open jdk 1.8 required by streamsets)  on ubuntu] (https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-18-04)
+a. [Install Java (open jdk 1.8 required by streamsets)  on ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-18-04)
     
-b. [Install Kafka] : (https://www.digitalocean.com/community/tutorials/how-to-install-apache-kafka-on-ubuntu-18-04)
+b. [Install Kafka](https://www.digitalocean.com/community/tutorials/how-to-install-apache-kafka-on-ubuntu-18-04)
 
  https://stackoverflow.com/questions/52146001/kafka-not-able-to-connect-with-zookeeper-with-error-timed-out-waiting-for-conne
     
