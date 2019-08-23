@@ -16,16 +16,15 @@ SportMonks is used as a live data provider.
 # QuickStart 
 1.  Install Java, Kafka, StreamSets and Mongo
 
-a. [Install Java (open jdk 1.8 required by streamsets)  on ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-18-04)
+a. [Install open jdk 1.8](https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-18-04)
     
 b. [Install Kafka](https://www.digitalocean.com/community/tutorials/how-to-install-apache-kafka-on-ubuntu-18-04)
-
- https://stackoverflow.com/questions/52146001/kafka-not-able-to-connect-with-zookeeper-with-error-timed-out-waiting-for-conne
+   https://stackoverflow.com/questions/52146001/kafka-not-able-to-connect-with-zookeeper-with-error-timed-out-waiting-for-conne
     
     
 c. Install Streamsets 
-    [Set limits:] (https://superuser.com/questions/1200539/cannot-increase-open-file-limit-past-4096-ubuntu)
-    by modifying the conf file /etc/security/limits.conf
+   [Set limits:](https://superuser.com/questions/1200539/cannot-increase-open-file-limit-past-4096-ubuntu)
+   by modifying the conf file /etc/security/limits.conf
             
                 *                hard    nofile          65535
                 *                soft    nofile          65535
@@ -33,8 +32,8 @@ c. Install Streamsets
                 root             hard    nofile          65535
                 
     
-   Set Streamsets to run on boot with crontab add a line on  crontab -e 
-   @reboot  /pathtosdcbin/streamsets dc 
+    Set Streamsets to run on boot with crontab add a line on  crontab -e 
+    @reboot  /pathtosdcbin/streamsets dc 
 
 d. [Install mongo]     (https://itsfoss.com/install-mongodb-ubuntu/#install-from-ubuntu-repository)
     modify /etc/mongod.conf to allow remote connections (bind_ip) 
