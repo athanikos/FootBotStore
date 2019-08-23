@@ -18,8 +18,9 @@ SportMonks is used as a live data provider.
 
 [Install Kafka](https://www.digitalocean.com/community/tutorials/how-to-install-apache-kafka-on-ubuntu-18-04)
 
-Install Streamsets 
-   [Set limits:](https://superuser.com/questions/1200539/cannot-increase-open-file-limit-past-4096-ubuntu)
+[Install Streamsets](https://streamsets.com/documentation/datacollector/latest/help/datacollector/UserGuide/Installation/Install_title.html) 
+   
+[Set limits:](https://superuser.com/questions/1200539/cannot-increase-open-file-limit-past-4096-ubuntu)
    by modifying the conf file /etc/security/limits.conf
             
                 *                hard    nofile          65535
@@ -29,6 +30,7 @@ Install Streamsets
 
 [Install mongo](https://itsfoss.com/install-mongodb-ubuntu/#install-from-ubuntu-repository)
    modify /etc/mongod.conf to allow remote connections (bind_ip) 
+   
 [secure mongo](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-mongodb-on-ubuntu-16-04)
     
 2.  Create a kafka topic named MonksLiveMatches
