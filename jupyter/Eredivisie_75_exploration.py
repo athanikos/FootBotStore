@@ -15,8 +15,6 @@ df_Eredevisie =  df_lastGoal60orMore[df_lastGoal60orMore.league_name == 'Eredivi
 df_Eredevisie.groupby(['differenceAt75'])['goalScoredLast15'].sum() / df_Eredevisie.groupby(['differenceAt75']).size()
 #54% at -1 , 52% @ 1 
 
-
-
 # differenceAt75 , awayGoalsUpTo75 
 # more than 53% when -1,1 and awaygoals = 1,2 
 df_Eredevisie.groupby(['differenceAt75','awayGoalsUpTo75'])['goalScoredLast15'].sum() / df_Eredevisie.groupby(['differenceAt75','awayGoalsUpTo75']).size()
@@ -27,15 +25,12 @@ df_Eredevisie.groupby(['differenceAt75','awayGoalsUpTo75'])['goalScoredLast15'].
 df_Eredevisie.groupby(['differenceAt75','homeGoalsUpTo75'])['goalScoredLast15'].sum() / df_Eredevisie.groupby(['differenceAt75','homeGoalsUpTo75']).size()
 # both  illustrate that when diff = 0 chances are @45%
 
-
-# per home  team 
+# per home  team (60-75%)
 df_Eredevisie.groupby(['hometeamname','differenceAt75'])['goalScoredLast15'].sum() / df_Eredevisie.groupby(['hometeamname','differenceAt75']).size()
 # check sizes 
 df_Eredevisie.groupby(['hometeamname','differenceAt75'])['goalScoredLast15'].size()
 
-
-
-# per away  team 
+# per away  team (75% for some teams
 df_Eredevisie.groupby(['awayteamname','differenceAt75'])['goalScoredLast15'].sum() / df_Eredevisie.groupby(['awayteamname','differenceAt75']).size()
 # check sizes 
 df_Eredevisie.groupby(['awayteamname','differenceAt75'])['goalScoredLast15'].size()
