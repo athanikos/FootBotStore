@@ -124,8 +124,8 @@
                         resultAt75:{$max:        { $cond: [ {$gt:["$homeGoalsUpTo75","$awayGoalsUpTo75"]},"WIN",  {$cond: [ {$lt:["$homeGoalsUpTo75","$awayGoalsUpTo75"]},"LOOSE",  "DRAW"   }   }},
                         finalResult:{$max:       { $cond: [ {$gt:["$finalHomeGoals","$finalAwayGoals"]},"WIN",  {$cond: [ {$lt:["$finalHomeGoals","$finalAwayGoals"]},"LOOSE",  "DRAW"   }   }},
                         minuteOfLastGoal:{ $max:"$minuteOfLastGoal" },
-                        minuteOfLastRed:{ $max:"$minuteOfLastRed" }
-                         
+                        minuteOfLastRed:{ $max:"$minuteOfLastRed" },
+                        differenceAt75:{ $sum : {$subtract: [   "$homeGoalsUpTo75", "$awayGoalsUpTo75" ]   }}
                           
                 }
             },
