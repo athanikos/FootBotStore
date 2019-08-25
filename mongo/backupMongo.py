@@ -19,27 +19,22 @@ class TransferData:
             dbx.files_upload(f.read(), file_to)
 
 def main():
-    base_dir = '/opt/backups'
+    base_dir = '/opt/backups/'
+    date_string = date.today().strftime("%b-%d-%Y")
+
 
     os.chdir(base_dir)
-    mongoexport_cmd =' mongoexport --db book --collection Matches --out ' + base_dir + date.today().strftime("%b-%d-%Y")
+    mongoexport_cmd =' mongoexport --db book --collection Matches --out ' + base_dir + date_string
     os.system(mongoexport_cmd)
-    zip_cmd ='7z a ' + base_dir +  date.today().strftime("%b-%d-%Y") + ".7z  " + base_dir + date.today().strftime("%b-%d-%Y")
+    zip_cmd ='7z a ' + base_dir + date_string + ".7z  " + base_dir + date_string
     os.system(zip_cmd)
-
-    print("done")
-    #access_token = '*****************************'
-    #transferData = TransferData(access_token)
-
-    #file_from = date.today().strftime("%b-%d-%Y")
-    #file_to = '/Apps/FootballStats/test.txt'  # The full path to upload the file to, including the file name
+    access_token = 'entertoken'
+    transferData = TransferData(access_token)
+    file_from = date.today().strftime("%b-%d-%Y") + ".7z"
+    file_to = '/Apps/FootballStats/' +date_string + ".7z"   # The full path to upload the file to, including the file name
 
     # API v2
-    #transferData.upload_file(file_from, file_to)
-
-#dbx = dropbox.Dropbox('-3YjTimALFoAAAAAAAAFaIqerjhFhSNTUXFU8QtWnnQuDXbkvNKpyxtVEarrGwJF')
-#print(dbx.users_get_current_account().name)
-
+    transferData.upload_file(file_from, file_to)
 
 
 if __name__ == '__main__':
