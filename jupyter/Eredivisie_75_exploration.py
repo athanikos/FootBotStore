@@ -35,6 +35,7 @@ df_Eredevisie.groupby(['awayteamname','differenceAt75'])['goalScoredLast15'].siz
 
 
 
+
 df_minimal_Eredevisie = df_Eredevisie[[ 'startingatwithtime', 'hometeamname','awayteamname'
                                         ,'HomeTeamAverageWhileHomeGoalsScoredUpTo75'
                                         ,'HomeTeamAverageWhileHomeGoalsConcededUpTo75'
@@ -48,8 +49,5 @@ df_minimal_Eredevisie = df_Eredevisie[[ 'startingatwithtime', 'hometeamname','aw
                                         ,'awayGoalsUpTo75'
                                         ,'goalScoredLast15'   
                                       ]].copy()
-
-
-df_minimal_Eredevisie
 df_minimal_Eredevisie
 
