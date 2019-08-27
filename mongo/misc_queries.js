@@ -7,8 +7,11 @@ db.FullTimeMatches.aggregate(
          {$match : { "league_name":"Eredivisie"}},  
           {
             $group: {
-              _id: "$hometeamname"
+              _id: "$_id",
+              name: {$max : "$hometeamname"  }
+         
             }
           }
    ]
 )
+
