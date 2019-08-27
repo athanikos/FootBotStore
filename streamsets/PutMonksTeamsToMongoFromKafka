@@ -2,10 +2,10 @@
   "pipelineConfig" : {
     "schemaVersion" : 6,
     "version" : 14,
-    "pipelineId" : "PutMonksTeamsToMongoFromKafkacopy2d1cb606-1155-4340-8724-4b3e1ca5b9a1",
-    "title" : "PutMonksTeamsToMongoFromKafka",
+    "pipelineId" : "PutMonksTeamsToMongoFromKafka14cd0035-1ba7-4723-9b15-664463f47d33",
+    "title" : "PutMonksTeamsToMongoFromKafka copy",
     "description" : "",
-    "uuid" : "e99b9eea-941d-46a6-b0b2-9d00bf9fded3",
+    "uuid" : "c3cca654-da46-44d1-ae13-534c4528fbc3",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -456,7 +456,7 @@
         "value" : "fra101:2181"
       }, {
         "name" : "kafkaConfigBean.consumerGroup",
-        "value" : "MonksLiveMatchesTeamsConsumer"
+        "value" : "Consumer22"
       }, {
         "name" : "kafkaConfigBean.topic",
         "value" : "MonksLiveMatches"
@@ -465,13 +465,13 @@
         "value" : false
       }, {
         "name" : "kafkaConfigBean.maxBatchSize",
-        "value" : 1
+        "value" : 10000
       }, {
         "name" : "kafkaConfigBean.maxWaitTime",
-        "value" : 20
+        "value" : 5
       }, {
         "name" : "kafkaConfigBean.maxRatePerPartition",
-        "value" : 1
+        "value" : 10000
       }, {
         "name" : "kafkaConfigBean.keyDeserializer",
         "value" : "STRING"
@@ -510,7 +510,7 @@
         "value" : [ ]
       } ],
       "uiInfo" : {
-        "yPos" : 77,
+        "yPos" : 26.725467681884766,
         "stageType" : "SOURCE",
         "rawSource" : {
           "configuration" : [ {
@@ -532,7 +532,7 @@
         },
         "description" : "",
         "label" : "MonksLiveMatches Consumer",
-        "xPos" : 237
+        "xPos" : -248.3031768798828
       },
       "inputLanes" : [ ],
       "outputLanes" : [ "KafkaConsumer_01OutputLane15516231938920" ],
@@ -573,12 +573,44 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Marks record for upsert",
-        "xPos" : 478.025634765625,
-        "yPos" : 79.13248443603516,
+        "xPos" : -104.74859619140625,
+        "yPos" : 28.857948303222656,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "KafkaConsumer_01OutputLane15516231938920" ],
       "outputLanes" : [ "ExpressionEvaluator_01OutputLane15540545523570" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "FieldRemover_01",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_fieldfilter_FieldFilterDProcessor",
+      "stageVersion" : "1",
+      "configuration" : [ {
+        "name" : "filterOperation",
+        "value" : "KEEP"
+      }, {
+        "name" : "fields",
+        "value" : [ "/league_id", "/localTeam/data/name", "/visitorTeam/data/name", "/localTeam/data/id", "/visitorTeam/data/id" ]
+      }, {
+        "name" : "constant",
+        "value" : null
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "keep league_id , team id & name",
+        "xPos" : 37.998779296875,
+        "yPos" : 30.50577163696289,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "ExpressionEvaluator_01OutputLane15540545523570" ],
+      "outputLanes" : [ "FieldRemover_01OutputLane15668993607430" ],
       "eventLanes" : [ ],
       "services" : [ ]
     }, {
@@ -670,15 +702,15 @@
       }, {
         "name" : "configBean.fieldMapping",
         "value" : [ {
-          "keyName" : "localTeam.data.name",
-          "sdcField" : "localTeam.data.name"
-        }, {
           "keyName" : "league_id",
-          "sdcField" : "league_id"
+          "sdcField" : "[0]"
+        }, {
+          "keyName" : "localTeam.data.id",
+          "sdcField" : "/localTeam/data/id"
         } ]
       }, {
         "name" : "configBean.resultField",
-        "value" : "/to_exists"
+        "value" : "/localTeam_exists"
       }, {
         "name" : "configBean.multipleValuesBehavior",
         "value" : "FIRST_ONLY"
@@ -715,27 +747,170 @@
       } ],
       "uiInfo" : {
         "description" : "",
-        "label" : "Teams Contains  (league_id, teamname )",
-        "xPos" : 706.8847045898438,
-        "yPos" : 76.86750793457031,
+        "label" : "local team exists",
+        "xPos" : 207.29063415527344,
+        "yPos" : 29.479793548583984,
         "stageType" : "PROCESSOR"
       },
-      "inputLanes" : [ "ExpressionEvaluator_01OutputLane15540545523570" ],
-      "outputLanes" : [ "MongoDBLookup_01OutputLane15541452244100" ],
+      "inputLanes" : [ "FieldRemover_01OutputLane15668993607430" ],
+      "outputLanes" : [ "MongoDBLookup_01OutputLane15668998031560" ],
       "eventLanes" : [ ],
       "services" : [ ]
     }, {
-      "instanceName" : "StreamSelector_01",
+      "instanceName" : "MongoDBLookup_02",
+      "library" : "streamsets-datacollector-mongodb_3-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_mongodb_MongoDBDProcessor",
+      "stageVersion" : "1",
+      "configuration" : [ {
+        "name" : "configBean.mongoConfig.connectionString",
+        "value" : "mongodb://167.71.58.55:27017"
+      }, {
+        "name" : "configBean.mongoConfig.isSingleMode",
+        "value" : false
+      }, {
+        "name" : "configBean.mongoConfig.database",
+        "value" : "book"
+      }, {
+        "name" : "configBean.mongoConfig.collection",
+        "value" : "Teams"
+      }, {
+        "name" : "configBean.mongoConfig.authenticationType",
+        "value" : "USER_PASS"
+      }, {
+        "name" : "configBean.mongoConfig.username",
+        "value" : ""
+      }, {
+        "name" : "configBean.mongoConfig.password",
+        "value" : ""
+      }, {
+        "name" : "configBean.mongoConfig.authSource",
+        "value" : "admin"
+      }, {
+        "name" : "configBean.mongoConfig.connectionsPerHost",
+        "value" : 100
+      }, {
+        "name" : "configBean.mongoConfig.minConnectionsPerHost",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.connectTimeout",
+        "value" : 10000
+      }, {
+        "name" : "configBean.mongoConfig.maxConnectionIdleTime",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.maxConnectionLifeTime",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.maxWaitTime",
+        "value" : 120000
+      }, {
+        "name" : "configBean.mongoConfig.serverSelectionTimeout",
+        "value" : 30000
+      }, {
+        "name" : "configBean.mongoConfig.threadsAllowedToBlockForConnectionMultiplier",
+        "value" : 5
+      }, {
+        "name" : "configBean.mongoConfig.heartbeatFrequency",
+        "value" : 10000
+      }, {
+        "name" : "configBean.mongoConfig.minHeartbeatFrequency",
+        "value" : 500
+      }, {
+        "name" : "configBean.mongoConfig.heartbeatConnectTimeout",
+        "value" : 20000
+      }, {
+        "name" : "configBean.mongoConfig.heartbeatSocketTimeout",
+        "value" : 20000
+      }, {
+        "name" : "configBean.mongoConfig.localThreshold",
+        "value" : 15
+      }, {
+        "name" : "configBean.mongoConfig.requiredReplicaSetName",
+        "value" : null
+      }, {
+        "name" : "configBean.mongoConfig.cursorFinalizerEnabled",
+        "value" : true
+      }, {
+        "name" : "configBean.mongoConfig.socketKeepAlive",
+        "value" : false
+      }, {
+        "name" : "configBean.mongoConfig.socketTimeout",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.sslEnabled",
+        "value" : false
+      }, {
+        "name" : "configBean.mongoConfig.sslInvalidHostNameAllowed",
+        "value" : false
+      }, {
+        "name" : "configBean.fieldMapping",
+        "value" : [ {
+          "keyName" : "visitorTeam.data.id",
+          "sdcField" : "/visitorTeam/data/id"
+        }, {
+          "keyName" : "league_id",
+          "sdcField" : "[0]"
+        } ]
+      }, {
+        "name" : "configBean.resultField",
+        "value" : "/visitorTeam_exists"
+      }, {
+        "name" : "configBean.multipleValuesBehavior",
+        "value" : "FIRST_ONLY"
+      }, {
+        "name" : "configBean.missingValuesBehavior",
+        "value" : "PASS_RECORD_ON"
+      }, {
+        "name" : "configBean.readPreference",
+        "value" : "SECONDARY_PREFERRED"
+      }, {
+        "name" : "configBean.cacheConfig.enabled",
+        "value" : false
+      }, {
+        "name" : "configBean.cacheConfig.maxSize",
+        "value" : -1
+      }, {
+        "name" : "configBean.cacheConfig.evictionPolicyType",
+        "value" : null
+      }, {
+        "name" : "configBean.cacheConfig.expirationTime",
+        "value" : 1
+      }, {
+        "name" : "configBean.cacheConfig.timeUnit",
+        "value" : "SECONDS"
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "visitor team exists",
+        "xPos" : 384.47320556640625,
+        "yPos" : 31.531787872314453,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "MongoDBLookup_01OutputLane15668998031560" ],
+      "outputLanes" : [ "MongoDBLookup_02OutputLane15669003547910" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "StreamSelector_02",
       "library" : "streamsets-datacollector-basic-lib",
       "stageName" : "com_streamsets_pipeline_stage_processor_selector_SelectorDProcessor",
       "stageVersion" : "1",
       "configuration" : [ {
         "name" : "lanePredicates",
         "value" : [ {
-          "outputLane" : "StreamSelector_01OutputLane1554141871331",
-          "predicate" : "${record:value('/to_exists') != null}"
+          "outputLane" : "StreamSelector_02OutputLane1566900253840",
+          "predicate" : "${record:value('/localTeam_exists') != null}"
         }, {
-          "outputLane" : "StreamSelector_01OutputLane1554141839483",
+          "outputLane" : "StreamSelector_02OutputLane1566900170974",
           "predicate" : "default"
         } ]
       }, {
@@ -750,17 +925,69 @@
       } ],
       "uiInfo" : {
         "description" : "",
-        "label" : "Trash existing records or Upsert",
-        "xPos" : 936.194580078125,
-        "yPos" : 74.13247680664062,
+        "label" : "local team exists ?",
+        "xPos" : 589.2416687011719,
+        "yPos" : 37.68785095214844,
         "stageType" : "PROCESSOR"
       },
-      "inputLanes" : [ "MongoDBLookup_01OutputLane15541452244100" ],
-      "outputLanes" : [ "StreamSelector_01OutputLane1554141871331", "StreamSelector_01OutputLane1554141839483" ],
+      "inputLanes" : [ "MongoDBLookup_02OutputLane15669003547910" ],
+      "outputLanes" : [ "StreamSelector_02OutputLane1566900253840", "StreamSelector_02OutputLane1566900170974" ],
       "eventLanes" : [ ],
       "services" : [ ]
     }, {
-      "instanceName" : "MongoDB_01",
+      "instanceName" : "StreamSelector_03",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_selector_SelectorDProcessor",
+      "stageVersion" : "1",
+      "configuration" : [ {
+        "name" : "lanePredicates",
+        "value" : [ {
+          "outputLane" : "StreamSelector_03OutputLane15669006566370",
+          "predicate" : "${record:value('/visitorTeam_exists') != null}"
+        }, {
+          "outputLane" : "StreamSelector_03OutputLane15669006566371",
+          "predicate" : "default"
+        } ]
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Stream Selector 1",
+        "xPos" : 1036.5824279785156,
+        "yPos" : 58.208091735839844,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "StreamSelector_02OutputLane1566900170974" ],
+      "outputLanes" : [ "StreamSelector_03OutputLane15669006566370", "StreamSelector_03OutputLane15669006566371" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "Trash_02",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_devnull_NullDTarget",
+      "stageVersion" : "1",
+      "configuration" : [ ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Trash",
+        "xPos" : 1290.5995788574219,
+        "yPos" : -84.40743112564087,
+        "stageType" : "TARGET"
+      },
+      "inputLanes" : [ "StreamSelector_02OutputLane1566900253840", "StreamSelector_03OutputLane15669006566370" ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "MongoDB_03",
       "library" : "streamsets-datacollector-mongodb_3-lib",
       "stageName" : "com_streamsets_pipeline_stage_destination_mongodb_MongoDBDTarget",
       "stageVersion" : "4",
@@ -772,7 +999,7 @@
         "value" : "book"
       }, {
         "name" : "configBean.mongoConfig.collection",
-        "value" : "Matches"
+        "value" : "Teams"
       }, {
         "name" : "configBean.mongoConfig.authenticationType",
         "value" : "USER_PASS"
@@ -844,7 +1071,7 @@
         "value" : false
       }, {
         "name" : "configBean.uniqueKeyField",
-        "value" : [ "/league_id", "/teamname" ]
+        "value" : [ "/league_id", "/localTeam/data/id" ]
       }, {
         "name" : "configBean.isUpsert",
         "value" : true
@@ -863,29 +1090,125 @@
       } ],
       "uiInfo" : {
         "description" : "",
-        "label" : "Upsert to Teams",
-        "xPos" : 1230.11962890625,
-        "yPos" : 166.31197357177734,
+        "label" : "Upsert to Teams - local team",
+        "xPos" : 1055.0506286621094,
+        "yPos" : 229.55191802978516,
         "stageType" : "TARGET"
       },
-      "inputLanes" : [ "StreamSelector_01OutputLane1554141839483" ],
+      "inputLanes" : [ "StreamSelector_02OutputLane1566900170974" ],
       "outputLanes" : [ ],
       "eventLanes" : [ ],
       "services" : [ ]
     }, {
-      "instanceName" : "Trash_01",
-      "library" : "streamsets-datacollector-basic-lib",
-      "stageName" : "com_streamsets_pipeline_stage_destination_devnull_NullDTarget",
-      "stageVersion" : "1",
-      "configuration" : [ ],
+      "instanceName" : "MongoDB_04",
+      "library" : "streamsets-datacollector-mongodb_3-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_mongodb_MongoDBDTarget",
+      "stageVersion" : "4",
+      "configuration" : [ {
+        "name" : "configBean.mongoConfig.connectionString",
+        "value" : "mongodb://167.71.58.55:27017"
+      }, {
+        "name" : "configBean.mongoConfig.database",
+        "value" : "book"
+      }, {
+        "name" : "configBean.mongoConfig.collection",
+        "value" : "Teams"
+      }, {
+        "name" : "configBean.mongoConfig.authenticationType",
+        "value" : "USER_PASS"
+      }, {
+        "name" : "configBean.mongoConfig.username",
+        "value" : ""
+      }, {
+        "name" : "configBean.mongoConfig.password",
+        "value" : ""
+      }, {
+        "name" : "configBean.mongoConfig.authSource",
+        "value" : "admin"
+      }, {
+        "name" : "configBean.mongoConfig.connectionsPerHost",
+        "value" : 100
+      }, {
+        "name" : "configBean.mongoConfig.minConnectionsPerHost",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.connectTimeout",
+        "value" : 10000
+      }, {
+        "name" : "configBean.mongoConfig.maxConnectionIdleTime",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.maxConnectionLifeTime",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.maxWaitTime",
+        "value" : 120000
+      }, {
+        "name" : "configBean.mongoConfig.serverSelectionTimeout",
+        "value" : 30000
+      }, {
+        "name" : "configBean.mongoConfig.threadsAllowedToBlockForConnectionMultiplier",
+        "value" : 5
+      }, {
+        "name" : "configBean.mongoConfig.heartbeatFrequency",
+        "value" : 10000
+      }, {
+        "name" : "configBean.mongoConfig.minHeartbeatFrequency",
+        "value" : 500
+      }, {
+        "name" : "configBean.mongoConfig.heartbeatConnectTimeout",
+        "value" : 20000
+      }, {
+        "name" : "configBean.mongoConfig.heartbeatSocketTimeout",
+        "value" : 20000
+      }, {
+        "name" : "configBean.mongoConfig.localThreshold",
+        "value" : 15
+      }, {
+        "name" : "configBean.mongoConfig.requiredReplicaSetName",
+        "value" : null
+      }, {
+        "name" : "configBean.mongoConfig.cursorFinalizerEnabled",
+        "value" : true
+      }, {
+        "name" : "configBean.mongoConfig.socketKeepAlive",
+        "value" : false
+      }, {
+        "name" : "configBean.mongoConfig.socketTimeout",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.sslEnabled",
+        "value" : false
+      }, {
+        "name" : "configBean.mongoConfig.sslInvalidHostNameAllowed",
+        "value" : false
+      }, {
+        "name" : "configBean.uniqueKeyField",
+        "value" : [ "/league_id", "/visitorTeam/data/id" ]
+      }, {
+        "name" : "configBean.isUpsert",
+        "value" : false
+      }, {
+        "name" : "configBean.writeConcern",
+        "value" : "JOURNALED"
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
       "uiInfo" : {
         "description" : "",
-        "label" : "Trash",
-        "xPos" : 1225.252197265625,
-        "yPos" : 48.73503875732422,
+        "label" : "Upsert To Teams - visitor Team",
+        "xPos" : 1363.2877502441406,
+        "yPos" : 106.43059539794922,
         "stageType" : "TARGET"
       },
-      "inputLanes" : [ "StreamSelector_01OutputLane1554141871331" ],
+      "inputLanes" : [ "StreamSelector_03OutputLane15669006566371" ],
       "outputLanes" : [ ],
       "eventLanes" : [ ],
       "services" : [ ]
@@ -909,20 +1232,20 @@
       "services" : [ ]
     },
     "info" : {
-      "pipelineId" : "PutMonksTeamsToMongoFromKafkacopy2d1cb606-1155-4340-8724-4b3e1ca5b9a1",
-      "title" : "PutMonksTeamsToMongoFromKafka",
+      "pipelineId" : "PutMonksTeamsToMongoFromKafkacopy14cd0035-1ba7-4723-9b15-664463f47d33",
+      "title" : "PutMonksTeamsToMongoFromKafka copy",
       "description" : "",
-      "created" : 1566898271638,
-      "lastModified" : 1566898824807,
+      "created" : 1566899204939,
+      "lastModified" : 1566923567411,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "e99b9eea-941d-46a6-b0b2-9d00bf9fded3",
+      "uuid" : "c3cca654-da46-44d1-ae13-534c4528fbc3",
       "valid" : true,
       "metadata" : {
         "labels" : [ ]
       },
-      "name" : "PutMonksTeamsToMongoFromKafkacopy2d1cb606-1155-4340-8724-4b3e1ca5b9a1",
+      "name" : "PutMonksTeamsToMongoFromKafkacopy14cd0035-1ba7-4723-9b15-664463f47d33",
       "sdcVersion" : "3.10.0",
       "sdcId" : "21fa9b5e-c1d4-11e9-8871-71a0bee6d025"
     },
@@ -1305,7 +1628,7 @@
     } ],
     "dataRuleDefinitions" : [ ],
     "driftRuleDefinitions" : [ ],
-    "uuid" : "506235b4-d7ee-47e7-8f6f-c11e937f0d53",
+    "uuid" : "aa637eb3-9b2a-47db-a4be-356dceb28026",
     "configuration" : [ {
       "name" : "emailIDs",
       "value" : [ ]
