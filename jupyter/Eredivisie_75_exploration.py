@@ -13,6 +13,7 @@ pd.set_option('display.max_rows', 15000)
 pd.options.display.max_columns = None
 df_Eredevisie =  df_lastGoal60orMore[df.league_name == 'Eredivisie'  ]
 
+
 df_Eredevisie.groupby(['differenceAt75'])['goalScoredLast15'].sum() / df_Eredevisie.groupby(['differenceAt75']).size()
 #54% at -1 , 52% @ 1 
 
@@ -35,3 +36,7 @@ df_Eredevisie.groupby(['hometeamname','differenceAt75'])['goalScoredLast15'].siz
 df_Eredevisie.groupby(['awayteamname','differenceAt75'])['goalScoredLast15'].sum() / df_Eredevisie.groupby(['awayteamname','differenceAt75']).size()
 # check sizes 
 df_Eredevisie.groupby(['awayteamname','differenceAt75'])['goalScoredLast15'].size()
+
+df_minimal_Eredevisie = df_Eredevisie[[ 'startingatwithtime', 'hometeamname','awayteamname','AwayTeamAverageWhileAwayGoalsScoredUpTo75','AwayTeamAverageWhileAwayGoalsScoredUpTo75']].copy()
+df_minimal_Eredevisie
+
