@@ -1,6 +1,3 @@
-
-#propability tables given difference at 75 
-import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from pymongo import MongoClient
@@ -9,10 +6,9 @@ db = client.book
 collection = db['FullTimeMatches']
 cursor = collection.find()
 df =  pd.DataFrame(list(cursor))
-pd.set_option('display.max_rows', 15000)
+pd.set_option('display.max_rows', 5000)
 pd.options.display.max_columns = None
-df_Eredevisie =  df_lastGoal60orMore[df.league_name == 'Eredivisie'  ]
-
+df_Eredevisie =  df[df.league_name == 'Eredivisie'  ]
 
 df_Eredevisie.groupby(['differenceAt75'])['goalScoredLast15'].sum() / df_Eredevisie.groupby(['differenceAt75']).size()
 #54% at -1 , 52% @ 1 
