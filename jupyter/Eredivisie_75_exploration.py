@@ -9,9 +9,10 @@ db = client.book
 collection = db['FullTimeMatches']
 cursor = collection.find()
 df =  pd.DataFrame(list(cursor))
-df_lastGoal60orMore = df
-pd.set_option('display.max_rows', 1500)
-df_Eredevisie =  df_lastGoal60orMore[df_lastGoal60orMore.league_name == 'Eredivisie'  ]
+pd.set_option('display.max_rows', 15000)
+pd.options.display.max_columns = None
+df_Eredevisie =  df_lastGoal60orMore[df.league_name == 'Eredivisie'  ]
+
 df_Eredevisie.groupby(['differenceAt75'])['goalScoredLast15'].sum() / df_Eredevisie.groupby(['differenceAt75']).size()
 #54% at -1 , 52% @ 1 
 
