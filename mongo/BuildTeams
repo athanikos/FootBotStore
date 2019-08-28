@@ -1,11 +1,10 @@
-//get dsitinct team legaues  
 db.Teams.remove({})
 
 db.FullTimeMatches.aggregate(
     [
          {
             $group: {
-              _id: "$_id",
+              _id: "$hometeamname",
               name: {$max : "$hometeamname"  },
               league_name { $max: "$league_name" }
             }
@@ -13,4 +12,3 @@ db.FullTimeMatches.aggregate(
           , 
           { $out:"Teams"}
    ]
-)
