@@ -11,3 +11,8 @@ db.FullTimeMatches.aggregate(
    ]
 )
 
+
+db.FullTimeMatches.find( {$and: [{"hometeamname":"NEC", "league_name":"Eredivisie"} ] })
+   .projection({})
+   .sort({starting_at:-1})
+   .limit(100)
