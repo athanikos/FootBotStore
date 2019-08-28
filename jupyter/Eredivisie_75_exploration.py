@@ -49,4 +49,6 @@ df_minimal_Eredevisie = df_Eredevisie[[ 'startingatwithtime', 'hometeamname','aw
                                         ,'awayGoalsUpTo75'
                                         ,'goalScoredLast15'   
                                       ]].copy()
-df_minimal_Eredevisie
+
+
+df_minimal_Eredevisie.sort_values(by='startingatwithtime')
