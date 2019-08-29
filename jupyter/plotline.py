@@ -1,3 +1,4 @@
+# prints HomeTeamWhileHomeAverageAttackUpTo75 as a time series 
 import pandas as pd 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -13,7 +14,6 @@ df_Eredevisie =  df[ (df.league_name == 'Eredivisie') & (df.hometeamname == 'Aja
 
 df_Eredevisie['dt'] = pd.to_datetime(df_Eredevisie['startingat'])
 df_Eredevisie = df_Eredevisie.set_index('dt')
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 fig, ax = plt.subplots()
 
 for key, grp in df_Eredevisie.groupby(['hometeamname']):
-    ax = df_Eredevisie['HomeTeamWhileHomeAverageAttackUpTo75'].plot(linewidth=0.5, label=key)
+    ax = df_Eredevisie['HomeTeamWhileHomeAverageAttackUpTo75'].plot(linewidth=0.5, label=key, figsize=(20,10))
 
 
 plt.legend(loc='best')
