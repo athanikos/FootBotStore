@@ -18,9 +18,10 @@ df_Eredevisie.groupby(['differenceAt75'])['goalScoredLast15'].sum() / df_Eredevi
 # more than 53% when -1,1 and awaygoals = 1,2 
 df_Eredevisie.groupby(['differenceAt75','awayGoalsUpTo75'])['goalScoredLast15'].sum() / df_Eredevisie.groupby(['differenceAt75','awayGoalsUpTo75']).size()
 
-# differenceAt75 , homeGoalsUpTo75 
-# -2 : 57% when 1,2 
-#-1 53,55,53
+
+
+# this for PSV home  returns when -1 and HGU75 = 0 or 1 returns 75%-85%
+# size is 7 + 4 
 df_Eredevisie.groupby(['differenceAt75','homeGoalsUpTo75'])['goalScoredLast15'].sum() / df_Eredevisie.groupby(['differenceAt75','homeGoalsUpTo75']).size()
 # both  illustrate that when diff = 0 chances are @45%
 
