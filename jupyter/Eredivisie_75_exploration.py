@@ -52,3 +52,6 @@ df_minimal_Eredevisie = df_Eredevisie[[ 'startingatwithtime', 'hometeamname','aw
 
 
 df_minimal_Eredevisie.sort_values(by='startingatwithtime')
+
+df_minimal_Eredevisie.corr()
+
