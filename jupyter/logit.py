@@ -1,3 +1,6 @@
+import pandas as pd 
+import numpy as np
+import matplotlib.pyplot as plt
 from pymongo import MongoClient
 client = MongoClient("localhost", 27017, maxPoolSize=50)
 db = client.book
@@ -24,6 +27,8 @@ df_minimal_Eredevisie = df_Eredevisie[[
                                         ,'goalScoredLast15'   
                                       ]].copy()
 
+df_minimal_Eredevisie.dtypes
+
 
 
 feature_cols = [                 
@@ -38,10 +43,10 @@ feature_cols = [
                                         ,'differenceAt75'
                                         ,'homeGoalsUpTo75'
                                         ,'awayGoalsUpTo75'
-                                        ,'goalScoredLast15'   ]
+                                         ]
 
-y = ['goalScoredLast15']
-X=[i for i in feature_cols if i not in y]
+y =df_minimal_Eredevisie['goalScoredLast15']
+X=df_minimal_Eredevisie[feature_cols]
 
 
 
