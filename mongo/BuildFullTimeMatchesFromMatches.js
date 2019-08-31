@@ -68,7 +68,7 @@
                            awayyellowUpTo45: { $cond: [ {$and: [{$lt:['$events.data.minute',46]},{$eq:["$events.data.type","yellowcard"]},{$eq:["$events.data.team_id":"$awayTeam.data.id"]}]},1,0]},      
                            awayyellowUpTo60: { $cond: [ {$and: [{$lt:['$events.data.minute',61]},{$eq:["$events.data.type","yellowcard"]},{$eq:["$events.data.team_id":"$awayTeam.data.id"]}]},1,0]},      
                            awayyellowUpTo75: { $cond: [ {$and: [{$lt:['$events.data.minute',76]},{$eq:["$events.data.type","yellowcard"]},{$eq:["$events.data.team_id":"$awayTeam.data.id"]}]},1,0]},   
-                            awayredUpTo75: { $cond: [ {$and: [{$lt:['$events.data.minute',76]},{$eq:["$events.data.type","redcard"]},{$eq:["$events.data.team_id":"$localTeam.data.id"]}]},1,0]},    
+                            awayredUpTo75: { $cond: [ {$and: [{$lt:['$events.data.minute',76]},{$eq:["$events.data.type","redcard"]},{$eq:["$events.data.team_id":"$awayTeam.data.id"]}]},1,0]},    
                       
                            homeGoalsLast15: { $cond: [ {$and: [{$gt:['$events.data.minute',75]},{$eq:["$events.data.type","goal"]},{$eq:["$events.data.team_id":"$localTeam.data.id"]}]},1,0]},      
                            awayGoalsLast15: { $cond: [ {$and: [{$gt:['$events.data.minute',75]},{$eq:["$events.data.type","goal"]},{$eq:["$events.data.team_id":"$awayTeam.data.id"]}]},1,0]},
@@ -118,9 +118,9 @@
                         awayyellowUpTo45: {$sum:"$awayyellowUpTo45"},       
                         awayyellowUpTo60: {$sum:"$awayyellowUpTo60"},    
                         awayyellowUpTo75: {$sum:"$awayyellowUpTo75"},
-                        homeredUpTo75 : {$sum:"homeredUpTo75"},
+                        homeredUpTo75 : {$sum:"$homeredUpTo75"},
                       
-                        awayredUpTo75 : {$sum:"awayredUpTo75"},
+                        awayredUpTo75 : {$sum:"$awayredUpTo75"},
                         
                         
                         finalHomeGoals:{$max:"$finalHomeGoals"},
