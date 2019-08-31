@@ -1,7 +1,5 @@
   // A batch job to run on a daily basis that aggregates the Matches a collection to one flat record per match .
   // A FullTimeMatches record keeps statistics per game. 
-  // A batch job to run on a daily basis that aggregates the Matches a collection to one flat record per match .
-  // A FullTimeMatches record keeps statistics per game. 
   db.FullTimeMatches.remove({})
   db.Matches.aggregate
     (
