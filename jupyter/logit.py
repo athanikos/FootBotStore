@@ -1,3 +1,6 @@
+import pandas as pd 
+import numpy as np
+import matplotlib.pyplot as plt
 from pymongo import MongoClient
 client = MongoClient("localhost", 27017, maxPoolSize=50)
 db = client.book
@@ -48,7 +51,8 @@ df_minimal_Eredevisie['AwayAttackLast15'] =  df_minimal_Eredevisie['AwayTeamWhil
 
 feature_cols = [                         'HomeAttack'
                                           ,'AwayAttack'
-                                   
+                                           ,'HomeAttackLast15'
+                                            ,'AwayAttackLast15'
                                           ,'differenceAt75'
                                           ,'redDifferenceAt75'
                                          ]
@@ -70,3 +74,7 @@ classification_report(y_test,predictions)
 
 from sklearn.metrics import confusion_matrix 
 confusion_matrix(y_test,predictions)
+
+
+
+
