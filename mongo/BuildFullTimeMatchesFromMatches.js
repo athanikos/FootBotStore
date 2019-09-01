@@ -137,7 +137,8 @@
                         minuteOfLastGoal:{ $max:"$minuteOfLastGoal" },
                         minuteOfLastRed:{ $max:"$minuteOfLastRed" },
                         differenceAt75:{ $sum : {$subtract: [   "$homeGoalsUpTo75", "$awayGoalsUpTo75" ]   }}
-                          
+                        reddifferenceAt75:{ $sum : {$subtract: [   "$homeredUpTo75", "$awayredUpTo75" ]   }}
+                    
                 }
             },
             {
