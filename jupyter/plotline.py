@@ -34,7 +34,11 @@ df_minimal_Eredevisie = df_Eredevisie[[ 'startingatwithtime', 'hometeamname','aw
                                         ,'CombinedWhileHomeAverageLast15'
                                         ,'goalScoredLast15'   
                                       ]].copy()
+
 df_minimal_Eredevisie.groupby(['hometeamname'])['HomeTeamWhileHomeAverageAttack'].mean().plot(kind='bar')
 df_minimal_Eredevisie.groupby(['hometeamname'])['HomeTeamWhileHomeAverageDefence'].mean().plot(kind='bar')
+df_minimal_Eredevisie.groupby(['awayteamname'])['AwayTeamWhileAwayAverageDefence'].mean().plot(kind='bar')
+df_minimal_Eredevisie.groupby(['awayteamname'])['AwayTeamWhileAwayAverageAttack'].mean().plot(kind='bar')
+
 
 plt.show()
