@@ -1,4 +1,3 @@
-# prints HomeTeamWhileHomeAverageAttackUpTo75 as a time series 
 import pandas as pd 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -10,20 +9,30 @@ cursor = collection.find()
 df =  pd.DataFrame(list(cursor))
 pd.set_option('display.max_rows', 5000)
 pd.options.display.max_columns = None
-df_Eredevisie =  df[ (df.league_name == 'Eredivisie') & (df.hometeamname == 'Ajax' )   ]
+df_Eredevisie =  df[df.league_name == 'Eredivisie'  ]
 
-df_Eredevisie['dt'] = pd.to_datetime(df_Eredevisie['startingat'])
-df_Eredevisie = df_Eredevisie.set_index('dt')
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-
-
-fig, ax = plt.subplots()
-
-for key, grp in df_Eredevisie.groupby(['hometeamname']):
-    ax = df_Eredevisie['HomeTeamWhileHomeAverageAttackUpTo75'].plot(linewidth=0.5, label=key, figsize=(20,10))
-
-
-plt.legend(loc='best')
+df_minimal_Eredevisie = df_Eredevisie[[ 'startingatwithtime', 'hometeamname','awayteamname'
+                                        ,'HomeTeamWhileHomeAverageAttackUpTo75'
+                                        ,'HomeTeamWhileHomeAverageDefenceUpTo75'
+                                        ,'HomeTeamWhileHomeAverageAttackLast15'
+                                        ,'HomeTeamWhileHomeAverageDefenceLast15'
+                                        ,'AwayTeamWhileAwayAverageAttackUpTo75'
+                                        ,'AwayTeamWhileAwayAverageDefenceUpTo75'
+                                        ,'AwayTeamWhileAwayAverageAttackLast15'
+                                        ,'AwayTeamWhileAwayAverageDefenceLast15'
+                                        ,'HomeTeamWhileHomeAverageAttack'
+                                        ,'HomeTeamWhileHomeAverageDefence'
+                                        ,'AwayTeamWhileAwayAverageAttack'
+                                        ,'AwayTeamWhileAwayAverageDefence'
+                                        ,'differenceAt75'
+                                        ,'redDifferenceAt75'
+                                        ,'CombinedWhileHomeAverage'
+                                        ,'CombinedWhileAwayAverage'
+                                        ,'CombinedWhileAwayAverageUpTo75'
+                                        ,'CombinedWhileAwayAverageLast15'
+                                        ,'CombinedWhileHomeAverageUpTo75'
+                                        ,'CombinedWhileHomeAverageLast15'
+                                        ,'goalScoredLast15'   
+                                      ]].copy()
+df_minimal_Eredevisie.groupby(['hometeamname'])['HomeTeamWhileHomeAverageAttack'].mean().plot(kind='bar')
 plt.show()
