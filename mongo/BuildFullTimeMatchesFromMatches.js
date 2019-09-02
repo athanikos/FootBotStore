@@ -1,3 +1,4 @@
+
   // A batch job to run on a daily basis that aggregates the Matches a collection to one flat record per match .
   // A FullTimeMatches record keeps statistics per game. 
   db.FullTimeMatches.remove({})
@@ -136,7 +137,7 @@
                         finalResult:{$max:       { $cond: [ {$gt:["$finalHomeGoals","$finalAwayGoals"]},"WIN",  {$cond: [ {$lt:["$finalHomeGoals","$finalAwayGoals"]},"LOOSE",  "DRAW"   }   }},
                         minuteOfLastGoal:{ $max:"$minuteOfLastGoal" },
                         minuteOfLastRed:{ $max:"$minuteOfLastRed" },
-                        differenceAt75:{ $sum : {$subtract: [   "$homeGoalsUpTo75", "$awayGoalsUpTo75" ]   }}
+                        differenceAt75:{ $sum : {$subtract: [   "$homeGoalsUpTo75", "$awayGoalsUpTo75" ]   }},
                         reddifferenceAt75:{ $sum : {$subtract: [   "$homeredUpTo75", "$awayredUpTo75" ]   }}
                     
                 }
@@ -147,4 +148,3 @@
         ]
     ,     {allowDiskUse:true,cursor:{}}
     );
-
