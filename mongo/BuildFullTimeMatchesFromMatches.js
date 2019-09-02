@@ -199,7 +199,9 @@
                         reddifferenceAt75:"$reddifferenceAt75",
                         resultChangedAt60:        { $cond: [ {$ne:["$resultAt45","$resultAt60"]} ,1,  0] }  ,
                         resultChangedAt75:        { $cond: [ {$ne:["$resultAt75","$resultAt60"]} ,1,  0] }  ,
-                       
+                        homeGoals45To75 :{ $subtract: [   "$homeGoalsUpTo75", "$homeGoalsUpTo45" ]   },
+                        awayGoals45To75 :{ $subtract: [   "$awayGoalsUpTo75", "$awayGoalsUpTo45" ]   }
+
                     
                    }
                 
