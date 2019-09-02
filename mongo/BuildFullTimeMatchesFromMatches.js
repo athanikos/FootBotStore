@@ -141,7 +141,69 @@
                         reddifferenceAt75:{ $sum : {$subtract: [   "$homeredUpTo75", "$awayredUpTo75" ]   }}
                     
                 }
-            },
+            }
+            
+            ,{
+               $project: 
+               {
+                           
+                            _id: "$_id",
+                        startingat:"$startingat",
+                        startingatwithtime:"$startingatwithtime",
+                        hometeamname:"$hometeamname",
+                        awayteamname:"$awayteamname",
+                        league_name:"$league_name",
+                        localTeamId:"$localTeamId",
+                        visitorTeamId:"$visitorTeamId",
+                        localteamPosition:"$localteamPosition",
+                        visitorTeamPosition:"$visitorTeamPosition",
+                        homeTeamFormation:"$homeTeamFormation",
+                        awayTeamFormation:"$awayTeamFormation",
+                        leg:"$leg",
+                        homeGoalsUpTo15:"$homeGoalsUpTo15",    
+                        homeGoalsUpTo30:"$homeGoalsUpTo30",
+                        homeGoalsUpTo45:"$homeGoalsUpTo45",
+                        homeGoalsUpTo60:"$homeGoalsUpTo60",
+                        homeGoalsUpTo75:"$homeGoalsUpTo75",
+                        awayGoalsUpTo15: "$awayGoalsUpTo15",    
+                        awayGoalsUpTo30:"$awayGoalsUpTo30",
+                        awayGoalsUpTo45:"$awayGoalsUpTo45",
+                        awayGoalsUpTo60:"$awayGoalsUpTo60",
+                        awayGoalsUpTo75:"$awayGoalsUpTo75",
+                        homeyellowUpTo15:"$homeyellowUpTo15",        
+                        homeyellowUpTo30:"$homeyellowUpTo30",      
+                        homeyellowUpTo45:"$homeyellowUpTo45",       
+                        homeyellowUpTo60:"$homeyellowUpTo60",    
+                        homeyellowUpTo75:"$homeyellowUpTo75",    
+                        awayyellowUpTo15:"$awayyellowUpTo15",        
+                        awayyellowUpTo30:"$awayyellowUpTo30",      
+                        awayyellowUpTo45:"$awayyellowUpTo45",       
+                        awayyellowUpTo60:"$awayyellowUpTo60",    
+                        awayyellowUpTo75:"$awayyellowUpTo75",
+                        homeredUpTo75:"$homeredUpTo75",
+                        awayredUpTo75:"$awayredUpTo75",
+                        finalHomeGoals:"$finalHomeGoals",
+                        finalAwayGoals:"$finalAwayGoals",
+                        homeGoalsLast15:"$finalAwayGoals"  ,
+                        awayGoalsLast15:"$awayGoalsLast15",
+                        goalScoredLast15:"$goalScoredLast15",
+                        resultAt15:"$resultAt15",
+                        resultAt30:"$resultAt30",
+                        resultAt45:"$resultAt45",
+                        resultAt60:"$resultAt45",
+                        resultAt75:"$resultAt75",
+                        finalResult:"$finalResult",
+                        minuteOfLastGoal:"$minuteOfLastGoal" ,
+                        minuteOfLastRed:"$minuteOfLastRed" ,
+                        differenceAt75:"$differenceAt75" ,
+                        reddifferenceAt75:"$reddifferenceAt75"
+                    
+                   }
+                
+            }
+           
+           ,
+           
             {
                 $out:"FullTimeMatches" 
             }
