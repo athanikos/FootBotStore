@@ -196,7 +196,10 @@
                         minuteOfLastGoal:"$minuteOfLastGoal" ,
                         minuteOfLastRed:"$minuteOfLastRed" ,
                         differenceAt75:"$differenceAt75" ,
-                        reddifferenceAt75:"$reddifferenceAt75"
+                        reddifferenceAt75:"$reddifferenceAt75",
+                        resultChangedAt60:        { $cond: [ {$ne:["$resultAt45","$resultAt60"]} ,1,  0] }  ,
+                        resultChangedAt75:        { $cond: [ {$ne:["$resultAt75","$resultAt60"]} ,1,  0] }  ,
+                       
                     
                    }
                 
