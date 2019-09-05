@@ -1,3 +1,4 @@
+db.Teams.remove({})
 db.FullTimeMatches.aggregate(
 [
 {
