@@ -39,6 +39,30 @@ db.FullTimeMatches.updateMany({},
 	HomeTeamWhileHomeAverageDefence:0,
 	HomeTeamWhileHomeAverageDefenceLast15:0,
 	HomeTeamWhileHomeAverageDefenceUpTo75:0,
+			AwayTeamAverageAttackLast15:0,
+				AwayTeamAverageDefenceLast15:0,
+				AwayTeamWhileHomeAverageAttack: 0,
+				AwayTeamWhileHomeAverageDefence:0,
+				AwayTeamWhileAwayAverageAttack:0,
+				AwayTeamWhileAwayAverageDefence:0,
+				AwayTeamAverageAttack:0,
+				AwayTeamAverageDefence:0,
+				AwayTeamRecentAverageAttack:0,
+				AwayTeamRecentAverageDefence:0,
+				HomeTeamRecentAverageAttack:0,
+				HomeTeamRecentAverageDefence:0,
+
+				HomeTeamSimilarityRatio:0,
+				AwayTeamSimilarityRatio:0,
+				HomeTeamSimilarityRatioCount:0,
+				AwayTeamSimilarityRatioCount:0,
+
+				DifferenceAt75:0,
+				GoalScoredLast15:0,
+
+				HomeTeamRunningPointAverage:0,
+				AwayTeamRunningPointAverage:0,
+				
 } 
     
 }
