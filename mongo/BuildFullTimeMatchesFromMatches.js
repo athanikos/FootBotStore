@@ -120,10 +120,7 @@
                         awayyellowUpTo60: {$sum:"$awayyellowUpTo60"},    
                         awayyellowUpTo75: {$sum:"$awayyellowUpTo75"},
                         homeredUpTo75 : {$sum:"$homeredUpTo75"},
-                      
                         awayredUpTo75 : {$sum:"$awayredUpTo75"},
-                        
-                        
                         finalHomeGoals:{$max:"$finalHomeGoals"},
                         finalAwayGoals:{$max:"$finalAwayGoals"},
                         homeGoalsLast15:{$sum:"$homeGoalsLast15"},    
@@ -138,6 +135,7 @@
                         minuteOfLastGoal:{ $max:"$minuteOfLastGoal" },
                         minuteOfLastRed:{ $max:"$minuteOfLastRed" },
                         differenceAt75:{ $sum : {$subtract: [   "$homeGoalsUpTo75", "$awayGoalsUpTo75" ]   }},
+                        differenceAt60:{ $sum : {$subtract: [   "$homeGoalsUpTo60", "$awayGoalsUpTo60" ]   }},
                         reddifferenceAt75:{ $sum : {$subtract: [   "$homeredUpTo75", "$awayredUpTo75" ]   }}
                     
                 }
@@ -196,6 +194,7 @@
                         minuteOfLastGoal:"$minuteOfLastGoal" ,
                         minuteOfLastRed:"$minuteOfLastRed" ,
                         differenceAt75:"$differenceAt75" ,
+                        differenceAt60:"$differenceAt60" ,
                         reddifferenceAt75:"$reddifferenceAt75",
                         resultChangedAt60:        { $cond: [ {$ne:["$resultAt45","$resultAt60"]} ,1,  0] }  ,
                         resultChangedAt75:        { $cond: [ {$ne:["$resultAt75","$resultAt60"]} ,1,  0] }  ,
@@ -215,4 +214,3 @@
             }
         ]
     ,     {allowDiskUse:true,cursor:{}}
-    );
