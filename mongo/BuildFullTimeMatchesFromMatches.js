@@ -143,7 +143,9 @@
                         differenceAt45:{ $sum : {$subtract: [   "$homeGoalsUpTo45", "$awayGoalsUpTo45" ]   }},
                         differenceAt30:{ $sum : {$subtract: [   "$homeGoalsUpTo30", "$awayGoalsUpTo15" ]   }},
                         
-                        reddifferenceAt75:{ $sum : {$subtract: [   "$homeredUpTo75", "$awayredUpTo75" ]   }}
+                        reddifferenceAt75:{ $sum : {$subtract: [   "$homeredUpTo75", "$awayredUpTo75" ]   }},
+                        reddifferenceAt60:{ $sum : {$subtract: [   "$homeredUpTo60", "$awayredUpTo60" ]   }},
+                        reddifferenceAt45:{ $sum : {$subtract: [   "$homeredUpTo45", "$awayredUpTo45" ]   }},
                     
                 }
             }
@@ -209,6 +211,10 @@
                         differenceAt30:"$differenceAt30" ,
                         
                         reddifferenceAt75:"$reddifferenceAt75",
+                        reddifferenceAt60:"$reddifferenceAt60",
+                        reddifferenceAt45:"$reddifferenceAt45",
+                        
+                        
                         resultChangedAt45:        { $cond: [ {$ne:["$resultAt30","$resultAt45"]} ,1,  0] }  ,
                         resultChangedAt75:        { $cond: [ {$ne:["$resultAt75","$resultAt60"]} ,1,  0] }  ,
                         resultChangedAt60:        { $cond: [ {$ne:["$resultAt45","$resultAt60"]} ,1,  0] }  ,
@@ -216,6 +222,7 @@
                         awayGoals45To75 :{ $subtract: [   "$awayGoalsUpTo75", "$awayGoalsUpTo45" ]   },
                         
                         totalYellowsAt45 :{ $add: [   "$homeyellowUpTo45", "$awayyellowUpTo45" ]   },
+                        totalYellowsAt60 :{ $add: [   "$homeyellowUpTo60", "$awayyellowUpTo60" ]   },
                         totalYellowsAt75 :{ $add: [   "$homeyellowUpTo75", "$awayyellowUpTo75" ]   },
                         
                         month : {$month: "$startingat" } ,
