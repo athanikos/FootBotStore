@@ -136,6 +136,10 @@
                         minuteOfLastRed:{ $max:"$minuteOfLastRed" },
                         differenceAt75:{ $sum : {$subtract: [   "$homeGoalsUpTo75", "$awayGoalsUpTo75" ]   }},
                         differenceAt60:{ $sum : {$subtract: [   "$homeGoalsUpTo60", "$awayGoalsUpTo60" ]   }},
+                        differenceAt45:{ $sum : {$subtract: [   "$homeGoalsUpTo45", "$awayGoalsUpTo45" ]   }},
+                        
+                  
+                        
                         reddifferenceAt75:{ $sum : {$subtract: [   "$homeredUpTo75", "$awayredUpTo75" ]   }}
                     
                 }
@@ -195,10 +199,13 @@
                         minuteOfLastRed:"$minuteOfLastRed" ,
                         differenceAt75:"$differenceAt75" ,
                         differenceAt60:"$differenceAt60" ,
+                        differenceAt45:"$differenceAt45" ,
+                 
                         reddifferenceAt75:"$reddifferenceAt75",
-                        resultChangedAt60:        { $cond: [ {$ne:["$resultAt45","$resultAt60"]} ,1,  0] }  ,
+                        resultChangedAt45:        { $cond: [ {$ne:["$resultAt30","$resultAt45"]} ,1,  0] }  ,
                         resultChangedAt75:        { $cond: [ {$ne:["$resultAt75","$resultAt60"]} ,1,  0] }  ,
-                        homeGoals45To75 :{ $subtract: [   "$homeGoalsUpTo75", "$homeGoalsUpTo45" ]   },
+                        resultChangedAt60:        { $cond: [ {$ne:["$resultAt45","$resultAt60"]} ,1,  0] }  ,
+                         homeGoals45To75 :{ $subtract: [   "$homeGoalsUpTo75", "$homeGoalsUpTo45" ]   },
                         awayGoals45To75 :{ $subtract: [   "$awayGoalsUpTo75", "$awayGoalsUpTo45" ]   },
                         month : {$month: "$startingat" } 
 
