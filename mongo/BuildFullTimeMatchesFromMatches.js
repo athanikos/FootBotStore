@@ -218,7 +218,7 @@
                         totalYellowsAt45 :{ $add: [   "$homeyellowUpTo45", "$awayyellowUpTo45" ]   },
                         totalYellowsAt75 :{ $add: [   "$homeyellowUpTo75", "$awayyellowUpTo75" ]   },
                         
-                        month : {$month: "$startingat" } 
+                        month : {$month: "$startingat" } ,
 
                     
                    }
