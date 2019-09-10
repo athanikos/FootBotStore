@@ -30,3 +30,10 @@ db.Matches.aggregate([
                     },
                     { $match: {count: 2 }},
                      { $group: { _id: null, count: { $sum: 1 } } }
+    
+    
+    // find all amatches with stats on time.minute 
+    db.Matches.find( {$and: [{"time.minute":74}] } )
+   .projection({})
+   .sort({"time.starting_at.date":-1})
+
