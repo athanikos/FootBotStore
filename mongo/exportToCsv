@@ -1,0 +1,1 @@
+mongoexport --host localhost --db book --collection FullTimeMatches --type=csv --fieldFile fields.txt --out ft.csv
