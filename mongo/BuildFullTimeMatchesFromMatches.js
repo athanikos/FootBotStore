@@ -76,7 +76,7 @@
                            homeGoalsLast15: { $cond: [ {$and: [{$gt:['$events.data.minute',75]},{$eq:["$events.data.type","goal"]},{$eq:["$events.data.team_id":"$localTeam.data.id"]}]},1,0]},      
                            awayGoalsLast15: { $cond: [ {$and: [{$gt:['$events.data.minute',75]},{$eq:["$events.data.type","goal"]},{$eq:["$events.data.team_id":"$awayTeam.data.id"]}]},1,0]},
                            goalScoredLast15:{ $cond: [ {$and: [{$gt:['$events.data.minute',75]},{$eq:["$events.data.type","goal"]}]},1,0]},
-                       
+                        
                            minuteOfLastGoal:{$max:{ $cond: [ {$and: [{$lt:['$events.data.minute',76]},{$eq:["$events.data.type","goal"]}]},'$events.data.minute',0]}},
                            minuteOfLastRed:{$max:{ $cond: [ {$and: [{$lt:['$events.data.minute',76]},{$eq:["$events.data.type","redcard"]}]},'$events.data.minute',0]}}
                    }
@@ -126,9 +126,11 @@
                         awayredUpTo75 : {$sum:"$awayredUpTo75"},
                         finalHomeGoals:{$max:"$finalHomeGoals"},
                         finalAwayGoals:{$max:"$finalAwayGoals"},
+                        
                         homeGoalsLast15:{$sum:"$homeGoalsLast15"},    
                         awayGoalsLast15:{$sum:"$awayGoalsLast15"},
                         goalScoredLast15:{$max:"$goalScoredLast15"},
+                     
                         resultAt15:{$max:        { $cond: [ {$gt:["$homeGoalsUpTo15","$awayGoalsUpTo15"]},"WIN",  {$cond: [ {$lt:["$homeGoalsUpTo15","$awayGoalsUpTo15"]},"LOOSE",  "DRAW"   }   }},
                         resultAt30:{$max:        { $cond: [ {$gt:["$homeGoalsUpTo30","$awayGoalsUpTo30"]},"WIN",  {$cond: [ {$lt:["$homeGoalsUpTo30","$awayGoalsUpTo30"]},"LOOSE",  "DRAW"   }   }},
                         resultAt45:{$max:        { $cond: [ {$gt:["$homeGoalsUpTo45","$awayGoalsUpTo45"]},"WIN",  {$cond: [ {$lt:["$homeGoalsUpTo45","$awayGoalsUpTo45"]},"LOOSE",  "DRAW"   }   }},
@@ -194,6 +196,8 @@
                         homeGoalsLast15:"$finalAwayGoals"  ,
                         awayGoalsLast15:"$awayGoalsLast15",
                         goalScoredLast15:"$goalScoredLast15",
+                        twoGoalsScoredLast45:{  $subtract: [ {  $add: [   "$finalHomeGoals", "$finalAwayGoals" ] },{  $add: [   "$homeGoalsUpTo45", "$awayGoalsUpTo45" ] }   ] },
+                     
                         resultAt15:"$resultAt15",
                         resultAt30:"$resultAt30",
                         resultAt45:"$resultAt45",
