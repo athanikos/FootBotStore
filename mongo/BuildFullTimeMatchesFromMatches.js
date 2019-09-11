@@ -199,6 +199,14 @@
                         twoGoalsScoredLast45:{  
                              
                              
+                                     $cond: [          {$gt: [{$subtract:[{$add:["$finalHomeGoals", "$finalAwayGoals" ] },{$add:["$homeGoalsUpTo45", "$awayGoalsUpTo45"]}]},1]},1,0]   
+                                             
+                             
+                        },
+                        
+                        threeGoalsScoredLast45:{  
+                             
+                             
                                      $cond: [          {$gt: [{$subtract:[{$add:["$finalHomeGoals", "$finalAwayGoals" ] },{$add:["$homeGoalsUpTo45", "$awayGoalsUpTo45"]}]},2]},1,0]   
                                              
                              
