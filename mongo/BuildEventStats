@@ -1,28 +1,63 @@
+db.Stats74.remove({})
+  
 db.Matches.aggregate([
 { $match: {"time.minute": 74 }},
-{ $unwind: "$stats.data"},
-  {             $project: 
+    {
+        $project:
+        {
+          home:  { $arrayElemAt: [ "$stats.data", 0 ] },
+          away :    { $arrayElemAt: [ "$stats.data", 1 ] },
+        }
+    },
+     {
+          $project: 
                 {
-                        MatchId:"$id",
-                        Team_id:"$stats.data.team_id",
-                        Shots:"$stats.data.shots.total",
-                        ShotsOnGoal:"$stats.data.shots.ongoal",
-                        ShotsOffGoal:"$stats.data.shots.offgoal",
-                        ShotsBlocked:"$stats.data.shots.blocked",
-                        ShotsInsideBox:"$stats.data.shots.insidebox",
-                        ShotsOutsideBox:"$stats.data.shots.outsidebox",
-                        PassesTotal:"$stats.data.passes.total",
-                        PassesAccurate:"$stats.data.passes.accurate",
-                        PassesPercentage:"$stats.data.passes.percentage",
-                        Attacks:"$stats.data.attacks.attacks",
-                        DangerousAttacks:"$stats.data.attacks.dangerous_attacks",
-                        Fouls:"$stats.data.fouls",
-                        Corners:"$stats.data.corners",
-                        Offsides:"$stats.data.offsides",
-                        PossesionTime:"$stats.data.posessiontime",
-                        Saves:"$stats.data.saves",
-                        GoalAttempts:"$stats.data.goal_attempts",
-                        BallSafe:"$stats.data.ball_safe",
+                         HomeTeam_id:"$home.team_id",
+                         HomeShots:"home.shots.total",
+                         HomeShotsOnGoal:"home.shots.ongoal",
+                         HomeShotsOffGoal:"home.shots.offgoal",
+                         HomeShotsBlocked:"home.shots.blocked",
+                         HomeShotsInsideBox:"home.shots.insidebox",
+                         HomeShotsOutsideBox:"home.shots.outsidebox",
+                         HomePassesTotal:"home.passes.total",
+                         HomePassesAccurate:"home.passes.accurate",
+                         HomePassesPercentage:"home.passes.percentage",
+                         HomeAttacks:"home.attacks.attacks",
+                         HomeDangerousAttacks:"home.attacks.dangerous_attacks",
+                         HomeFouls:"home.fouls",
+                         HomeCorners:"home.corners",
+                         HomeOffsides:"home.offsides",
+                         HomePossesionTime:"home.posessiontime",
+                         HomeSaves:"home.saves",
+                         HomeGoalAttempts:"home.goal_attempts",
+                         HomeBallSafe:"home.ball_safe",
+                         AwayTeam_id:"$Away.team_id",
+                         AwayShots:"away.shots.total",
+                         AwayShotsOnGoal:"away.shots.ongoal",
+                         AwayShotsOffGoal:"away.shots.offgoal",
+                         AwayShotsBlocked:"away.shots.blocked",
+                         AwayShotsInsideBox:"away.shots.insidebox",
+                         AwayShotsOutsideBox:"away.shots.outsidebox",
+                         AwayPassesTotal:"away.passes.total",
+                         AwayPassesAccurate:"away.passes.accurate",
+                         AwayPassesPercentage:"away.passes.percentage",
+                         AwayAttacks:"away.attacks.attacks",
+                         AwayDangerousAttacks:"away.attacks.dangerous_attacks",
+                         AwayFouls:"away.fouls",
+                         AwayCorners:"away.corners",
+                         AwayOffsides:"away.offsides",
+                         AwayPossesionTime:"away.posessiontime",
+                         AwaySaves:"away.saves",
+                         AwayGoalAttempts:"away.goal_attempts",
+                         AwayBallSafe:"away.ball_safe",
                 }
-  }
+    },
+       
+       
+           
+            {
+                $out:"Stats74" 
+            }
+            
+ 
 ])
