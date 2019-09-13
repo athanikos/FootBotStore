@@ -3,8 +3,8 @@ db.Matches.aggregate([
 { $unwind: "$stats.data"},
   {             $project: 
                 {
-                        matchId:"$id",
-                        team_id:"$stats.data.team_id",
+                        MatchId:"$id",
+                        Team_id:"$stats.data.team_id",
                         Shots:"$stats.data.shots.total",
                         ShotsOnGoal:"$stats.data.shots.ongoal",
                         ShotsOffGoal:"$stats.data.shots.offgoal",
