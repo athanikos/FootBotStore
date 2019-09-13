@@ -1,0 +1,28 @@
+db.Matches.aggregate([
+{ $match: {"time.minute": 74 }},
+{ $unwind: "$stats.data"},
+  {             $project: 
+                {
+                        matchId:"$id",
+                        team_id:"$stats.data.team_id",
+                        Shots:"$stats.data.shots.total",
+                        ShotsOnGoal:"$stats.data.shots.ongoal",
+                        ShotsOffGoal:"$stats.data.shots.offgoal",
+                        ShotsBlocked:"$stats.data.shots.blocked",
+                        ShotsInsideBox:"$stats.data.shots.insidebox",
+                        ShotsOutsideBox:"$stats.data.shots.outsidebox",
+                        PassesTotal:"$stats.data.passes.total",
+                        PassesAccurate:"$stats.data.passes.accurate",
+                        PassesPercentage:"$stats.data.passes.percentage",
+                        Attacks:"$stats.data.attacks.attacks",
+                        DangerousAttacks:"$stats.data.attacks.dangerous_attacks",
+                        Fouls:"$stats.data.fouls",
+                        Corners:"$stats.data.corners",
+                        Offsides:"$stats.data.offsides",
+                        PossesionTime:"$stats.data.posessiontime",
+                        Saves:"$stats.data.saves",
+                        GoalAttempts:"$stats.data.goal_attempts",
+                        BallSafe:"$stats.data.ball_safe",
+                }
+  }
+])
