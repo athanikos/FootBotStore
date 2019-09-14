@@ -6,8 +6,8 @@ db.Stats74.aggregate([
              $lookup:
              {
                            from: "FullTimeMatches",
-                           localField: "matchid",
-                           foreignField: "id",
+                           localField: "matchId",
+                           foreignField: "_id",
                            as: "joinedInfo"
              }
                     
@@ -125,6 +125,10 @@ db.Stats74.aggregate([
     
                 }
     }
-      
+        ,
+           
+            {
+                $out:"FullTimeMatchesWithStats" 
+            }
  
 ])
