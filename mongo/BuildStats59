@@ -1,4 +1,4 @@
-db.Stats60.remove({})
+db.Stats59.remove({})
   
 db.Matches.aggregate([
 { $match: {"time.minute": 59}},
