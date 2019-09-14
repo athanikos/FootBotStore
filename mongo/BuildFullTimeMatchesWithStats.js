@@ -15,51 +15,157 @@ db.Stats74.aggregate([
        
     }, 
       { $unwind: "$stats"}
-      
-    ,{
+    ,
+    {
+             $lookup:
+             {
+                           from: "Stats59",
+                           localField: "matchId",
+                           foreignField: "matchId",
+                           as: "stats59"
+             }
+        
+    }
+    
+    , 
+      { $unwind: "$stats59"}
+    ,
+    
+    {
+             $lookup:
+             {
+                           from: "Stats44",
+                           localField: "matchId",
+                           foreignField: "matchId",
+                           as: "stats44"
+             }
+        
+    }
+    , 
+      { $unwind: "$stats44"}
+    
+    , 
+      {
           $project: 
                 {
                          matchId : "$matchid",
                          HomeTeam_id:"$HomeTeam_id",
-                         HomeShots:"$HomeShots",
-                         HomeShotsOnGoal:"$HomeShotsOnGoal",
-                         HomeShotsOffGoal:"$HomeShotsOffGoal",
-                         HomeShotsBlocked:"$HomeShotsBlocked",
-                         HomeShotsInsideBox:"$HomeShotsInsideBox",
-                         HomeShotsOutsideBox:"$HomeShotsOutsideBox",
-                         HomePassesTotal:"$HomePassesTotal",
-                         HomePassesAccurate:"$HomePassesAccurate",
-                         HomePassesPercentage:"$HomePassesPercentage",
-                         HomeAttacks:"$HomeAttacks",
-                         HomeDangerousAttacks:"$HomeDangerousAttacks",
-                         HomeFouls:"$HomeFouls",
-                         HomeCorners:"$HomeCorners",
-                         HomeOffsides:"$HomeOffsides",
-                         HomePossesionTime:"$HomePossesionTime",
-                         HomeSaves:"$HomeSaves",
-                         HomeGoalAttempts:"$HomeGoalAttempts",
-                         HomeBallSafe:"$HomeBallSafe",
                          AwayTeam_id:"$AwayTeam_id",
-                         AwayShots:"$AwayShots",
-                         AwayShotsOnGoal:"$AwayShotsOnGoal",
-                         AwayShotsOffGoal:"$AwayShotsOffGoal",
-                         AwayShotsBlocked:"$AwayShotsBlocked",
-                         AwayShotsInsideBox:"$AwayShotsInsideBox",
-                         AwayShotsOutsideBox:"$AwayShotsOutsideBox",
-                         AwayPassesTotal:"$AwayPassesTotal",
-                         AwayPassesAccurate:"$AwayPassesAccurate",
-                         AwayPassesPercentage:"$AwayPassesPercentage",
-                         AwayAttacks:"$AwayAttacks",
-                         AwayDangerousAttacks:"$AwayDangerousAttacks",
-                         AwayFouls:"$AwayFouls",
-                         AwayCorners:"$AwayCorners",
-                         AwayOffsides:"$AwayOffsides",
-                         AwayPossesionTime:"$AwayPossesionTime",
-                         AwaySaves:"$AwaySaves",
-                         AwayGoalAttempts:"$AwayGoalAttempts",
-                         AwayBallSafe:"$AwayBallSafe",
+                         
+                         HomeShots74:"$HomeShots",
+                         HomeShotsOnGoal74:"$HomeShotsOnGoal",
+                         HomeShotsOffGoal74:"$HomeShotsOffGoal",
+                         HomeShotsBlocked74:"$HomeShotsBlocked",
+                         HomeShotsInsideBox74:"$HomeShotsInsideBox",
+                         HomeShotsOutsideBox74:"$HomeShotsOutsideBox",
+                         HomePassesTotal74:"$HomePassesTotal",
+                         HomePassesAccurate74:"$HomePassesAccurate",
+                         HomePassesPercentage74:"$HomePassesPercentage",
+                         HomeAttacks74:"$HomeAttacks",
+                         HomeDangerousAttacks74:"$HomeDangerousAttacks",
+                         HomeFouls74:"$HomeFouls",
+                         HomeCorners74:"$HomeCorners",
+                         HomeOffsides74:"$HomeOffsides",
+                         HomePossesionTime74:"$HomePossesionTime",
+                         HomeSaves74:"$HomeSaves",
+                         HomeGoalAttempts74:"$HomeGoalAttempts",
+                         HomeBallSafe74:"$HomeBallSafe",
+                         AwayShots74:"$AwayShots",
+                         AwayShotsOnGoal74:"$AwayShotsOnGoal",
+                         AwayShotsOffGoal74:"$AwayShotsOffGoal",
+                         AwayShotsBlocked74:"$AwayShotsBlocked",
+                         AwayShotsInsideBox74:"$AwayShotsInsideBox",
+                         AwayShotsOutsideBox74:"$AwayShotsOutsideBox",
+                         AwayPassesTotal74:"$AwayPassesTotal",
+                         AwayPassesAccurate74:"$AwayPassesAccurate",
+                         AwayPassesPercentage74:"$AwayPassesPercentage",
+                         AwayAttacks74:"$AwayAttacks",
+                         AwayDangerousAttacks74:"$AwayDangerousAttacks",
+                         AwayFouls74:"$AwayFouls",
+                         AwayCorners74:"$AwayCorners",
+                         AwayOffsides74:"$AwayOffsides",
+                         AwayPossesionTime74:"$AwayPossesionTime",
+                         AwaySaves74:"$AwaySaves",
+                         AwayGoalAttempts74:"$AwayGoalAttempts",
+                         AwayBallSafe74:"$AwayBallSafe",
                    
                    
+                         HomeShots59:"$stats59.HomeShots",
+                         HomeShotsOnGoal59:"$stats59.HomeShotsOnGoal",
+                         HomeShotsOffGoal59:"$stats59.HomeShotsOffGoal",
+                         HomeShotsBlocked59:"$stats59.HomeShotsBlocked",
+                         HomeShotsInsideBox59:"$stats59.HomeShotsInsideBox",
+                         HomeShotsOutsideBox59:"$stats59.HomeShotsOutsideBox",
+                         HomePassesTotal59:"$stats59.HomePassesTotal",
+                         HomePassesAccurate59:"$stats59.HomePassesAccurate",
+                         HomePassesPercentage59:"$stats59.HomePassesPercentage",
+                         HomeAttacks59:"$stats59.HomeAttacks",
+                         HomeDangerousAttacks59:"$stats59.HomeDangerousAttacks",
+                         HomeFouls59:"$stats59.HomeFouls",
+                         HomeCorners59:"$stats59.HomeCorners",
+                         HomeOffsides59:"$stats59.HomeOffsides",
+                         HomePossesionTime59:"$stats59.HomePossesionTime",
+                         HomeSaves59:"$stats59.HomeSaves",
+                         HomeGoalAttempts59:"$stats59.HomeGoalAttempts",
+                         HomeBallSafe59:"$stats59.HomeBallSafe",
+                         AwayShots59:"$stats59.AwayShots",
+                         AwayShotsOnGoal59:"$stats59.AwayShotsOnGoal",
+                         AwayShotsOffGoal59:"$stats59.AwayShotsOffGoal",
+                         AwayShotsBlocked59:"$stats59.AwayShotsBlocked",
+                         AwayShotsInsideBox59:"$stats59.AwayShotsInsideBox",
+                         AwayShotsOutsideBox59:"$stats59.AwayShotsOutsideBox",
+                         AwayPassesTotal59:"$stats59.AwayPassesTotal",
+                         AwayPassesAccurate59:"$stats59.AwayPassesAccurate",
+                         AwayPassesPercentage59:"$stats59.AwayPassesPercentage",
+                         AwayAttacks59:"$stats59.AwayAttacks",
+                         AwayDangerousAttacks59:"$stats59.AwayDangerousAttacks",
+                         AwayFouls59:"$stats59.AwayFouls",
+                         AwayCorners59:"$stats59.AwayCorners",
+                         AwayOffsides59:"$stats59.AwayOffsides",
+                         AwayPossesionTime59:"$stats59.AwayPossesionTime",
+                         AwaySaves59:"$stats59.AwaySaves",
+                         AwayGoalAttempts59:"$stats59.AwayGoalAttempts",
+                         AwayBallSafe59:"$stats59.AwayBallSafe",
+                         
+                                
+                         HomeShots44:"$stats44.HomeShots",
+                         HomeShotsOnGoal44:"$stats44.HomeShotsOnGoal",
+                         HomeShotsOffGoal44:"$stats44.HomeShotsOffGoal",
+                         HomeShotsBlocked44:"$stats44.HomeShotsBlocked",
+                         HomeShotsInsideBox44:"$stats44.HomeShotsInsideBox",
+                         HomeShotsOutsideBox44:"$stats44.HomeShotsOutsideBox",
+                         HomePassesTotal44:"$stats44.HomePassesTotal",
+                         HomePassesAccurate44:"$stats44.HomePassesAccurate",
+                         HomePassesPercentage44:"$stats44.HomePassesPercentage",
+                         HomeAttacks44:"$stats44.HomeAttacks",
+                         HomeDangerousAttacks44:"$stats44.HomeDangerousAttacks",
+                         HomeFouls44:"$stats44.HomeFouls",
+                         HomeCorners44:"$stats44.HomeCorners",
+                         HomeOffsides44:"$stats44.HomeOffsides",
+                         HomePossesionTime44:"$stats44.HomePossesionTime",
+                         HomeSaves44:"$stats44.HomeSaves",
+                         HomeGoalAttempts44:"$stats44.HomeGoalAttempts",
+                         HomeBallSafe44:"$stats44.HomeBallSafe",
+                         AwayShots44:"$stats44.AwayShots",
+                         AwayShotsOnGoal44:"$stats44.AwayShotsOnGoal",
+                         AwayShotsOffGoal44:"$stats44.AwayShotsOffGoal",
+                         AwayShotsBlocked44:"$stats44.AwayShotsBlocked",
+                         AwayShotsInsideBox44:"$stats44.AwayShotsInsideBox",
+                         AwayShotsOutsideBox44:"$stats44.AwayShotsOutsideBox",
+                         AwayPassesTotal44:"$stats44.AwayPassesTotal",
+                         AwayPassesAccurate44:"$stats44.AwayPassesAccurate",
+                         AwayPassesPercentage44:"$stats44.AwayPassesPercentage",
+                         AwayAttacks44:"$stats44.AwayAttacks",
+                         AwayDangerousAttacks44:"$stats44.AwayDangerousAttacks",
+                         AwayFouls44:"$stats44.AwayFouls",
+                         AwayCorners44:"$stats44.AwayCorners",
+                         AwayOffsides44:"$stats44.AwayOffsides",
+                         AwayPossesionTime44:"$stats44.AwayPossesionTime",
+                         AwaySaves44:"$stats44.AwaySaves",
+                         AwayGoalAttempts44:"$stats44.AwayGoalAttempts",
+                         AwayBallSafe44:"$stats44.AwayBallSafe",
+                         
+                         
                    
                    
                             startingat:"$stats.startingat",
@@ -137,6 +243,10 @@ db.Stats74.aggregate([
     
                 }
     }
+      
+      
+      
+    
         ,
            
             {
