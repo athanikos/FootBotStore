@@ -45,6 +45,25 @@ db.Stats74.aggregate([
       { $unwind: "$stats44"}
     
     , 
+    
+     
+    
+    {
+             $lookup:
+             {
+                           from: "Stats29",
+                           localField: "matchId",
+                           foreignField: "matchId",
+                           as: "stats29"
+             }
+        
+    }
+    , 
+      { $unwind: "$stats29"}
+    
+    , 
+    
+    
       {
           $project: 
                 {
@@ -166,7 +185,43 @@ db.Stats74.aggregate([
                          AwayBallSafe44:"$stats44.AwayBallSafe",
                          
                          
-                   
+                         HomeShots29:"$stats29.HomeShots",
+                         HomeShotsOnGoal29:"$stats29.HomeShotsOnGoal",
+                         HomeShotsOffGoal29:"$stats29.HomeShotsOffGoal",
+                         HomeShotsBlocked29:"$stats29.HomeShotsBlocked",
+                         HomeShotsInsideBox29:"$stats29.HomeShotsInsideBox",
+                         HomeShotsOutsideBox29:"$stats29.HomeShotsOutsideBox",
+                         HomePassesTotal29:"$stats29.HomePassesTotal",
+                         HomePassesAccurate29:"$stats29.HomePassesAccurate",
+                         HomePassesPercentage29:"$stats29.HomePassesPercentage",
+                         HomeAttacks29:"$stats29.HomeAttacks",
+                         HomeDangerousAttacks29:"$stats29.HomeDangerousAttacks",
+                         HomeFouls29:"$stats29.HomeFouls",
+                         HomeCorners29:"$stats29.HomeCorners",
+                         HomeOffsides29:"$stats29.HomeOffsides",
+                         HomePossesionTime29:"$stats29.HomePossesionTime",
+                         HomeSaves29:"$stats29.HomeSaves",
+                         HomeGoalAttempts29:"$stats29.HomeGoalAttempts",
+                         HomeBallSafe29:"$stats29.HomeBallSafe",
+                         AwayShots29:"$stats29.AwayShots",
+                         AwayShotsOnGoal29:"$stats29.AwayShotsOnGoal",
+                         AwayShotsOffGoal29:"$stats29.AwayShotsOffGoal",
+                         AwayShotsBlocked29:"$stats29.AwayShotsBlocked",
+                         AwayShotsInsideBox29:"$stats29.AwayShotsInsideBox",
+                         AwayShotsOutsideBox29:"$stats29.AwayShotsOutsideBox",
+                         AwayPassesTotal29:"$stats29.AwayPassesTotal",
+                         AwayPassesAccurate29:"$stats29.AwayPassesAccurate",
+                         AwayPassesPercentage29:"$stats29.AwayPassesPercentage",
+                         AwayAttacks29:"$stats29.AwayAttacks",
+                         AwayDangerousAttacks29:"$stats29.AwayDangerousAttacks",
+                         AwayFouls29:"$stats29.AwayFouls",
+                         AwayCorners29:"$stats29.AwayCorners",
+                         AwayOffsides29:"$stats29.AwayOffsides",
+                         AwayPossesionTime29:"$stats29.AwayPossesionTime",
+                         AwaySaves29:"$stats29.AwaySaves",
+                         AwayGoalAttempts29:"$stats29.AwayGoalAttempts",
+                         AwayBallSafe29:"$stats29.AwayBallSafe",
+                         
                    
                             startingat:"$stats.startingat",
                             startingatwithtime:"$stats.startingatwithtime",
