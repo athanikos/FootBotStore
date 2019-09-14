@@ -63,4 +63,4 @@ db.Matches.aggregate([
             
  
 ])
-db.Stats74.createIndex({matchId:1})
+db.Stats60.createIndex({matchId:1})
