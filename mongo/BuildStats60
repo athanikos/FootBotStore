@@ -1,7 +1,7 @@
 db.Stats60.remove({})
   
 db.Matches.aggregate([
-{ $match: {"time.minute": 60}},
+{ $match: {"time.minute": 59}},
     {
         $project:
         {
@@ -58,9 +58,9 @@ db.Matches.aggregate([
        
            
             {
-                $out:"Stats60" 
+                $out:"Stats59" 
             }
             
  
 ])
-db.Stats60.createIndex({matchId:1})
+db.Stats59.createIndex({matchId:1})
