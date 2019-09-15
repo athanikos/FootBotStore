@@ -33,6 +33,7 @@ db.Matches.aggregate([
                          HomeSaves:"$home.saves",
                          HomeGoalAttempts:"$home.goal_attempts",
                          HomeBallSafe:"$home.ball_safe",
+                         HomePossessiontime:"$home.possessiontime",
                          AwayTeam_id:"$away.team_id",
                          AwayShots:"$away.shots.total",
                          AwayShotsOnGoal:"$away.shots.ongoal",
@@ -52,6 +53,7 @@ db.Matches.aggregate([
                          AwaySaves:"$away.saves",
                          AwayGoalAttempts:"$away.goal_attempts",
                          AwayBallSafe:"$away.ball_safe",
+                         AwayPossessiontime:"$away.possessiontime",
                 }
     },
        
@@ -61,6 +63,6 @@ db.Matches.aggregate([
                 $out:"Stats59" 
             }
             
- 
+      
 ])
 db.Stats59.createIndex({matchId:1})
