@@ -289,7 +289,15 @@ db.Stats74.aggregate([
                             totalYellowsAt45 :"$stats.totalYellowsAt45",
                             totalYellowsAt60 :"$stats.totalYellowsAt60",
                             totalYellowsAt75 :"$stats.totalYellowsAt75",
-                            
+                        
+                            homeYellows45To75 :"$stats.homeYellows45To75",
+                            awayYellows45To75 :"$stats.awayYellows45To75",
+                            homeYellows59To75 :"$stats.homeYellows59To75",
+                            awayYellows59To75 :"$stats.awayYellows59To75",
+                                
+                                
+                
+                
                                   AwayTeamRunningPointAverage :"$stats.AwayTeamRunningPointAverage",
                                   HomeTeamRunningPointAverage :"$stats.HomeTeamRunningPointAverage",
                                   HomeTeamWhileHomeAverageAttack :"$stats.HomeTeamWhileHomeAverageAttack",
