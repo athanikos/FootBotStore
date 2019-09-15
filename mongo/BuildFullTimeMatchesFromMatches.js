@@ -236,8 +236,8 @@
                         awayYellows45To75 :{ $subtract: [   "$awayyellowUpTo75", "$awayyellowUpTo45" ]   },
                         
                                 
-                        homeYellows59To75 :{ $subtract: [   "$homeyellowUpTo75", "$homeyellowUpTo59" ]   },
-                        awayYellows59To75 :{ $subtract: [   "$awayyellowUpTo75", "$awayyellowUpTo59" ]   },
+                        homeYellows59To75 :{ $subtract: [   "$homeyellowUpTo75", "$homeyellowUpTo60" ]   },
+                        awayYellows59To75 :{ $subtract: [   "$awayyellowUpTo75", "$awayyellowUpTo60" ]   },
                         
                         
                         totalYellowsAt45 :{ $add: [   "$homeyellowUpTo45", "$awayyellowUpTo45" ]   },
