@@ -210,8 +210,8 @@
                         resultAt60:"$resultAt45",
                         resultAt75:"$resultAt75",
                         finalResult:"$finalResult",
-                        minuteOfLastGoal:"$minuteOfLastGoal" ,
-                        minuteOfLastRed:"$minuteOfLastRed" ,
+                        minuteOfLastGoalAt75:"$minuteOfLastGoal" ,
+                        minuteOfLastRedAt75:"$minuteOfLastRed" ,
                      
                      
                      
