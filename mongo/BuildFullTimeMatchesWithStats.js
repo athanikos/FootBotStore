@@ -262,6 +262,7 @@ db.Stats74.aggregate([
                             homeGoalsLast15:"$stats.finalAwayGoals"  ,
                             awayGoalsLast15:"$stats.awayGoalsLast15",
                             goalScoredLast15:"$stats.goalScoredLast15",
+                            oneGoalScoredLast45:"$stats.oneGoalsScoredLast45",
                             twoGoalsScoredLast45:"$stats.twoGoalsScoredLast45",
                             threeGoalsScoredLast45:"$stats.threeGoalsScoredLast45",
                             resultAt15:"$stats.resultAt15",
