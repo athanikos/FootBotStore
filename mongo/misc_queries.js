@@ -55,3 +55,9 @@ db.FullTimeMatchesWithStats.aggregate
     } }
 ]    
 )
+
+
+db.FullTimeMatchesWithStats.remove({ league_name: 'Champions League'}, {justOne: false})
+
+
+
