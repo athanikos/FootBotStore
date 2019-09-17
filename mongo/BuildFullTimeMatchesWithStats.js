@@ -301,7 +301,7 @@ db.Stats74.aggregate([
                                   AwayTeamRunningPointAverage :"$stats.AwayTeamRunningPointAverage",
                                   HomeTeamRunningPointAverage :"$stats.HomeTeamRunningPointAverage",
                                   HomeTeamWhileHomeAverageAttack :"$stats.HomeTeamWhileHomeAverageAttack",
-                                  HomeTeamWhileAwayAverageDefence :"$stats.HomeTeamWhileAwayAverageDefence",
+                                  HomeTeamWhileHomeAverageDefence :"$stats.HomeTeamWhileHomeAverageDefence",
                                   AwayTeamWhileAwayAverageAttack  :"$stats.AwayTeamWhileAwayAverageAttack",
                                   AwayTeamWhileAwayAverageDefence   :"$stats.AwayTeamWhileAwayAverageDefence",
     
