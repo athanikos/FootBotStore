@@ -196,13 +196,29 @@
                         homeGoalsLast15:"$finalAwayGoals"  ,
                         awayGoalsLast15:"$awayGoalsLast15",
                         goalScoredLast15:"$goalScoredLast15",
+                        oneGoalsScoredLast45:{  
+                             
+                             
+                                     $cond: [          {$gt: [{$subtract:[{$add:["$finalHomeGoals", "$finalAwayGoals" ] },{$add:["$homeGoalsUpTo45", "$awayGoalsUpTo45"]}]},0]},1,0]   
+                                             
+                             
+                        },
                         twoGoalsScoredLast45:{  
+                             
+                             
+                                     $cond: [          {$gt: [{$subtract:[{$add:["$finalHomeGoals", "$finalAwayGoals" ] },{$add:["$homeGoalsUpTo45", "$awayGoalsUpTo45"]}]},1]},1,0]   
+                                             
+                             
+                        },
+                        threeGoalsScoredLast45:{  
                              
                              
                                      $cond: [          {$gt: [{$subtract:[{$add:["$finalHomeGoals", "$finalAwayGoals" ] },{$add:["$homeGoalsUpTo45", "$awayGoalsUpTo45"]}]},2]},1,0]   
                                              
                              
                         },
+                        
+                        
                      
                         resultAt15:"$resultAt15",
                         resultAt30:"$resultAt30",
