@@ -37,3 +37,21 @@ db.Matches.aggregate([
    .projection({})
    .sort({"time.starting_at.date":-1})
 
+
+db.FullTimeMatchesWithStats.aggregate
+(
+[
+ 
+    { $project: { 
+        
+        	"goalScoredLast15":1,
+        	"twoGoalsScoredLast45":1,
+        	"finalHomeGoals":1,
+        	"finalAwayGoals":1, 
+        	"homeGoalsUpTo45" : 1,
+        	"homeGoalsUpTo75" : 1,       
+        	"awayGoalsUpTo45" : 1,
+        	"awayGoalsUpTo75" : 1,
+    } }
+]    
+)
