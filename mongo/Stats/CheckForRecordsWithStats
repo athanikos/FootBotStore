@@ -1,0 +1,1 @@
+db.Stats.remove({stats_data_0_attacks : { $exists: true } }  )
