@@ -15,7 +15,7 @@
             {
               $lookup: 
               {
-                     from: "leagues",
+                     from: "Leagues",
                      localField: "league_id",
                      foreignField: "id",
                      as: "league_info"
