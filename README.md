@@ -56,7 +56,14 @@ If exists then data is sent to trash.
 
 
 
-
+# Restoring from backup 
+db.Matches.drop({})
+mongoimport --db book --collection Matches --file Oct-05-2019
+run BuildFullTimeMatchesFromMatches.js   // creates FullTimeMatches
+                                         // execute build stats go lang 
+                                         //RUN BUILDSTATS 
+                                        
+run BuildFullTimeMatchesWithStats.js   
 
 
 
