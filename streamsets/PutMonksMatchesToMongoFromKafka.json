@@ -1,11 +1,11 @@
 {
   "pipelineConfig" : {
     "schemaVersion" : 6,
-    "version" : 11,
-    "pipelineId" : "PutMonksMatchesToMongoFromKafkaa947185b-eff0-4701-9f0c-088094bef3c2",
+    "version" : 14,
+    "pipelineId" : "PutMonksMatchesToMongoFromKafka994efbd1-afe1-4f73-a611-b1945d44f8d8",
     "title" : "PutMonksMatchesToMongoFromKafka",
     "description" : "",
-    "uuid" : "ce13fa32-8254-4fd5-b853-517ede927468",
+    "uuid" : "91b83b32-828c-4fe4-8f47-268e580a8dcb",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -30,12 +30,6 @@
     }, {
       "name" : "retryAttempts",
       "value" : -1
-    }, {
-      "name" : "memoryLimit",
-      "value" : "${jvm:maxMemoryMB() * 0.85}"
-    }, {
-      "name" : "memoryLimitExceeded",
-      "value" : "LOG"
     }, {
       "name" : "notifyOnStates",
       "value" : [ "RUN_ERROR", "STOPPED", "FINISHED" ]
@@ -101,10 +95,10 @@
       "value" : null
     }, {
       "name" : "amazonEMRConfig.accessKey",
-      "value" : null
+      "value" : ""
     }, {
       "name" : "amazonEMRConfig.secretKey",
-      "value" : null
+      "value" : ""
     }, {
       "name" : "amazonEMRConfig.s3StagingUri",
       "value" : null
@@ -162,6 +156,75 @@
     }, {
       "name" : "amazonEMRConfig.slaveInstanceTypeCustom",
       "value" : null
+    }, {
+      "name" : "clusterConfig.clusterType",
+      "value" : "LOCAL"
+    }, {
+      "name" : "clusterConfig.sparkMasterUrl",
+      "value" : "local[*]"
+    }, {
+      "name" : "clusterConfig.deployMode",
+      "value" : "CLIENT"
+    }, {
+      "name" : "clusterConfig.hadoopUserName",
+      "value" : "hdfs"
+    }, {
+      "name" : "clusterConfig.stagingDir",
+      "value" : "/streamsets"
+    }, {
+      "name" : "databricksConfig.baseUrl",
+      "value" : null
+    }, {
+      "name" : "databricksConfig.credentialType",
+      "value" : null
+    }, {
+      "name" : "databricksConfig.username",
+      "value" : ""
+    }, {
+      "name" : "databricksConfig.password",
+      "value" : ""
+    }, {
+      "name" : "databricksConfig.token",
+      "value" : ""
+    }, {
+      "name" : "databricksConfig.clusterConfig",
+      "value" : "{\n    \"num_workers\": 8,\n    \"spark_version\": \"5.3.x-scala2.11\",\n    \"node_type_id\": \"i3.xlarge\"\n}"
+    }, {
+      "name" : "livyConfig.baseUrl",
+      "value" : null
+    }, {
+      "name" : "livyConfig.username",
+      "value" : ""
+    }, {
+      "name" : "livyConfig.password",
+      "value" : ""
+    }, {
+      "name" : "databricksConfig.provisionNewCluster",
+      "value" : true
+    }, {
+      "name" : "databricksConfig.clusterId",
+      "value" : null
+    }, {
+      "name" : "databricksConfig.terminateCluster",
+      "value" : false
+    }, {
+      "name" : "advancedErrorHandling",
+      "value" : false
+    }, {
+      "name" : "clusterConfig.sparkAppName",
+      "value" : "${pipeline:title()}"
+    }, {
+      "name" : "clusterConfig.useYarnKerberosKeytab",
+      "value" : false
+    }, {
+      "name" : "clusterConfig.yarnKerberosKeytabSource",
+      "value" : "PROPERTIES_FILE"
+    }, {
+      "name" : "clusterConfig.yarnKerberosKeytab",
+      "value" : null
+    }, {
+      "name" : "clusterConfig.yarnKerberosPrincipal",
+      "value" : "name@DOMAIN"
     } ],
     "uiInfo" : {
       "previewConfig" : {
@@ -178,7 +241,7 @@
     "fragments" : [ ],
     "stages" : [ {
       "instanceName" : "KafkaConsumer_01",
-      "library" : "streamsets-datacollector-cdh_kafka_2_1-lib",
+      "library" : "streamsets-datacollector-apache-kafka_2_0-lib",
       "stageName" : "com_streamsets_pipeline_stage_origin_kafka_KafkaDSource",
       "stageVersion" : "7",
       "configuration" : [ {
@@ -387,13 +450,13 @@
         "value" : "JSON"
       }, {
         "name" : "kafkaConfigBean.metadataBrokerList",
-        "value" : "darth.galaxy.com:9092"
+        "value" : "fra101:9092,fra102:9092"
       }, {
         "name" : "kafkaConfigBean.zookeeperConnect",
-        "value" : "darth.galaxy.com:2181"
+        "value" : "fra101:2181"
       }, {
         "name" : "kafkaConfigBean.consumerGroup",
-        "value" : "MonksLiveMatchesConsumer"
+        "value" : "Consumer"
       }, {
         "name" : "kafkaConfigBean.topic",
         "value" : "MonksLiveMatches"
@@ -402,7 +465,7 @@
         "value" : false
       }, {
         "name" : "kafkaConfigBean.maxBatchSize",
-        "value" : 1
+        "value" : 100
       }, {
         "name" : "kafkaConfigBean.maxWaitTime",
         "value" : 20
@@ -429,7 +492,22 @@
         "value" : false
       }, {
         "name" : "stageOnRecordError",
-        "value" : "DISCARD"
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.multiCharacterFieldDelimiter",
+        "value" : "||"
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.multiCharacterLineDelimiter",
+        "value" : "${str:unescapeJava('\\\\n')}"
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.excelSkipCellsWithNoHeader",
+        "value" : false
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.excelReadAllSheets",
+        "value" : true
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.excelSheetNames",
+        "value" : [ ]
       } ],
       "uiInfo" : {
         "yPos" : 77,
@@ -510,7 +588,7 @@
       "stageVersion" : "1",
       "configuration" : [ {
         "name" : "configBean.mongoConfig.connectionString",
-        "value" : "mongodb://localhost:27017"
+        "value" : "mongodb://167.71.58.55:27017"
       }, {
         "name" : "configBean.mongoConfig.isSingleMode",
         "value" : false
@@ -522,16 +600,16 @@
         "value" : "Matches"
       }, {
         "name" : "configBean.mongoConfig.authenticationType",
-        "value" : "NONE"
+        "value" : "USER_PASS"
       }, {
         "name" : "configBean.mongoConfig.username",
-        "value" : null
+        "value" : ""
       }, {
         "name" : "configBean.mongoConfig.password",
-        "value" : null
+        "value" : ""
       }, {
         "name" : "configBean.mongoConfig.authSource",
-        "value" : null
+        "value" : "admin"
       }, {
         "name" : "configBean.mongoConfig.connectionsPerHost",
         "value" : 100
@@ -676,7 +754,7 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Trash existing records or Upsert",
-        "xPos" : 936.194580078125,
+        "xPos" : 928.6180419921875,
         "yPos" : 74.13247680664062,
         "stageType" : "PROCESSOR"
       },
@@ -691,7 +769,7 @@
       "stageVersion" : "4",
       "configuration" : [ {
         "name" : "configBean.mongoConfig.connectionString",
-        "value" : "mongodb://localhost:27017"
+        "value" : "mongodb://167.71.58.55:27017"
       }, {
         "name" : "configBean.mongoConfig.database",
         "value" : "book"
@@ -700,16 +778,16 @@
         "value" : "Matches"
       }, {
         "name" : "configBean.mongoConfig.authenticationType",
-        "value" : "NONE"
+        "value" : "USER_PASS"
       }, {
         "name" : "configBean.mongoConfig.username",
-        "value" : null
+        "value" : ""
       }, {
         "name" : "configBean.mongoConfig.password",
-        "value" : null
+        "value" : ""
       }, {
         "name" : "configBean.mongoConfig.authSource",
-        "value" : null
+        "value" : "admin"
       }, {
         "name" : "configBean.mongoConfig.connectionsPerHost",
         "value" : 100
@@ -789,8 +867,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Upsert to Matches",
-        "xPos" : 1230.11962890625,
-        "yPos" : 166.31197357177734,
+        "xPos" : 1221.5430908203125,
+        "yPos" : 164.16783905029297,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "StreamSelector_01OutputLane1554141839483" ],
@@ -814,6 +892,179 @@
       "outputLanes" : [ ],
       "eventLanes" : [ ],
       "services" : [ ]
+    }, {
+      "instanceName" : "KafkaProducer_01",
+      "library" : "streamsets-datacollector-apache-kafka_2_0-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_kafka_KafkaDTarget",
+      "stageVersion" : "4",
+      "configuration" : [ {
+        "name" : "conf.dataFormat",
+        "value" : "JSON"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.charset",
+        "value" : "UTF-8"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.csvFileFormat",
+        "value" : "CSV"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.csvHeader",
+        "value" : "NO_HEADER"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.csvReplaceNewLines",
+        "value" : true
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.csvReplaceNewLinesString",
+        "value" : " "
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.csvCustomDelimiter",
+        "value" : "|"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.csvCustomEscape",
+        "value" : "\\"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.csvCustomQuote",
+        "value" : "\""
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.csvQuoteMode",
+        "value" : "MINIMAL"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.jsonMode",
+        "value" : "MULTIPLE_OBJECTS"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.textFieldPath",
+        "value" : "/text"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.textRecordSeparator",
+        "value" : "\\n"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.textFieldMissingAction",
+        "value" : "ERROR"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.textEmptyLineIfNull",
+        "value" : false
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.avroSchemaSource",
+        "value" : null
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.avroSchema",
+        "value" : null
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.registerSchema",
+        "value" : false
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.schemaRegistryUrlsForRegistration",
+        "value" : [ ]
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.schemaRegistryUrls",
+        "value" : [ ]
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.schemaLookupMode",
+        "value" : "SUBJECT"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.subject",
+        "value" : null
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.subjectToRegister",
+        "value" : null
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.schemaId",
+        "value" : null
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.includeSchema",
+        "value" : true
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.avroCompression",
+        "value" : "NULL"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.binaryFieldPath",
+        "value" : "/"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.protoDescriptorFile",
+        "value" : null
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.messageType",
+        "value" : null
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.fileNameEL",
+        "value" : null
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.wholeFileExistsAction",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.includeChecksumInTheEvents",
+        "value" : false
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.checksumAlgorithm",
+        "value" : "MD5"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.xmlPrettyPrint",
+        "value" : true
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.xmlValidateSchema",
+        "value" : false
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.xmlSchema",
+        "value" : null
+      }, {
+        "name" : "conf.metadataBrokerList",
+        "value" : "fra101:9092,fra102:9092"
+      }, {
+        "name" : "conf.runtimeTopicResolution",
+        "value" : false
+      }, {
+        "name" : "conf.topicExpression",
+        "value" : "${record:value('/topic')}"
+      }, {
+        "name" : "conf.topicWhiteList",
+        "value" : "*"
+      }, {
+        "name" : "conf.topic",
+        "value" : "Matches"
+      }, {
+        "name" : "conf.partitionStrategy",
+        "value" : "ROUND_ROBIN"
+      }, {
+        "name" : "conf.partition",
+        "value" : "${0}"
+      }, {
+        "name" : "conf.singleMessagePerBatch",
+        "value" : false
+      }, {
+        "name" : "conf.keySerializer",
+        "value" : "STRING"
+      }, {
+        "name" : "conf.valueSerializer",
+        "value" : "DEFAULT"
+      }, {
+        "name" : "conf.kafkaProducerConfigs",
+        "value" : [ ]
+      }, {
+        "name" : "responseConf.sendResponseToOrigin",
+        "value" : false
+      }, {
+        "name" : "responseConf.responseType",
+        "value" : "SUCCESS_RECORDS"
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Matches",
+        "xPos" : 1227.252197265625,
+        "yPos" : 293,
+        "stageType" : "TARGET"
+      },
+      "inputLanes" : [ "StreamSelector_01OutputLane1554141839483" ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
     } ],
     "errorStage" : {
       "instanceName" : "Discard_ErrorStage",
@@ -834,22 +1085,22 @@
       "services" : [ ]
     },
     "info" : {
-      "pipelineId" : "PutMonksMatchesToMongoFromKafkaa947185b-eff0-4701-9f0c-088094bef3c2",
+      "pipelineId" : "PutMonksMatchesToMongoFromKafka994efbd1-afe1-4f73-a611-b1945d44f8d8",
       "title" : "PutMonksMatchesToMongoFromKafka",
       "description" : "",
-      "created" : 1554047785816,
-      "lastModified" : 1563194896825,
+      "created" : 1566310762588,
+      "lastModified" : 1570554416151,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "ce13fa32-8254-4fd5-b853-517ede927468",
+      "uuid" : "91b83b32-828c-4fe4-8f47-268e580a8dcb",
       "valid" : true,
       "metadata" : {
         "labels" : [ ]
       },
-      "name" : "PutMonksMatchesToMongoFromKafkaa947185b-eff0-4701-9f0c-088094bef3c2",
-      "sdcVersion" : "3.7.2",
-      "sdcId" : "b83001d1-3235-11e9-88ad-459274ef3736"
+      "name" : "PutMonksMatchesToMongoFromKafka994efbd1-afe1-4f73-a611-b1945d44f8d8",
+      "sdcVersion" : "3.10.0",
+      "sdcId" : "21fa9b5e-c1d4-11e9-8871-71a0bee6d025"
     },
     "metadata" : {
       "labels" : [ ]
@@ -916,6 +1167,9 @@
       }, {
         "name" : "stopAfterFirstBatch",
         "value" : false
+      }, {
+        "name" : "eventData",
+        "value" : null
       }, {
         "name" : "stageOnRecordError",
         "value" : "TO_ERROR"
@@ -984,6 +1238,12 @@
         }, {
           "name" : "dataFormatConfig.csvCustomDelimiter",
           "value" : "|"
+        }, {
+          "name" : "dataFormatConfig.multiCharacterFieldDelimiter",
+          "value" : "||"
+        }, {
+          "name" : "dataFormatConfig.multiCharacterLineDelimiter",
+          "value" : "${str:unescapeJava('\\\\n')}"
         }, {
           "name" : "dataFormatConfig.csvCustomEscape",
           "value" : "\\"
@@ -1140,13 +1400,22 @@
         }, {
           "name" : "dataFormatConfig.excelHeader",
           "value" : null
+        }, {
+          "name" : "dataFormatConfig.excelSkipCellsWithNoHeader",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.excelReadAllSheets",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.excelSheetNames",
+          "value" : [ ]
         } ]
       } ]
     },
     "valid" : true,
     "issues" : {
-      "pipelineIssues" : [ ],
       "issueCount" : 0,
+      "pipelineIssues" : [ ],
       "stageIssues" : { }
     },
     "previewable" : true
@@ -1212,7 +1481,7 @@
     } ],
     "dataRuleDefinitions" : [ ],
     "driftRuleDefinitions" : [ ],
-    "uuid" : "7f5801b1-07af-45ad-aa9c-ab6b8d75c4ac",
+    "uuid" : "0cf61500-d713-4e24-be4a-b121d8a19662",
     "configuration" : [ {
       "name" : "emailIDs",
       "value" : [ ]
