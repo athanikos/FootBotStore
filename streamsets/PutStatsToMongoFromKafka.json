@@ -5,7 +5,7 @@
     "pipelineId" : "PutEventsToMongoFromKafkacopy7e95a9b8-2e1b-4a71-95e8-c072b6f83bd2",
     "title" : "PutStatsToMongoFromKafka",
     "description" : "",
-    "uuid" : "4ee8173f-64cc-430b-b16c-fd3bc512b215",
+    "uuid" : "9ba27e6f-ed33-400f-be63-c8420efdac95",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -450,16 +450,16 @@
         "value" : "JSON"
       }, {
         "name" : "kafkaConfigBean.metadataBrokerList",
-        "value" : "fra101:9092,fra102:9092"
+        "value" : "fra101:9092"
       }, {
         "name" : "kafkaConfigBean.zookeeperConnect",
         "value" : "fra101:2181"
       }, {
         "name" : "kafkaConfigBean.consumerGroup",
-        "value" : "thewnewconsumerforeever"
+        "value" : "fffgfgdgsfdgadsgs"
       }, {
         "name" : "kafkaConfigBean.topic",
-        "value" : "MonksLiveMatches"
+        "value" : "Matches2"
       }, {
         "name" : "kafkaConfigBean.produceSingleRecordPerMessage",
         "value" : false
@@ -531,7 +531,7 @@
           } ]
         },
         "description" : "",
-        "label" : "MonksLiveMatches Consumer",
+        "label" : "Matches Consumer",
         "xPos" : -402
       },
       "inputLanes" : [ ],
@@ -591,7 +591,7 @@
         "value" : "KEEP"
       }, {
         "name" : "fields",
-        "value" : [ "/id", "/time/minute", "/time/status", "/time", "/league_id", "/to_exists", "/venue_id", "/referee_id", "/localteam_id", "/visitorteam_id", "/attendance", "/time/extra_minute", "/coaches/visitorteam_coach_id", "/coaches/localteam_coach_id", "/coaches", "/standings/visitorteam_position", "/standings/localteam_position", "/standings", "/assistants/fourth_official_id", "/assistants/second_assistant_id", "/assistants/first_assistant_id", "/assistants", "/stats/data[1]", "/stats/data[1]/team_id", "/stats/data[1]/shots", "/stats/data[1]/shots/ongoal", "/stats/data[1]/shots/total", "/stats/data[1]/shots/offgoal", "/stats/data[1]/shots/blocked", "/stats/data[1]/shots/outsidebox", "/stats/data[1]/shots/insidebox", "/stats/data[1]/passes", "/stats/data[1]/passes/total", "/stats/data[1]/passes/accurate", "/stats/data[1]/attacks/attacks", "/stats/data[1]/attacks", "/stats/data[1]/attacks/dangerous_attacks", "/stats/data[1]/fouls", "/stats/data[1]/corners", "/stats/data[1]/offsides", "/stats/data[1]/possessiontime", "/stats/data[1]/yellowcards", "/stats/data[1]/goals", "/stats/data[1]/injuries", "/stats/data[0]/fixture_id", "/stats/data[0]", "/stats/data[0]/shots", "/stats/data[0]/shots/total", "/stats/data[0]/shots/offgoal", "/stats/data[0]/shots/ongoal", "/stats/data[0]/shots/insidebox", "/stats/data[0]/shots/blocked", "/stats/data[0]/shots/outsidebox", "/stats/data[0]/passes/total", "/stats/data[0]/passes/accurate", "/stats/data[0]/passes", "/stats/data[0]/attacks/attacks", "/stats/data[0]/attacks/dangerous_attacks", "/stats/data[0]/attacks", "/stats/data[0]/fouls", "/stats/data[0]/corners", "/stats/data[0]/offsides", "/stats/data[0]/possessiontime", "/stats/data[0]/yellowcards", "/stats/data[0]/redcards", "/stats/data[0]/yellowredcards", "/stats/data[0]/saves", "/stats/data[0]/substitutions", "/stats/data[0]/ball_safe", "/stats/data[0]/goals", "/stats/data[0]/penalties", "/stats/data[0]/injuries", "/stats/data[1]/substitutions", "/stats/data[1]/saves", "/stats/data[1]/yellowredcards", "/stats/data[1]/redcards", "/stats/data[1]/ball_safe", "/stats/data[1]/penalties" ]
+        "value" : [ "/id", "/time/minute", "/time/status", "/time", "/league_id", "/to_exists", "/venue_id", "/referee_id", "/localteam_id", "/visitorteam_id", "/attendance", "/time/extra_minute", "/coaches/visitorteam_coach_id", "/coaches/localteam_coach_id", "/coaches", "/standings/visitorteam_position", "/standings/localteam_position", "/standings", "/assistants/fourth_official_id", "/assistants/second_assistant_id", "/assistants/first_assistant_id", "/assistants", "/stats/data[1]", "/stats/data[1]/team_id", "/stats/data[1]/shots", "/stats/data[1]/shots/ongoal", "/stats/data[1]/shots/total", "/stats/data[1]/shots/offgoal", "/stats/data[1]/shots/blocked", "/stats/data[1]/shots/outsidebox", "/stats/data[1]/shots/insidebox", "/stats/data[1]/passes", "/stats/data[1]/passes/total", "/stats/data[1]/passes/accurate", "/stats/data[1]/attacks/attacks", "/stats/data[1]/attacks", "/stats/data[1]/attacks/dangerous_attacks", "/stats/data[1]/fouls", "/stats/data[1]/corners", "/stats/data[1]/offsides", "/stats/data[1]/possessiontime", "/stats/data[1]/yellowcards", "/stats/data[1]/goals", "/stats/data[1]/injuries", "/stats/data[0]/fixture_id", "/stats/data[0]", "/stats/data[0]/shots", "/stats/data[0]/shots/total", "/stats/data[0]/shots/offgoal", "/stats/data[0]/shots/ongoal", "/stats/data[0]/shots/insidebox", "/stats/data[0]/shots/blocked", "/stats/data[0]/shots/outsidebox", "/stats/data[0]/passes/total", "/stats/data[0]/passes/accurate", "/stats/data[0]/passes", "/stats/data[0]/attacks/attacks", "/stats/data[0]/attacks/dangerous_attacks", "/stats/data[0]/attacks", "/stats/data[0]/fouls", "/stats/data[0]/corners", "/stats/data[0]/offsides", "/stats/data[0]/possessiontime", "/stats/data[0]/yellowcards", "/stats/data[0]/redcards", "/stats/data[0]/yellowredcards", "/stats/data[0]/saves", "/stats/data[0]/substitutions", "/stats/data[0]/ball_safe", "/stats/data[0]/goals", "/stats/data[0]/penalties", "/stats/data[0]/injuries", "/stats/data[1]/substitutions", "/stats/data[1]/saves", "/stats/data[1]/yellowredcards", "/stats/data[1]/redcards", "/stats/data[1]/ball_safe", "/stats/data[1]/penalties", "/visitorTeam/data/name", "/localTeam/data/name" ]
       }, {
         "name" : "constant",
         "value" : null
@@ -605,7 +605,7 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Field Remover 1",
-        "xPos" : -36.3955078125,
+        "xPos" : -35.092477798461914,
         "yPos" : 96,
         "stageType" : "PROCESSOR"
       },
@@ -1124,8 +1124,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "MongoDB Lookup 2",
-        "xPos" : 521.3544921875,
-        "yPos" : 197,
+        "xPos" : 524.3544921875,
+        "yPos" : 196,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "StreamSelector_02OutputLane1569259988244" ],
@@ -1432,8 +1432,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "FT or HT",
-        "xPos" : 1332.1044921875,
-        "yPos" : 326,
+        "xPos" : 1330.9984130859375,
+        "yPos" : 324.8938903808594,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "StreamSelector_03OutputLane15692605957221" ],
@@ -1481,21 +1481,21 @@
       "title" : "PutStatsToMongoFromKafka",
       "description" : "",
       "created" : 1569089246905,
-      "lastModified" : 1569264153648,
+      "lastModified" : 1579370660239,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "4ee8173f-64cc-430b-b16c-fd3bc512b215",
+      "uuid" : "9ba27e6f-ed33-400f-be63-c8420efdac95",
       "valid" : true,
       "metadata" : {
-        "labels" : [ ]
+        "labels" : [ "prod" ]
       },
       "name" : "PutEventsToMongoFromKafkacopy7e95a9b8-2e1b-4a71-95e8-c072b6f83bd2",
       "sdcVersion" : "3.10.0",
       "sdcId" : "21fa9b5e-c1d4-11e9-8871-71a0bee6d025"
     },
     "metadata" : {
-      "labels" : [ ]
+      "labels" : [ "prod" ]
     },
     "statsAggregatorStage" : {
       "instanceName" : "statsAggregatorStageInstance",
@@ -1806,9 +1806,9 @@
     },
     "valid" : true,
     "issues" : {
+      "stageIssues" : { },
       "issueCount" : 0,
-      "pipelineIssues" : [ ],
-      "stageIssues" : { }
+      "pipelineIssues" : [ ]
     },
     "previewable" : true
   },
