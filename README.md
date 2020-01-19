@@ -9,8 +9,15 @@ The purpose of the project is to store live football data for further analysis.
 
 Sources ------> Kafka ------> Mongo 
                                   
-StreamSets is used for pipeline development.
-SportMonks is used as a live data provider.
+StreamSets for pipeline development.
+SportMonks as a live data provider.
+
+Pipelines 
+1. PutMonksLiveMatches - ingetsion to Kafka topic 
+2.  PutMonksLiveMatchesToMatches - from kafka Topic MonksLiveMatcheds to Mongo Matches collection & Kafka topic  
+3.  PutMatchesToFlatMatches - reads from Kafka matches topic and Flattens data to FlatMatches collection
+
+4. Pending to read from FlatMatches and enrich with stats via python web services 
 
 
 # QuickStart 
