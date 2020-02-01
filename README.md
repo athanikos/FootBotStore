@@ -13,11 +13,12 @@ StreamSets for pipeline development.
 SportMonks as a live data provider.
 
 Pipelines 
-1. PutMonksLiveMatches - ingetsion to Kafka topic 
+1. PutMonksLiveMatches - ingestion to Kafka topic ( tree like event represenataion of match with nested items)
 2.  PutMonksLiveMatchesToMatches - from kafka Topic MonksLiveMatcheds to Mongo Matches collection & Kafka topic  
-3.  PutMatchesToFlatMatches - reads from Kafka matches topic and Flattens data to FlatMatches collection
+3.  PutMatchesToFlatMatches - reads from Kafka matches topic and Flattens data to FlatMatches collection --- this flats out the collection and upserts by match_id+status+minute (one match has multiple rows)
 
-4. Pending to read from FlatMatches and enrich with stats via python web services 
+
+4. Pending item to read from FlatMatches and enrich with stats via python web services 
 
 
 # QuickStart 
