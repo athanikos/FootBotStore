@@ -18,7 +18,8 @@ Pipelines
 3.  PutMatchesToFlatMatches - reads from Kafka matches topic and Flattens data to FlatMatches collection --- this flats out the collection and upserts by match_id+status+minute (one match has multiple rows)
 
 4. Pending item to read from FlatMatches so that FinishedMatches is populated  and enriched 
-This calls some ws:
+This calls at least two webservices:
+
               a. get last 10 matches per team per league (calling matches per teamId per leagueId before some date) 
               b. compute stats (that is combine events collection and produce per 15 minutes threshold) This step 
                  gets all events per game and produces fields that are flattened
