@@ -17,8 +17,15 @@ Pipelines
 2.  PutMonksLiveMatchesToMatches - from kafka Topic MonksLiveMatcheds to Mongo Matches collection & Kafka topic  
 3.  PutMatchesToFlatMatches - reads from Kafka matches topic and Flattens data to FlatMatches collection --- this flats out the collection and upserts by match_id+status+minute (one match has multiple rows)
 
-
-4. Pending item to read from FlatMatches and enrich with stats via python web services 
+4. Pending item to read from FlatMatches so that FinishedMatches is populated  and enriched 
+This calls some ws:
+              a. get last 10 matches per team per league (calling matches per teamId per leagueId before some date) 
+              b. compute stats (that is combine events collection and produce per 15 minutes threshold) This step 
+                 gets all events per game and produces fields that are flattened
+                 the call parameters are  matchId 
+                 
+              
+              
 
 
 # QuickStart 
