@@ -1,4 +1,4 @@
-# Football Stats (Storage And Pipelines)
+# FootBot Store  (Storage And Pipelines)
 
 # Introduction 
 This repository contains the Storage and Pipelines part of the FootBallStats project.
