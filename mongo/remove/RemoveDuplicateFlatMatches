@@ -1,0 +1,17 @@
+db.flatmatches.find({}).forEach(
+    function (doc) 
+    {
+        var count = db.flatmatches.find({"time_status":"FT",id:doc.id}).count();
+        if (count>1)
+        {
+             print ("count " + count +  " " + doc.id ) 
+             db.flatmatches.find({"time_status":"FT",id:doc.id}).limit(count-1).forEach(
+                 
+                 function(doc2)
+                 {
+                     db.flatmatches.remove({_id:doc2._id});
+                 }
+             )
+        }
+    }
+);
