@@ -12,6 +12,12 @@ Sources ------> Kafka ------> Mongo
 StreamSets for pipeline development.
 SportMonks as a live data provider.
 
+Layers 
+
+SportMonks Matches ---> Matches  --flatten--->  flatmatches                  -->  fulltimematches (status = FT)
+                                                        
+                                                                             --->  events       ------->   actions 
+
 Pipelines 
 1. PutMonksLiveMatches - ingestion to Kafka topic ( tree like event represenataion of match with nested items)
 2.  PutMonksLiveMatchesToMatches - from kafka Topic MonksLiveMatcheds to Mongo Matches collection & Kafka topic  
