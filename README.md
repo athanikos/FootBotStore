@@ -13,11 +13,11 @@ StreamSets for pipeline development.
 SportMonks as a live data provider.
 
 Layers 
-   matches data is as fetched from sport monks 
-   flatmatches flattened matches 
-   fulltimematches all flatmatches with status = FT (also enriched with stats)
-   events (all matches per minute flattened) this is used to run models or any rule  
-   actions (bot actions )
+   1. matches data is as fetched from sport monks 
+   2. flatmatches flattened matches 
+   3. fulltimematches all flatmatches with status = FT (also enriched with stats)
+   4. events (all matches per minute flattened) this is used to run models or any rule  
+   5. actions (bot actions )
 
 Pipelines 
 1. PutMonksLiveMatches - ingestion to Kafka topic ( tree like event represenataion of match with nested items)
