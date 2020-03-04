@@ -1,6 +1,6 @@
 db.createUser(
     {
-        user: "foot_clone",
+        user: "<enter user>",
         pwd: "<enterPassword>",
         customData: {},
         roles: [{ "role": "userAdminAnyDatabase", "db": "admin" }, { "role": "readWrite", "db": "book" }],
@@ -9,7 +9,7 @@ db.createUser(
 
 
 db.grantRolesToUser(
-    "foot",
+    "<enter user>",
     [
       { role: "readWrite", db: "book" }
     ]
