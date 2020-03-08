@@ -24,7 +24,7 @@ def main():
 
 
     os.chdir(base_dir)
-    mongoexport_cmd =' mongoexport --db book --collection Matches --out ' + base_dir + date_string
+    mongoexport_cmd =' mongoexport --db book --collection Matches --username <user> --password <pass> --authenticationsource <authsource>   --out ' + base_dir + date_string
     os.system(mongoexport_cmd)
     zip_cmd ='7z a ' + base_dir + date_string + ".7z  " + base_dir + date_string
     os.system(zip_cmd)
