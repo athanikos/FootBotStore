@@ -5,7 +5,7 @@
     "pipelineId" : "PutEventsToMongoFromKafkacopy7e95a9b8-2e1b-4a71-95e8-c072b6f83bd2",
     "title" : "PutMatchesToFlatMatches",
     "description" : "",
-    "uuid" : "a2acc7e3-6f7e-4a55-876d-253b6ae69903",
+    "uuid" : "f8c5ee5e-9385-44e5-af03-4f6eed896bca",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -667,7 +667,7 @@
         "value" : "book"
       }, {
         "name" : "configBean.mongoConfig.collection",
-        "value" : "FlatMatches"
+        "value" : "flatmatches"
       }, {
         "name" : "configBean.mongoConfig.authenticationType",
         "value" : "USER_PASS"
@@ -785,7 +785,7 @@
       } ],
       "uiInfo" : {
         "description" : "",
-        "label" : "FlatMatches Lookup - id, time_minute",
+        "label" : "flatmatches Lookup - id, time_minute",
         "xPos" : 517.1724243164062,
         "yPos" : 51.82640075683594,
         "stageType" : "PROCESSOR"
@@ -889,7 +889,7 @@
         "value" : "book"
       }, {
         "name" : "configBean.mongoConfig.collection",
-        "value" : "FlatMatches"
+        "value" : "flatmatches"
       }, {
         "name" : "configBean.mongoConfig.authenticationType",
         "value" : "USER_PASS"
@@ -981,8 +981,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "FlatMatches - LIVE",
-        "xPos" : 1267.2589111328125,
-        "yPos" : 48.54236602783203,
+        "xPos" : 1266.2589111328125,
+        "yPos" : 47.54236602783203,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "StreamSelector_01OutputLane1569088908835" ],
@@ -1005,7 +1005,7 @@
         "value" : "book"
       }, {
         "name" : "configBean.mongoConfig.collection",
-        "value" : "FlatMatches"
+        "value" : "flatmatches"
       }, {
         "name" : "configBean.mongoConfig.authenticationType",
         "value" : "USER_PASS"
@@ -1123,9 +1123,9 @@
       } ],
       "uiInfo" : {
         "description" : "",
-        "label" : "FlatMatches Lookup - time_status, id",
-        "xPos" : 511.081787109375,
-        "yPos" : 188.59352111816406,
+        "label" : "flatmatches Lookup - time_status, id",
+        "xPos" : 513.081787109375,
+        "yPos" : 184.59352111816406,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "StreamSelector_02OutputLane1569259988244" ],
@@ -1227,7 +1227,7 @@
         "value" : "book"
       }, {
         "name" : "configBean.mongoConfig.collection",
-        "value" : "FlatMatches"
+        "value" : "flatmatches"
       }, {
         "name" : "configBean.mongoConfig.authenticationType",
         "value" : "USER_PASS"
@@ -1319,8 +1319,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "FlatMatches - FT or HT",
-        "xPos" : 1264.8375244140625,
-        "yPos" : 189.22337341308594,
+        "xPos" : 1268.8375244140625,
+        "yPos" : 192.22337341308594,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "StreamSelector_03OutputLane15692605957221" ],
@@ -1385,11 +1385,11 @@
       "title" : "PutMatchesToFlatMatches",
       "description" : "",
       "created" : 1569089246905,
-      "lastModified" : 1579441518999,
+      "lastModified" : 1579630773371,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "a2acc7e3-6f7e-4a55-876d-253b6ae69903",
+      "uuid" : "f8c5ee5e-9385-44e5-af03-4f6eed896bca",
       "valid" : true,
       "metadata" : {
         "labels" : [ "prod" ]
@@ -1710,9 +1710,9 @@
     },
     "valid" : true,
     "issues" : {
+      "pipelineIssues" : [ ],
       "stageIssues" : { },
-      "issueCount" : 0,
-      "pipelineIssues" : [ ]
+      "issueCount" : 0
     },
     "previewable" : true
   },

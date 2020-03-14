@@ -2,10 +2,10 @@
   "pipelineConfig" : {
     "schemaVersion" : 6,
     "version" : 14,
-    "pipelineId" : "PutMonksMatchesToMongoFromKafka994efbd1-afe1-4f73-a611-b1945d44f8d8",
-    "title" : "PutMonksLiveMatchesToMatches",
+    "pipelineId" : "PutStatsToMongoFromMongod5fee5f6-b1c9-4514-98a4-545878238b5d",
+    "title" : "PutMongoFlatMatchesFromMongoMatches",
     "description" : "",
-    "uuid" : "506886da-ae6b-4661-8069-c14010cd8c5d",
+    "uuid" : "b3ff5792-b19f-4a21-b50f-915f0a87897a",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -240,536 +240,16 @@
     },
     "fragments" : [ ],
     "stages" : [ {
-      "instanceName" : "KafkaConsumer_01",
-      "library" : "streamsets-datacollector-apache-kafka_2_0-lib",
-      "stageName" : "com_streamsets_pipeline_stage_origin_kafka_KafkaDSource",
-      "stageVersion" : "7",
-      "configuration" : [ {
-        "name" : "kafkaConfigBean.dataFormatConfig.filePatternInArchive",
-        "value" : "*"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.charset",
-        "value" : "UTF-8"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.removeCtrlChars",
-        "value" : false
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.textMaxLineLen",
-        "value" : 102400
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.useCustomDelimiter",
-        "value" : false
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.customDelimiter",
-        "value" : "\\r\\n"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.includeCustomDelimiterInTheText",
-        "value" : false
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.jsonContent",
-        "value" : "MULTIPLE_OBJECTS"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.jsonMaxObjectLen",
-        "value" : 409600
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.csvFileFormat",
-        "value" : "CSV"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.csvHeader",
-        "value" : "NO_HEADER"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.csvAllowExtraColumns",
-        "value" : false
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.csvExtraColumnPrefix",
-        "value" : "_extra_"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.csvMaxObjectLen",
-        "value" : 1024
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.csvCustomDelimiter",
-        "value" : "|"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.csvCustomEscape",
-        "value" : "\\"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.csvCustomQuote",
-        "value" : "\""
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.csvEnableComments",
-        "value" : false
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.csvCommentMarker",
-        "value" : "#"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.csvIgnoreEmptyLines",
-        "value" : true
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.csvRecordType",
-        "value" : "LIST_MAP"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.csvSkipStartLines",
-        "value" : 0
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.parseNull",
-        "value" : false
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.nullConstant",
-        "value" : "\\\\N"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.xmlRecordElement",
-        "value" : null
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.includeFieldXpathAttributes",
-        "value" : false
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.xPathNamespaceContext",
-        "value" : [ ]
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.outputFieldAttributes",
-        "value" : false
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.xmlMaxObjectLen",
-        "value" : 4096
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.logMode",
-        "value" : "COMMON_LOG_FORMAT"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.logMaxObjectLen",
-        "value" : 1024
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.retainOriginalLine",
-        "value" : false
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.customLogFormat",
-        "value" : "%h %l %u %t \"%r\" %>s %b"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.regex",
-        "value" : "^(\\S+) (\\S+) (\\S+) \\[([\\w:/]+\\s[+\\-]\\d{4})\\] \"(\\S+) (\\S+) (\\S+)\" (\\d{3}) (\\d+)"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.fieldPathsToGroupName",
-        "value" : [ {
-          "fieldPath" : "/",
-          "group" : 1
-        } ]
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.grokPatternDefinition",
-        "value" : null
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.grokPattern",
-        "value" : "%{COMMONAPACHELOG}"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.onParseError",
-        "value" : "ERROR"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.maxStackTraceLines",
-        "value" : 50
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.enableLog4jCustomLogFormat",
-        "value" : false
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.log4jCustomLogFormat",
-        "value" : "%r [%t] %-5p %c %x - %m%n"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.avroSchemaSource",
-        "value" : null
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.avroSchema",
-        "value" : null
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.schemaRegistryUrls",
-        "value" : [ ]
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.schemaLookupMode",
-        "value" : "SUBJECT"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.subject",
-        "value" : null
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.schemaId",
-        "value" : null
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.protoDescriptorFile",
-        "value" : null
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.messageType",
-        "value" : null
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.isDelimited",
-        "value" : true
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.binaryMaxObjectLen",
-        "value" : 1024
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.datagramMode",
-        "value" : "SYSLOG"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.typesDbPath",
-        "value" : null
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.convertTime",
-        "value" : false
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.excludeInterval",
-        "value" : true
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.authFilePath",
-        "value" : null
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.netflowOutputValuesMode",
-        "value" : "RAW_AND_INTERPRETED"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.maxTemplateCacheSize",
-        "value" : -1
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.templateCacheTimeoutMs",
-        "value" : -1
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.netflowOutputValuesModeDatagram",
-        "value" : "RAW_AND_INTERPRETED"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.maxTemplateCacheSizeDatagram",
-        "value" : -1
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.templateCacheTimeoutMsDatagram",
-        "value" : -1
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.wholeFileMaxObjectLen",
-        "value" : 8192
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.rateLimit",
-        "value" : "-1"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.verifyChecksum",
-        "value" : false
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.excelHeader",
-        "value" : null
-      }, {
-        "name" : "kafkaConfigBean.dataFormat",
-        "value" : "JSON"
-      }, {
-        "name" : "kafkaConfigBean.metadataBrokerList",
-        "value" : "fra101:9092"
-      }, {
-        "name" : "kafkaConfigBean.zookeeperConnect",
-        "value" : "fra101:2181"
-      }, {
-        "name" : "kafkaConfigBean.consumerGroup",
-        "value" : "Consumer21"
-      }, {
-        "name" : "kafkaConfigBean.topic",
-        "value" : "MonksLiveMatches2"
-      }, {
-        "name" : "kafkaConfigBean.produceSingleRecordPerMessage",
-        "value" : false
-      }, {
-        "name" : "kafkaConfigBean.maxBatchSize",
-        "value" : 100
-      }, {
-        "name" : "kafkaConfigBean.maxWaitTime",
-        "value" : 20
-      }, {
-        "name" : "kafkaConfigBean.maxRatePerPartition",
-        "value" : 1
-      }, {
-        "name" : "kafkaConfigBean.keyDeserializer",
-        "value" : "STRING"
-      }, {
-        "name" : "kafkaConfigBean.valueDeserializer",
-        "value" : "DEFAULT"
-      }, {
-        "name" : "kafkaConfigBean.kafkaAutoOffsetReset",
-        "value" : "EARLIEST"
-      }, {
-        "name" : "kafkaConfigBean.timestampToSearchOffsets",
-        "value" : 0
-      }, {
-        "name" : "kafkaConfigBean.kafkaConsumerConfigs",
-        "value" : [ ]
-      }, {
-        "name" : "kafkaConfigBean.timestampsEnabled",
-        "value" : false
-      }, {
-        "name" : "stageOnRecordError",
-        "value" : "TO_ERROR"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.multiCharacterFieldDelimiter",
-        "value" : "||"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.multiCharacterLineDelimiter",
-        "value" : "${str:unescapeJava('\\\\n')}"
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.excelSkipCellsWithNoHeader",
-        "value" : false
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.excelReadAllSheets",
-        "value" : true
-      }, {
-        "name" : "kafkaConfigBean.dataFormatConfig.excelSheetNames",
-        "value" : [ ]
-      } ],
-      "uiInfo" : {
-        "yPos" : 77,
-        "stageType" : "SOURCE",
-        "rawSource" : {
-          "configuration" : [ {
-            "name" : "brokerHost",
-            "value" : "localhost"
-          }, {
-            "name" : "brokerPort",
-            "value" : 9092
-          }, {
-            "name" : "topic",
-            "value" : "myTopic"
-          }, {
-            "name" : "partition",
-            "value" : 0
-          }, {
-            "name" : "maxWaitTime",
-            "value" : 1000
-          } ]
-        },
-        "description" : "",
-        "label" : "MonksLiveMatches Consumer",
-        "xPos" : 236
-      },
-      "inputLanes" : [ ],
-      "outputLanes" : [ "KafkaConsumer_01OutputLane15516231938920" ],
-      "eventLanes" : [ ],
-      "services" : [ ]
-    }, {
-      "instanceName" : "ExpressionEvaluator_01",
-      "library" : "streamsets-datacollector-basic-lib",
-      "stageName" : "com_streamsets_pipeline_stage_processor_expression_ExpressionDProcessor",
-      "stageVersion" : "2",
-      "configuration" : [ {
-        "name" : "expressionProcessorConfigs",
-        "value" : [ {
-          "fieldToSet" : "/",
-          "expression" : "${record:value('/')}"
-        } ]
-      }, {
-        "name" : "headerAttributeConfigs",
-        "value" : [ {
-          "attributeToSet" : "sdc.operation.type",
-          "headerAttributeExpression" : "3"
-        } ]
-      }, {
-        "name" : "fieldAttributeConfigs",
-        "value" : [ {
-          "fieldToSet" : "/"
-        } ]
-      }, {
-        "name" : "stageOnRecordError",
-        "value" : "TO_ERROR"
-      }, {
-        "name" : "stageRequiredFields",
-        "value" : [ ]
-      }, {
-        "name" : "stageRecordPreconditions",
-        "value" : [ ]
-      } ],
-      "uiInfo" : {
-        "description" : "",
-        "label" : "Marks record for upsert",
-        "xPos" : 481.025634765625,
-        "yPos" : 77.13248443603516,
-        "stageType" : "PROCESSOR"
-      },
-      "inputLanes" : [ "KafkaConsumer_01OutputLane15516231938920" ],
-      "outputLanes" : [ "ExpressionEvaluator_01OutputLane15540545523570" ],
-      "eventLanes" : [ ],
-      "services" : [ ]
-    }, {
-      "instanceName" : "MongoDBLookup_01",
+      "instanceName" : "MongoDB_04",
       "library" : "streamsets-datacollector-mongodb_3-lib",
-      "stageName" : "com_streamsets_pipeline_stage_processor_mongodb_MongoDBDProcessor",
-      "stageVersion" : "1",
+      "stageName" : "com_streamsets_pipeline_stage_origin_mongodb_MongoDBDSource",
+      "stageVersion" : "3",
       "configuration" : [ {
         "name" : "configBean.mongoConfig.connectionString",
         "value" : "mongodb://167.71.58.55:27017"
       }, {
         "name" : "configBean.mongoConfig.isSingleMode",
         "value" : false
-      }, {
-        "name" : "configBean.mongoConfig.database",
-        "value" : "book"
-      }, {
-        "name" : "configBean.mongoConfig.collection",
-        "value" : "Matches"
-      }, {
-        "name" : "configBean.mongoConfig.authenticationType",
-        "value" : "USER_PASS"
-      }, {
-        "name" : "configBean.mongoConfig.username",
-        "value" : ""
-      }, {
-        "name" : "configBean.mongoConfig.password",
-        "value" : ""
-      }, {
-        "name" : "configBean.mongoConfig.authSource",
-        "value" : "admin"
-      }, {
-        "name" : "configBean.mongoConfig.connectionsPerHost",
-        "value" : 100
-      }, {
-        "name" : "configBean.mongoConfig.minConnectionsPerHost",
-        "value" : 0
-      }, {
-        "name" : "configBean.mongoConfig.connectTimeout",
-        "value" : 10000
-      }, {
-        "name" : "configBean.mongoConfig.maxConnectionIdleTime",
-        "value" : 0
-      }, {
-        "name" : "configBean.mongoConfig.maxConnectionLifeTime",
-        "value" : 0
-      }, {
-        "name" : "configBean.mongoConfig.maxWaitTime",
-        "value" : 120000
-      }, {
-        "name" : "configBean.mongoConfig.serverSelectionTimeout",
-        "value" : 30000
-      }, {
-        "name" : "configBean.mongoConfig.threadsAllowedToBlockForConnectionMultiplier",
-        "value" : 5
-      }, {
-        "name" : "configBean.mongoConfig.heartbeatFrequency",
-        "value" : 10000
-      }, {
-        "name" : "configBean.mongoConfig.minHeartbeatFrequency",
-        "value" : 500
-      }, {
-        "name" : "configBean.mongoConfig.heartbeatConnectTimeout",
-        "value" : 20000
-      }, {
-        "name" : "configBean.mongoConfig.heartbeatSocketTimeout",
-        "value" : 20000
-      }, {
-        "name" : "configBean.mongoConfig.localThreshold",
-        "value" : 15
-      }, {
-        "name" : "configBean.mongoConfig.requiredReplicaSetName",
-        "value" : null
-      }, {
-        "name" : "configBean.mongoConfig.cursorFinalizerEnabled",
-        "value" : true
-      }, {
-        "name" : "configBean.mongoConfig.socketKeepAlive",
-        "value" : false
-      }, {
-        "name" : "configBean.mongoConfig.socketTimeout",
-        "value" : 0
-      }, {
-        "name" : "configBean.mongoConfig.sslEnabled",
-        "value" : false
-      }, {
-        "name" : "configBean.mongoConfig.sslInvalidHostNameAllowed",
-        "value" : false
-      }, {
-        "name" : "configBean.fieldMapping",
-        "value" : [ {
-          "keyName" : "id",
-          "sdcField" : "[0]"
-        }, {
-          "keyName" : "time.status",
-          "sdcField" : "/time/status"
-        }, {
-          "keyName" : "time.minute",
-          "sdcField" : "/time/minute"
-        } ]
-      }, {
-        "name" : "configBean.resultField",
-        "value" : "/to_exists"
-      }, {
-        "name" : "configBean.multipleValuesBehavior",
-        "value" : "FIRST_ONLY"
-      }, {
-        "name" : "configBean.missingValuesBehavior",
-        "value" : "PASS_RECORD_ON"
-      }, {
-        "name" : "configBean.readPreference",
-        "value" : "SECONDARY_PREFERRED"
-      }, {
-        "name" : "configBean.cacheConfig.enabled",
-        "value" : false
-      }, {
-        "name" : "configBean.cacheConfig.maxSize",
-        "value" : -1
-      }, {
-        "name" : "configBean.cacheConfig.evictionPolicyType",
-        "value" : null
-      }, {
-        "name" : "configBean.cacheConfig.expirationTime",
-        "value" : 1
-      }, {
-        "name" : "configBean.cacheConfig.timeUnit",
-        "value" : "SECONDS"
-      }, {
-        "name" : "stageOnRecordError",
-        "value" : "TO_ERROR"
-      }, {
-        "name" : "stageRequiredFields",
-        "value" : [ ]
-      }, {
-        "name" : "stageRecordPreconditions",
-        "value" : [ ]
-      } ],
-      "uiInfo" : {
-        "description" : "",
-        "label" : "Matches Contains  ( id, time & status )",
-        "xPos" : 707.8847045898438,
-        "yPos" : 75.86750793457031,
-        "stageType" : "PROCESSOR"
-      },
-      "inputLanes" : [ "ExpressionEvaluator_01OutputLane15540545523570" ],
-      "outputLanes" : [ "MongoDBLookup_01OutputLane15541452244100" ],
-      "eventLanes" : [ ],
-      "services" : [ ]
-    }, {
-      "instanceName" : "StreamSelector_01",
-      "library" : "streamsets-datacollector-basic-lib",
-      "stageName" : "com_streamsets_pipeline_stage_processor_selector_SelectorDProcessor",
-      "stageVersion" : "1",
-      "configuration" : [ {
-        "name" : "lanePredicates",
-        "value" : [ {
-          "outputLane" : "StreamSelector_01OutputLane1554141871331",
-          "predicate" : "${record:value('/to_exists') != null}"
-        }, {
-          "outputLane" : "StreamSelector_01OutputLane1554141839483",
-          "predicate" : "default"
-        } ]
-      }, {
-        "name" : "stageOnRecordError",
-        "value" : "TO_ERROR"
-      }, {
-        "name" : "stageRequiredFields",
-        "value" : [ ]
-      }, {
-        "name" : "stageRecordPreconditions",
-        "value" : [ ]
-      } ],
-      "uiInfo" : {
-        "description" : "",
-        "label" : "Trash existing records or Upsert",
-        "xPos" : 930.6180419921875,
-        "yPos" : 71.13247680664062,
-        "stageType" : "PROCESSOR"
-      },
-      "inputLanes" : [ "MongoDBLookup_01OutputLane15541452244100" ],
-      "outputLanes" : [ "StreamSelector_01OutputLane1554141871331", "StreamSelector_01OutputLane1554141839483" ],
-      "eventLanes" : [ ],
-      "services" : [ ]
-    }, {
-      "instanceName" : "MongoDB_01",
-      "library" : "streamsets-datacollector-mongodb_3-lib",
-      "stageName" : "com_streamsets_pipeline_stage_destination_mongodb_MongoDBDTarget",
-      "stageVersion" : "4",
-      "configuration" : [ {
-        "name" : "configBean.mongoConfig.connectionString",
-        "value" : "mongodb://167.71.58.55:27017"
       }, {
         "name" : "configBean.mongoConfig.database",
         "value" : "book"
@@ -846,8 +326,465 @@
         "name" : "configBean.mongoConfig.sslInvalidHostNameAllowed",
         "value" : false
       }, {
+        "name" : "configBean.isCapped",
+        "value" : false
+      }, {
+        "name" : "configBean.initialOffset",
+        "value" : "2015-01-01 00:00:00"
+      }, {
+        "name" : "configBean.offsetType",
+        "value" : "OBJECTID"
+      }, {
+        "name" : "configBean.offsetField",
+        "value" : "_id"
+      }, {
+        "name" : "configBean.batchSize",
+        "value" : 2
+      }, {
+        "name" : "configBean.maxBatchWaitTime",
+        "value" : "${5 * SECONDS}"
+      }, {
+        "name" : "configBean.readPreference",
+        "value" : "SECONDARY_PREFERRED"
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "matches",
+        "xPos" : -543.8955078125,
+        "yPos" : 89,
+        "stageType" : "SOURCE"
+      },
+      "inputLanes" : [ ],
+      "outputLanes" : [ "MongoDB_04OutputLane15692629898580" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "ExpressionEvaluator_01",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_expression_ExpressionDProcessor",
+      "stageVersion" : "2",
+      "configuration" : [ {
+        "name" : "expressionProcessorConfigs",
+        "value" : [ {
+          "fieldToSet" : "/",
+          "expression" : "${record:value('/')}"
+        } ]
+      }, {
+        "name" : "headerAttributeConfigs",
+        "value" : [ {
+          "attributeToSet" : "sdc.operation.type",
+          "headerAttributeExpression" : "3"
+        } ]
+      }, {
+        "name" : "fieldAttributeConfigs",
+        "value" : [ {
+          "fieldToSet" : "/"
+        } ]
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Marks record for upsert",
+        "xPos" : -313.11517333984375,
+        "yPos" : 88.70604705810547,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "MongoDB_04OutputLane15692629898580" ],
+      "outputLanes" : [ "ExpressionEvaluator_01OutputLane15540545523570" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "FieldRemover_01",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_fieldfilter_FieldFilterDProcessor",
+      "stageVersion" : "1",
+      "configuration" : [ {
+        "name" : "filterOperation",
+        "value" : "KEEP"
+      }, {
+        "name" : "fields",
+        "value" : [ "/id", "/time/minute", "/time/status", "/time", "/league_id", "/to_exists", "/venue_id", "/referee_id", "/localteam_id", "/visitorteam_id", "/attendance", "/time/extra_minute", "/coaches/visitorteam_coach_id", "/coaches/localteam_coach_id", "/coaches", "/standings/visitorteam_position", "/standings/localteam_position", "/standings", "/assistants/fourth_official_id", "/assistants/second_assistant_id", "/assistants/first_assistant_id", "/assistants", "/stats/data[1]", "/stats/data[1]/team_id", "/stats/data[1]/shots", "/stats/data[1]/shots/ongoal", "/stats/data[1]/shots/total", "/stats/data[1]/shots/offgoal", "/stats/data[1]/shots/blocked", "/stats/data[1]/shots/outsidebox", "/stats/data[1]/shots/insidebox", "/stats/data[1]/passes", "/stats/data[1]/passes/total", "/stats/data[1]/passes/accurate", "/stats/data[1]/attacks/attacks", "/stats/data[1]/attacks", "/stats/data[1]/attacks/dangerous_attacks", "/stats/data[1]/fouls", "/stats/data[1]/corners", "/stats/data[1]/offsides", "/stats/data[1]/possessiontime", "/stats/data[1]/yellowcards", "/stats/data[1]/goals", "/stats/data[1]/injuries", "/stats/data[0]/fixture_id", "/stats/data[0]", "/stats/data[0]/shots", "/stats/data[0]/shots/total", "/stats/data[0]/shots/offgoal", "/stats/data[0]/shots/ongoal", "/stats/data[0]/shots/insidebox", "/stats/data[0]/shots/blocked", "/stats/data[0]/shots/outsidebox", "/stats/data[0]/passes/total", "/stats/data[0]/passes/accurate", "/stats/data[0]/passes", "/stats/data[0]/attacks/attacks", "/stats/data[0]/attacks/dangerous_attacks", "/stats/data[0]/attacks", "/stats/data[0]/fouls", "/stats/data[0]/corners", "/stats/data[0]/offsides", "/stats/data[0]/possessiontime", "/stats/data[0]/yellowcards", "/stats/data[0]/redcards", "/stats/data[0]/yellowredcards", "/stats/data[0]/saves", "/stats/data[0]/substitutions", "/stats/data[0]/ball_safe", "/stats/data[0]/goals", "/stats/data[0]/penalties", "/stats/data[0]/injuries", "/stats/data[1]/substitutions", "/stats/data[1]/saves", "/stats/data[1]/yellowredcards", "/stats/data[1]/redcards", "/stats/data[1]/ball_safe", "/stats/data[1]/penalties", "/scores/visitorteam_score", "/scores/localteam_score" ]
+      }, {
+        "name" : "constant",
+        "value" : null
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Field Remover 1",
+        "xPos" : -74.16689395904541,
+        "yPos" : 90.18901824951172,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "ExpressionEvaluator_01OutputLane15540545523570" ],
+      "outputLanes" : [ "FieldRemover_01OutputLane15692584437650" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "StreamSelector_02",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_selector_SelectorDProcessor",
+      "stageVersion" : "1",
+      "configuration" : [ {
+        "name" : "lanePredicates",
+        "value" : [ {
+          "outputLane" : "StreamSelector_02OutputLane1569260988254",
+          "predicate" : "${record:value('/time/status') == \"NS\" }"
+        }, {
+          "outputLane" : "StreamSelector_02OutputLane1569260036415",
+          "predicate" : "${record:value('/time/status') == \"LIVE\" }"
+        }, {
+          "outputLane" : "StreamSelector_02OutputLane1569259988244",
+          "predicate" : "default"
+        } ]
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Stream Selector 2",
+        "xPos" : 139.38035583496094,
+        "yPos" : 90.18901824951172,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "FieldRemover_01OutputLane15692584437650" ],
+      "outputLanes" : [ "StreamSelector_02OutputLane1569260988254", "StreamSelector_02OutputLane1569260036415", "StreamSelector_02OutputLane1569259988244" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "MongoDBLookup_01",
+      "library" : "streamsets-datacollector-mongodb_3-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_mongodb_MongoDBDProcessor",
+      "stageVersion" : "1",
+      "configuration" : [ {
+        "name" : "configBean.mongoConfig.connectionString",
+        "value" : "mongodb://167.71.58.55:27017"
+      }, {
+        "name" : "configBean.mongoConfig.isSingleMode",
+        "value" : false
+      }, {
+        "name" : "configBean.mongoConfig.database",
+        "value" : "book"
+      }, {
+        "name" : "configBean.mongoConfig.collection",
+        "value" : "flatmatches"
+      }, {
+        "name" : "configBean.mongoConfig.authenticationType",
+        "value" : "USER_PASS"
+      }, {
+        "name" : "configBean.mongoConfig.username",
+        "value" : ""
+      }, {
+        "name" : "configBean.mongoConfig.password",
+        "value" : ""
+      }, {
+        "name" : "configBean.mongoConfig.authSource",
+        "value" : "admin"
+      }, {
+        "name" : "configBean.mongoConfig.connectionsPerHost",
+        "value" : 100
+      }, {
+        "name" : "configBean.mongoConfig.minConnectionsPerHost",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.connectTimeout",
+        "value" : 10000
+      }, {
+        "name" : "configBean.mongoConfig.maxConnectionIdleTime",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.maxConnectionLifeTime",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.maxWaitTime",
+        "value" : 120000
+      }, {
+        "name" : "configBean.mongoConfig.serverSelectionTimeout",
+        "value" : 30000
+      }, {
+        "name" : "configBean.mongoConfig.threadsAllowedToBlockForConnectionMultiplier",
+        "value" : 5
+      }, {
+        "name" : "configBean.mongoConfig.heartbeatFrequency",
+        "value" : 10000
+      }, {
+        "name" : "configBean.mongoConfig.minHeartbeatFrequency",
+        "value" : 500
+      }, {
+        "name" : "configBean.mongoConfig.heartbeatConnectTimeout",
+        "value" : 20000
+      }, {
+        "name" : "configBean.mongoConfig.heartbeatSocketTimeout",
+        "value" : 20000
+      }, {
+        "name" : "configBean.mongoConfig.localThreshold",
+        "value" : 15
+      }, {
+        "name" : "configBean.mongoConfig.requiredReplicaSetName",
+        "value" : null
+      }, {
+        "name" : "configBean.mongoConfig.cursorFinalizerEnabled",
+        "value" : true
+      }, {
+        "name" : "configBean.mongoConfig.socketKeepAlive",
+        "value" : false
+      }, {
+        "name" : "configBean.mongoConfig.socketTimeout",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.sslEnabled",
+        "value" : false
+      }, {
+        "name" : "configBean.mongoConfig.sslInvalidHostNameAllowed",
+        "value" : false
+      }, {
+        "name" : "configBean.fieldMapping",
+        "value" : [ {
+          "keyName" : "id",
+          "sdcField" : "/id"
+        }, {
+          "keyName" : "time_minute",
+          "sdcField" : "/time/minute"
+        } ]
+      }, {
+        "name" : "configBean.resultField",
+        "value" : "/to_exists"
+      }, {
+        "name" : "configBean.multipleValuesBehavior",
+        "value" : "FIRST_ONLY"
+      }, {
+        "name" : "configBean.missingValuesBehavior",
+        "value" : "PASS_RECORD_ON"
+      }, {
+        "name" : "configBean.readPreference",
+        "value" : "SECONDARY_PREFERRED"
+      }, {
+        "name" : "configBean.cacheConfig.enabled",
+        "value" : false
+      }, {
+        "name" : "configBean.cacheConfig.maxSize",
+        "value" : -1
+      }, {
+        "name" : "configBean.cacheConfig.evictionPolicyType",
+        "value" : null
+      }, {
+        "name" : "configBean.cacheConfig.expirationTime",
+        "value" : 1
+      }, {
+        "name" : "configBean.cacheConfig.timeUnit",
+        "value" : "SECONDS"
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "flatmatches",
+        "xPos" : 527.5966186523438,
+        "yPos" : 44.00822448730469,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "StreamSelector_02OutputLane1569260036415" ],
+      "outputLanes" : [ "MongoDBLookup_01OutputLane15690887296860" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "FieldFlattener_01",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_fieldflattener_FieldFlattenerDProcessor",
+      "stageVersion" : "1",
+      "configuration" : [ {
+        "name" : "config.flattenType",
+        "value" : "ENTIRE_RECORD"
+      }, {
+        "name" : "config.fields",
+        "value" : [ "/stats/data[0]", "/stats/data", "/stats", "/stats/data[1]" ]
+      }, {
+        "name" : "config.flattenInPlace",
+        "value" : true
+      }, {
+        "name" : "config.flattenTargetField",
+        "value" : null
+      }, {
+        "name" : "config.collisionFieldAction",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "config.removeFlattenedField",
+        "value" : true
+      }, {
+        "name" : "config.nameSeparator",
+        "value" : "_"
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Field Flattener 1",
+        "xPos" : 716.9857177734375,
+        "yPos" : 44.39208984375,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "MongoDBLookup_01OutputLane15690887296860" ],
+      "outputLanes" : [ "FieldFlattener_01OutputLane15690812783880" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "StreamSelector_01",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_selector_SelectorDProcessor",
+      "stageVersion" : "1",
+      "configuration" : [ {
+        "name" : "lanePredicates",
+        "value" : [ {
+          "outputLane" : "StreamSelector_01OutputLane1569088930984",
+          "predicate" : "${record:value('/to_exists_id') != null}"
+        }, {
+          "outputLane" : "StreamSelector_01OutputLane1569088908835",
+          "predicate" : "default"
+        } ]
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Stream Selector 1",
+        "xPos" : 927.507568359375,
+        "yPos" : 42.18915557861328,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "FieldFlattener_01OutputLane15690812783880" ],
+      "outputLanes" : [ "StreamSelector_01OutputLane1569088930984", "StreamSelector_01OutputLane1569088908835" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "MongoDB_01",
+      "library" : "streamsets-datacollector-mongodb_3-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_mongodb_MongoDBDTarget",
+      "stageVersion" : "4",
+      "configuration" : [ {
+        "name" : "configBean.mongoConfig.connectionString",
+        "value" : "mongodb://167.71.58.55:27017"
+      }, {
+        "name" : "configBean.mongoConfig.database",
+        "value" : "book"
+      }, {
+        "name" : "configBean.mongoConfig.collection",
+        "value" : "flatmatches"
+      }, {
+        "name" : "configBean.mongoConfig.authenticationType",
+        "value" : "USER_PASS"
+      }, {
+        "name" : "configBean.mongoConfig.username",
+        "value" : ""
+      }, {
+        "name" : "configBean.mongoConfig.password",
+        "value" : ""
+      }, {
+        "name" : "configBean.mongoConfig.authSource",
+        "value" : "admin"
+      }, {
+        "name" : "configBean.mongoConfig.connectionsPerHost",
+        "value" : 100
+      }, {
+        "name" : "configBean.mongoConfig.minConnectionsPerHost",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.connectTimeout",
+        "value" : 10000
+      }, {
+        "name" : "configBean.mongoConfig.maxConnectionIdleTime",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.maxConnectionLifeTime",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.maxWaitTime",
+        "value" : 120000
+      }, {
+        "name" : "configBean.mongoConfig.serverSelectionTimeout",
+        "value" : 30000
+      }, {
+        "name" : "configBean.mongoConfig.threadsAllowedToBlockForConnectionMultiplier",
+        "value" : 5
+      }, {
+        "name" : "configBean.mongoConfig.heartbeatFrequency",
+        "value" : 10000
+      }, {
+        "name" : "configBean.mongoConfig.minHeartbeatFrequency",
+        "value" : 500
+      }, {
+        "name" : "configBean.mongoConfig.heartbeatConnectTimeout",
+        "value" : 20000
+      }, {
+        "name" : "configBean.mongoConfig.heartbeatSocketTimeout",
+        "value" : 20000
+      }, {
+        "name" : "configBean.mongoConfig.localThreshold",
+        "value" : 15
+      }, {
+        "name" : "configBean.mongoConfig.requiredReplicaSetName",
+        "value" : null
+      }, {
+        "name" : "configBean.mongoConfig.cursorFinalizerEnabled",
+        "value" : true
+      }, {
+        "name" : "configBean.mongoConfig.socketKeepAlive",
+        "value" : false
+      }, {
+        "name" : "configBean.mongoConfig.socketTimeout",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.sslEnabled",
+        "value" : false
+      }, {
+        "name" : "configBean.mongoConfig.sslInvalidHostNameAllowed",
+        "value" : false
+      }, {
         "name" : "configBean.uniqueKeyField",
-        "value" : [ "/id" ]
+        "value" : [ "/id", "/time_minute" ]
       }, {
         "name" : "configBean.isUpsert",
         "value" : true
@@ -866,184 +803,137 @@
       } ],
       "uiInfo" : {
         "description" : "",
-        "label" : "Upsert to Matches",
-        "xPos" : 1240.4940185546875,
-        "yPos" : 165.30413055419922,
+        "label" : "LIVE Events",
+        "xPos" : 1355.090087890625,
+        "yPos" : 112.70639038085938,
         "stageType" : "TARGET"
       },
-      "inputLanes" : [ "StreamSelector_01OutputLane1554141839483" ],
+      "inputLanes" : [ "StreamSelector_01OutputLane1569088908835" ],
       "outputLanes" : [ ],
       "eventLanes" : [ ],
       "services" : [ ]
     }, {
-      "instanceName" : "Trash_01",
-      "library" : "streamsets-datacollector-basic-lib",
-      "stageName" : "com_streamsets_pipeline_stage_destination_devnull_NullDTarget",
+      "instanceName" : "MongoDBLookup_02",
+      "library" : "streamsets-datacollector-mongodb_3-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_mongodb_MongoDBDProcessor",
       "stageVersion" : "1",
-      "configuration" : [ ],
-      "uiInfo" : {
-        "description" : "",
-        "label" : "Trash",
-        "xPos" : 1241.458984375,
-        "yPos" : 44.683311462402344,
-        "stageType" : "TARGET"
-      },
-      "inputLanes" : [ "StreamSelector_01OutputLane1554141871331" ],
-      "outputLanes" : [ ],
-      "eventLanes" : [ ],
-      "services" : [ ]
-    }, {
-      "instanceName" : "KafkaProducer_01",
-      "library" : "streamsets-datacollector-apache-kafka_2_0-lib",
-      "stageName" : "com_streamsets_pipeline_stage_destination_kafka_KafkaDTarget",
-      "stageVersion" : "4",
       "configuration" : [ {
-        "name" : "conf.dataFormat",
-        "value" : "JSON"
+        "name" : "configBean.mongoConfig.connectionString",
+        "value" : "mongodb://167.71.58.55:27017"
       }, {
-        "name" : "conf.dataGeneratorFormatConfig.charset",
-        "value" : "UTF-8"
+        "name" : "configBean.mongoConfig.isSingleMode",
+        "value" : false
       }, {
-        "name" : "conf.dataGeneratorFormatConfig.csvFileFormat",
-        "value" : "CSV"
+        "name" : "configBean.mongoConfig.database",
+        "value" : "book"
       }, {
-        "name" : "conf.dataGeneratorFormatConfig.csvHeader",
-        "value" : "NO_HEADER"
+        "name" : "configBean.mongoConfig.collection",
+        "value" : "flatmatches"
       }, {
-        "name" : "conf.dataGeneratorFormatConfig.csvReplaceNewLines",
+        "name" : "configBean.mongoConfig.authenticationType",
+        "value" : "USER_PASS"
+      }, {
+        "name" : "configBean.mongoConfig.username",
+        "value" : ""
+      }, {
+        "name" : "configBean.mongoConfig.password",
+        "value" : ""
+      }, {
+        "name" : "configBean.mongoConfig.authSource",
+        "value" : "admin"
+      }, {
+        "name" : "configBean.mongoConfig.connectionsPerHost",
+        "value" : 100
+      }, {
+        "name" : "configBean.mongoConfig.minConnectionsPerHost",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.connectTimeout",
+        "value" : 10000
+      }, {
+        "name" : "configBean.mongoConfig.maxConnectionIdleTime",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.maxConnectionLifeTime",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.maxWaitTime",
+        "value" : 120000
+      }, {
+        "name" : "configBean.mongoConfig.serverSelectionTimeout",
+        "value" : 30000
+      }, {
+        "name" : "configBean.mongoConfig.threadsAllowedToBlockForConnectionMultiplier",
+        "value" : 5
+      }, {
+        "name" : "configBean.mongoConfig.heartbeatFrequency",
+        "value" : 10000
+      }, {
+        "name" : "configBean.mongoConfig.minHeartbeatFrequency",
+        "value" : 500
+      }, {
+        "name" : "configBean.mongoConfig.heartbeatConnectTimeout",
+        "value" : 20000
+      }, {
+        "name" : "configBean.mongoConfig.heartbeatSocketTimeout",
+        "value" : 20000
+      }, {
+        "name" : "configBean.mongoConfig.localThreshold",
+        "value" : 15
+      }, {
+        "name" : "configBean.mongoConfig.requiredReplicaSetName",
+        "value" : null
+      }, {
+        "name" : "configBean.mongoConfig.cursorFinalizerEnabled",
         "value" : true
       }, {
-        "name" : "conf.dataGeneratorFormatConfig.csvReplaceNewLinesString",
-        "value" : " "
-      }, {
-        "name" : "conf.dataGeneratorFormatConfig.csvCustomDelimiter",
-        "value" : "|"
-      }, {
-        "name" : "conf.dataGeneratorFormatConfig.csvCustomEscape",
-        "value" : "\\"
-      }, {
-        "name" : "conf.dataGeneratorFormatConfig.csvCustomQuote",
-        "value" : "\""
-      }, {
-        "name" : "conf.dataGeneratorFormatConfig.csvQuoteMode",
-        "value" : "MINIMAL"
-      }, {
-        "name" : "conf.dataGeneratorFormatConfig.jsonMode",
-        "value" : "MULTIPLE_OBJECTS"
-      }, {
-        "name" : "conf.dataGeneratorFormatConfig.textFieldPath",
-        "value" : "/text"
-      }, {
-        "name" : "conf.dataGeneratorFormatConfig.textRecordSeparator",
-        "value" : "\\n"
-      }, {
-        "name" : "conf.dataGeneratorFormatConfig.textFieldMissingAction",
-        "value" : "ERROR"
-      }, {
-        "name" : "conf.dataGeneratorFormatConfig.textEmptyLineIfNull",
+        "name" : "configBean.mongoConfig.socketKeepAlive",
         "value" : false
       }, {
-        "name" : "conf.dataGeneratorFormatConfig.avroSchemaSource",
-        "value" : null
+        "name" : "configBean.mongoConfig.socketTimeout",
+        "value" : 0
       }, {
-        "name" : "conf.dataGeneratorFormatConfig.avroSchema",
-        "value" : null
-      }, {
-        "name" : "conf.dataGeneratorFormatConfig.registerSchema",
+        "name" : "configBean.mongoConfig.sslEnabled",
         "value" : false
       }, {
-        "name" : "conf.dataGeneratorFormatConfig.schemaRegistryUrlsForRegistration",
-        "value" : [ ]
-      }, {
-        "name" : "conf.dataGeneratorFormatConfig.schemaRegistryUrls",
-        "value" : [ ]
-      }, {
-        "name" : "conf.dataGeneratorFormatConfig.schemaLookupMode",
-        "value" : "SUBJECT"
-      }, {
-        "name" : "conf.dataGeneratorFormatConfig.subject",
-        "value" : null
-      }, {
-        "name" : "conf.dataGeneratorFormatConfig.subjectToRegister",
-        "value" : null
-      }, {
-        "name" : "conf.dataGeneratorFormatConfig.schemaId",
-        "value" : null
-      }, {
-        "name" : "conf.dataGeneratorFormatConfig.includeSchema",
-        "value" : true
-      }, {
-        "name" : "conf.dataGeneratorFormatConfig.avroCompression",
-        "value" : "NULL"
-      }, {
-        "name" : "conf.dataGeneratorFormatConfig.binaryFieldPath",
-        "value" : "/"
-      }, {
-        "name" : "conf.dataGeneratorFormatConfig.protoDescriptorFile",
-        "value" : null
-      }, {
-        "name" : "conf.dataGeneratorFormatConfig.messageType",
-        "value" : null
-      }, {
-        "name" : "conf.dataGeneratorFormatConfig.fileNameEL",
-        "value" : null
-      }, {
-        "name" : "conf.dataGeneratorFormatConfig.wholeFileExistsAction",
-        "value" : "TO_ERROR"
-      }, {
-        "name" : "conf.dataGeneratorFormatConfig.includeChecksumInTheEvents",
+        "name" : "configBean.mongoConfig.sslInvalidHostNameAllowed",
         "value" : false
       }, {
-        "name" : "conf.dataGeneratorFormatConfig.checksumAlgorithm",
-        "value" : "MD5"
+        "name" : "configBean.fieldMapping",
+        "value" : [ {
+          "keyName" : "time_status",
+          "sdcField" : "/time/status"
+        }, {
+          "keyName" : "id",
+          "sdcField" : "/id"
+        } ]
       }, {
-        "name" : "conf.dataGeneratorFormatConfig.xmlPrettyPrint",
-        "value" : true
+        "name" : "configBean.resultField",
+        "value" : "/to_exists"
       }, {
-        "name" : "conf.dataGeneratorFormatConfig.xmlValidateSchema",
+        "name" : "configBean.multipleValuesBehavior",
+        "value" : "FIRST_ONLY"
+      }, {
+        "name" : "configBean.missingValuesBehavior",
+        "value" : "PASS_RECORD_ON"
+      }, {
+        "name" : "configBean.readPreference",
+        "value" : "SECONDARY_PREFERRED"
+      }, {
+        "name" : "configBean.cacheConfig.enabled",
         "value" : false
       }, {
-        "name" : "conf.dataGeneratorFormatConfig.xmlSchema",
+        "name" : "configBean.cacheConfig.maxSize",
+        "value" : -1
+      }, {
+        "name" : "configBean.cacheConfig.evictionPolicyType",
         "value" : null
       }, {
-        "name" : "conf.metadataBrokerList",
-        "value" : "fra101:9092"
+        "name" : "configBean.cacheConfig.expirationTime",
+        "value" : 1
       }, {
-        "name" : "conf.runtimeTopicResolution",
-        "value" : false
-      }, {
-        "name" : "conf.topicExpression",
-        "value" : "${record:value('/topic')}"
-      }, {
-        "name" : "conf.topicWhiteList",
-        "value" : "*"
-      }, {
-        "name" : "conf.topic",
-        "value" : "Matches2"
-      }, {
-        "name" : "conf.partitionStrategy",
-        "value" : "ROUND_ROBIN"
-      }, {
-        "name" : "conf.partition",
-        "value" : "${0}"
-      }, {
-        "name" : "conf.singleMessagePerBatch",
-        "value" : false
-      }, {
-        "name" : "conf.keySerializer",
-        "value" : "STRING"
-      }, {
-        "name" : "conf.valueSerializer",
-        "value" : "DEFAULT"
-      }, {
-        "name" : "conf.kafkaProducerConfigs",
-        "value" : [ ]
-      }, {
-        "name" : "responseConf.sendResponseToOrigin",
-        "value" : false
-      }, {
-        "name" : "responseConf.responseType",
-        "value" : "SUCCESS_RECORDS"
+        "name" : "configBean.cacheConfig.timeUnit",
+        "value" : "SECONDS"
       }, {
         "name" : "stageOnRecordError",
         "value" : "TO_ERROR"
@@ -1056,12 +946,241 @@
       } ],
       "uiInfo" : {
         "description" : "",
-        "label" : "Matches",
-        "xPos" : 1242.8084716796875,
-        "yPos" : 297.3727111816406,
+        "label" : "flatmatches",
+        "xPos" : 523.3544921875,
+        "yPos" : 195,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "StreamSelector_02OutputLane1569259988244" ],
+      "outputLanes" : [ "MongoDBLookup_02OutputLane15692605883700" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "FieldFlattener_02",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_fieldflattener_FieldFlattenerDProcessor",
+      "stageVersion" : "1",
+      "configuration" : [ {
+        "name" : "config.flattenType",
+        "value" : "ENTIRE_RECORD"
+      }, {
+        "name" : "config.fields",
+        "value" : [ "/stats/data[0]", "/stats/data", "/stats", "/stats/data[1]" ]
+      }, {
+        "name" : "config.flattenInPlace",
+        "value" : true
+      }, {
+        "name" : "config.flattenTargetField",
+        "value" : null
+      }, {
+        "name" : "config.collisionFieldAction",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "config.removeFlattenedField",
+        "value" : true
+      }, {
+        "name" : "config.nameSeparator",
+        "value" : "_"
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Field Flattener 2",
+        "xPos" : 717.1044921875,
+        "yPos" : 196.75,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "MongoDBLookup_02OutputLane15692605883700" ],
+      "outputLanes" : [ "FieldFlattener_02OutputLane15692605823690" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "StreamSelector_03",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_selector_SelectorDProcessor",
+      "stageVersion" : "1",
+      "configuration" : [ {
+        "name" : "lanePredicates",
+        "value" : [ {
+          "outputLane" : "StreamSelector_03OutputLane15692605957220",
+          "predicate" : "${record:value('/to_exists_id') != null}"
+        }, {
+          "outputLane" : "StreamSelector_03OutputLane15692605957221",
+          "predicate" : "default"
+        } ]
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Stream Selector 3",
+        "xPos" : 923.3544921875,
+        "yPos" : 190.5,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "FieldFlattener_02OutputLane15692605823690" ],
+      "outputLanes" : [ "StreamSelector_03OutputLane15692605957220", "StreamSelector_03OutputLane15692605957221" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "MongoDB_03",
+      "library" : "streamsets-datacollector-mongodb_3-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_mongodb_MongoDBDTarget",
+      "stageVersion" : "4",
+      "configuration" : [ {
+        "name" : "configBean.mongoConfig.connectionString",
+        "value" : "mongodb://167.71.58.55:27017"
+      }, {
+        "name" : "configBean.mongoConfig.database",
+        "value" : "book"
+      }, {
+        "name" : "configBean.mongoConfig.collection",
+        "value" : "flatmatches"
+      }, {
+        "name" : "configBean.mongoConfig.authenticationType",
+        "value" : "USER_PASS"
+      }, {
+        "name" : "configBean.mongoConfig.username",
+        "value" : ""
+      }, {
+        "name" : "configBean.mongoConfig.password",
+        "value" : ""
+      }, {
+        "name" : "configBean.mongoConfig.authSource",
+        "value" : "admin"
+      }, {
+        "name" : "configBean.mongoConfig.connectionsPerHost",
+        "value" : 100
+      }, {
+        "name" : "configBean.mongoConfig.minConnectionsPerHost",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.connectTimeout",
+        "value" : 10000
+      }, {
+        "name" : "configBean.mongoConfig.maxConnectionIdleTime",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.maxConnectionLifeTime",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.maxWaitTime",
+        "value" : 120000
+      }, {
+        "name" : "configBean.mongoConfig.serverSelectionTimeout",
+        "value" : 30000
+      }, {
+        "name" : "configBean.mongoConfig.threadsAllowedToBlockForConnectionMultiplier",
+        "value" : 5
+      }, {
+        "name" : "configBean.mongoConfig.heartbeatFrequency",
+        "value" : 10000
+      }, {
+        "name" : "configBean.mongoConfig.minHeartbeatFrequency",
+        "value" : 500
+      }, {
+        "name" : "configBean.mongoConfig.heartbeatConnectTimeout",
+        "value" : 20000
+      }, {
+        "name" : "configBean.mongoConfig.heartbeatSocketTimeout",
+        "value" : 20000
+      }, {
+        "name" : "configBean.mongoConfig.localThreshold",
+        "value" : 15
+      }, {
+        "name" : "configBean.mongoConfig.requiredReplicaSetName",
+        "value" : null
+      }, {
+        "name" : "configBean.mongoConfig.cursorFinalizerEnabled",
+        "value" : true
+      }, {
+        "name" : "configBean.mongoConfig.socketKeepAlive",
+        "value" : false
+      }, {
+        "name" : "configBean.mongoConfig.socketTimeout",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.sslEnabled",
+        "value" : false
+      }, {
+        "name" : "configBean.mongoConfig.sslInvalidHostNameAllowed",
+        "value" : false
+      }, {
+        "name" : "configBean.uniqueKeyField",
+        "value" : [ "/id", "/time_status" ]
+      }, {
+        "name" : "configBean.isUpsert",
+        "value" : true
+      }, {
+        "name" : "configBean.writeConcern",
+        "value" : "JOURNALED"
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "FT or HT",
+        "xPos" : 1360.1044921875,
+        "yPos" : 237,
         "stageType" : "TARGET"
       },
-      "inputLanes" : [ "StreamSelector_01OutputLane1554141839483" ],
+      "inputLanes" : [ "StreamSelector_03OutputLane15692605957221" ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "Trash_01",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_devnull_NullDTarget",
+      "stageVersion" : "1",
+      "configuration" : [ ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "NS",
+        "xPos" : 524.1044921875,
+        "yPos" : -73,
+        "stageType" : "TARGET"
+      },
+      "inputLanes" : [ "StreamSelector_02OutputLane1569260988254" ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "Trash_02",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_devnull_NullDTarget",
+      "stageVersion" : "1",
+      "configuration" : [ ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Trash 1",
+        "xPos" : 1353.1044921875,
+        "yPos" : -35,
+        "stageType" : "TARGET"
+      },
+      "inputLanes" : [ "StreamSelector_03OutputLane15692605957220", "StreamSelector_01OutputLane1569088930984" ],
       "outputLanes" : [ ],
       "eventLanes" : [ ],
       "services" : [ ]
@@ -1085,20 +1204,20 @@
       "services" : [ ]
     },
     "info" : {
-      "pipelineId" : "PutMonksMatchesToMongoFromKafka994efbd1-afe1-4f73-a611-b1945d44f8d8",
-      "title" : "PutMonksLiveMatchesToMatches",
+      "pipelineId" : "PutStatsToMongoFromMongod5fee5f6-b1c9-4514-98a4-545878238b5d",
+      "title" : "PutMongoFlatMatchesFromMongoMatches",
       "description" : "",
-      "created" : 1566310762588,
-      "lastModified" : 1584213181227,
+      "created" : 1569262964504,
+      "lastModified" : 1584213140578,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "506886da-ae6b-4661-8069-c14010cd8c5d",
+      "uuid" : "b3ff5792-b19f-4a21-b50f-915f0a87897a",
       "valid" : true,
       "metadata" : {
         "labels" : [ "prod" ]
       },
-      "name" : "PutMonksMatchesToMongoFromKafka994efbd1-afe1-4f73-a611-b1945d44f8d8",
+      "name" : "PutStatsToMongoFromMongod5fee5f6-b1c9-4514-98a4-545878238b5d",
       "sdcVersion" : "3.10.0",
       "sdcId" : "21fa9b5e-c1d4-11e9-8871-71a0bee6d025"
     },
@@ -1481,7 +1600,7 @@
     } ],
     "dataRuleDefinitions" : [ ],
     "driftRuleDefinitions" : [ ],
-    "uuid" : "0cf61500-d713-4e24-be4a-b121d8a19662",
+    "uuid" : "f372bd7b-403f-48bd-8b39-54d2690aa78e",
     "configuration" : [ {
       "name" : "emailIDs",
       "value" : [ ]

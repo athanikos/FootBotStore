@@ -682,8 +682,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "api/v2.0/livescores",
-        "xPos" : 96.11782836914062,
-        "yPos" : 121.8343734741211,
+        "xPos" : 256.1178283691406,
+        "yPos" : 145.8343734741211,
         "stageType" : "SOURCE"
       },
       "inputLanes" : [ ],
@@ -726,8 +726,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "One to Many Record",
-        "xPos" : 338.3710021972656,
-        "yPos" : 118.89580535888672,
+        "xPos" : 469.7955017089844,
+        "yPos" : 149.69145965576172,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "HTTPClient_01OutputLane15540558664140" ],
@@ -899,8 +899,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "MonksLiveMatches",
-        "xPos" : 587.892333984375,
-        "yPos" : 117.15811157226562,
+        "xPos" : 703.3711547851562,
+        "yPos" : 144.7134246826172,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "JavaScriptEvaluator_01OutputLane15540588381870" ],
@@ -1256,9 +1256,9 @@
     },
     "valid" : true,
     "issues" : {
+      "pipelineIssues" : [ ],
       "stageIssues" : { },
-      "issueCount" : 0,
-      "pipelineIssues" : [ ]
+      "issueCount" : 0
     },
     "previewable" : true
   },
