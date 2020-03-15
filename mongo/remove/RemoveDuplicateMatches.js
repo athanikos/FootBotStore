@@ -1,16 +1,15 @@
-
-db.Matches.find({}).forEach(
+db.matches.find({}).forEach(
     function (doc) 
     {
-        var count = db.Matches.find({"time.status":"FT",id:doc.id}).count();
+        var count = db.matches.find({"time.status":"FT",id:doc.id}).count();
         if (count>1)
         {
              print ("count " + count +  " " + doc.id ) 
-             db.Matches.find({"time.status":"FT",id:doc.id}).limit(count-1).forEach(
+             db.matches.find({"time.status":"FT",id:doc.id}).limit(count-1).forEach(
                  
                  function(doc2)
                  {
-                     db.Matches.remove({_id:doc2._id});
+                     db.matches.remove({_id:doc2._id});
                  }
              )
         }
