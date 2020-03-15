@@ -8,3 +8,4 @@
 
 
 
+    db.getCollection("finishedmatches").createIndex({ "id": 1 })
