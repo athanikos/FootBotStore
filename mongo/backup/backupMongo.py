@@ -1,5 +1,3 @@
-
-#exports mongo collection matches, zips and uploads to dropbox 
 #https://stackoverflow.com/questions/23894221/upload-file-to-my-dropbox-from-python-script/36851978#36851978
 #!/usr/bin/env python
 import dropbox
@@ -24,11 +22,11 @@ def main():
 
 
     os.chdir(base_dir)
-    mongoexport_cmd =' mongoexport --db book --collection Matches --username <user> --password <pass> --authenticationsource <authsource>   --out ' + base_dir + date_string
+    mongoexport_cmd =' mongoexport --db book --collection matches --authenticationDatabase=admin   -u ----- -p -----   --out ' + base_dir + date_string
     os.system(mongoexport_cmd)
     zip_cmd ='7z a ' + base_dir + date_string + ".7z  " + base_dir + date_string
     os.system(zip_cmd)
-    access_token = 'entertoken'
+    access_token = '-3YjTimALFoAAAAAAAAGRfYGG21s-wZ-uyMxkgq-WpRm1lnb6LhIyG1dJXNa5Mdo'
     transferData = TransferData(access_token)
     file_from = date.today().strftime("%b-%d-%Y") + ".7z"
     file_to = '/Apps/FootballStats/' +date_string + ".7z"   # The full path to upload the file to, including the file name
@@ -39,3 +37,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
