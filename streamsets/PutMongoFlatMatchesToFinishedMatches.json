@@ -5,7 +5,7 @@
     "pipelineId" : "PutMongoFlatMatchesToFinishesMatchescdb0683f-9032-4fb3-9217-37eb79d1d9bf",
     "title" : "PutMongoFlatMatchesToFinishedMatches",
     "description" : "",
-    "uuid" : "eb446a37-b134-4c69-935a-2290c1a09d93",
+    "uuid" : "213621fc-9385-401c-8f5f-3804d73bf2ae",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -353,8 +353,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "flatmatches",
-        "xPos" : -438.50597763061523,
-        "yPos" : -93.00000190734863,
+        "xPos" : 60,
+        "yPos" : 50,
         "stageType" : "SOURCE"
       },
       "inputLanes" : [ ],
@@ -396,8 +396,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Marks record for upsert",
-        "xPos" : -224.974365234375,
-        "yPos" : -97.86751556396484,
+        "xPos" : 280,
+        "yPos" : 50,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "MongoDB_02OutputLane15842213466900" ],
@@ -431,8 +431,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Stream Selector 1",
-        "xPos" : -33.54101514816284,
-        "yPos" : -92.00000023841858,
+        "xPos" : 500,
+        "yPos" : 110,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "ExpressionEvaluator_01OutputLane15540545523570" ],
@@ -571,8 +571,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Finished Matches Contains  ( id )",
-        "xPos" : -39.11529541015625,
-        "yPos" : 128.86750757694244,
+        "xPos" : 720,
+        "yPos" : 40,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "StreamSelector_02OutputLane1584219466672" ],
@@ -606,8 +606,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Trash existing records or Upsert",
-        "xPos" : 110.6180419921875,
-        "yPos" : 131.13247680664062,
+        "xPos" : 940,
+        "yPos" : 40,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "MongoDBLookup_01OutputLane15541452244100" ],
@@ -623,28 +623,11 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Trash",
-        "xPos" : 286.45904541015625,
-        "yPos" : -97.31668853759766,
+        "xPos" : 1160,
+        "yPos" : 30,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "StreamSelector_01OutputLane1554141871331" ],
-      "outputLanes" : [ ],
-      "eventLanes" : [ ],
-      "services" : [ ]
-    }, {
-      "instanceName" : "Trash_02",
-      "library" : "streamsets-datacollector-basic-lib",
-      "stageName" : "com_streamsets_pipeline_stage_destination_devnull_NullDTarget",
-      "stageVersion" : "1",
-      "configuration" : [ ],
-      "uiInfo" : {
-        "description" : "",
-        "label" : "Trash 3",
-        "xPos" : -34.54101753234863,
-        "yPos" : 22.99999237060547,
-        "stageType" : "TARGET"
-      },
-      "inputLanes" : [ "StreamSelector_02OutputLane1584219439942" ],
       "outputLanes" : [ ],
       "eventLanes" : [ ],
       "services" : [ ]
@@ -1045,7 +1028,7 @@
         "value" : 0
       }, {
         "name" : "conf.rateLimit",
-        "value" : 3000
+        "value" : 100
       }, {
         "name" : "conf.maxRequestCompletionSecs",
         "value" : 60
@@ -1062,8 +1045,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "event-stats",
-        "xPos" : 279,
-        "yPos" : 243,
+        "xPos" : 953.5181884765625,
+        "yPos" : 194.449462890625,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "StreamSelector_01OutputLane1554141839483" ],
@@ -1097,8 +1080,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "event-stats parser",
-        "xPos" : 424,
-        "yPos" : 250.010421811603,
+        "xPos" : 1118.65771484375,
+        "yPos" : 193.84291076660156,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "HTTPClient_01OutputLane15842210182090" ],
@@ -1358,8 +1341,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "event-stats remover",
-        "xPos" : 559.4940185546875,
-        "yPos" : 244,
+        "xPos" : 1284.133056640625,
+        "yPos" : 191.96270751953125,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "DataParser_01OutputLane15842227738790" ],
@@ -1763,7 +1746,7 @@
         "value" : 0
       }, {
         "name" : "conf.rateLimit",
-        "value" : 3000
+        "value" : 100
       }, {
         "name" : "conf.maxRequestCompletionSecs",
         "value" : 60
@@ -1780,8 +1763,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "computed_stats",
-        "xPos" : 279.493896484375,
-        "yPos" : 342.00000286102295,
+        "xPos" : 955.0677490234375,
+        "yPos" : 334.9132080078125,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "FieldRemover_01OutputLane15842746047690" ],
@@ -1815,8 +1798,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "computed-stats parser",
-        "xPos" : 421.4939270019531,
-        "yPos" : 344,
+        "xPos" : 1118.9715576171875,
+        "yPos" : 332.9747619628906,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "HTTPClient_02OutputLane15842751199390" ],
@@ -2076,8 +2059,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "computed-stats remover",
-        "xPos" : 561.493896484375,
-        "yPos" : 343,
+        "xPos" : 1278.5062255859375,
+        "yPos" : 334.8049621582031,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "DataParser_02OutputLane15842818393750" ],
@@ -2307,7 +2290,7 @@
         "value" : [ ]
       }, {
         "name" : "conf.outputField",
-        "value" : "/historical-stats"
+        "value" : "/hometeam-historical-stats"
       }, {
         "name" : "conf.headerOutputLocation",
         "value" : "NONE"
@@ -2469,7 +2452,7 @@
         "value" : [ ]
       }, {
         "name" : "conf.client.requestLoggingConfig.enableRequestLogging",
-        "value" : true
+        "value" : false
       }, {
         "name" : "conf.client.requestLoggingConfig.logLevel",
         "value" : "INFO"
@@ -2497,9 +2480,9 @@
       } ],
       "uiInfo" : {
         "description" : "",
-        "label" : "historical-stats",
-        "xPos" : 279.9999694824219,
-        "yPos" : 443.0104751586914,
+        "label" : "home team historical-stats",
+        "xPos" : 964.5908813476562,
+        "yPos" : 457.0653533935547,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "FieldRemover_02OutputLane15842818745870" ],
@@ -2513,10 +2496,10 @@
       "stageVersion" : "2",
       "configuration" : [ {
         "name" : "configs.fieldPathToParse",
-        "value" : "/historical-stats"
+        "value" : "/hometeam-historical-stats"
       }, {
         "name" : "configs.parsedFieldPath",
-        "value" : "/historical"
+        "value" : "/hometeam-historical"
       }, {
         "name" : "configs.multipleValuesBehavior",
         "value" : "FIRST_ONLY"
@@ -2532,9 +2515,9 @@
       } ],
       "uiInfo" : {
         "description" : "",
-        "label" : "historical-stats parser",
-        "xPos" : 422.49383544921875,
-        "yPos" : 440.0000762939453,
+        "label" : "hometeam-historical-stats",
+        "xPos" : 1133.82666015625,
+        "yPos" : 455.1851806640625,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "HTTPClient_03OutputLane15842779786420" ],
@@ -2780,7 +2763,7 @@
         "value" : "REMOVE"
       }, {
         "name" : "fields",
-        "value" : [ "/historical-stats" ]
+        "value" : [ "/hometeam-historical-stats" ]
       }, {
         "name" : "constant",
         "value" : null
@@ -2793,13 +2776,748 @@
       } ],
       "uiInfo" : {
         "description" : "",
-        "label" : "historical stats remover",
-        "xPos" : 563.5477905273438,
-        "yPos" : 448.0538635253906,
+        "label" : "home team historical stats remover",
+        "xPos" : 1293.661376953125,
+        "yPos" : 453.3050842285156,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "DataParser_03OutputLane15842818420960" ],
       "outputLanes" : [ "FieldRemover_03OutputLane15842818889510" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "Trash_02",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_devnull_NullDTarget",
+      "stageVersion" : "1",
+      "configuration" : [ ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Trash 3",
+        "xPos" : 720,
+        "yPos" : 170,
+        "stageType" : "TARGET"
+      },
+      "inputLanes" : [ "StreamSelector_02OutputLane1584219439942" ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "HTTPClient_04",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_http_HttpDProcessor",
+      "stageVersion" : "11",
+      "configuration" : [ {
+        "name" : "conf.dataFormatConfig.compression",
+        "value" : "NONE"
+      }, {
+        "name" : "conf.dataFormatConfig.filePatternInArchive",
+        "value" : "*"
+      }, {
+        "name" : "conf.dataFormatConfig.charset",
+        "value" : "UTF-8"
+      }, {
+        "name" : "conf.dataFormatConfig.removeCtrlChars",
+        "value" : false
+      }, {
+        "name" : "conf.dataFormatConfig.textMaxLineLen",
+        "value" : 1024
+      }, {
+        "name" : "conf.dataFormatConfig.useCustomDelimiter",
+        "value" : false
+      }, {
+        "name" : "conf.dataFormatConfig.customDelimiter",
+        "value" : "\\r\\n"
+      }, {
+        "name" : "conf.dataFormatConfig.includeCustomDelimiterInTheText",
+        "value" : false
+      }, {
+        "name" : "conf.dataFormatConfig.jsonMaxObjectLen",
+        "value" : 4096
+      }, {
+        "name" : "conf.dataFormatConfig.csvFileFormat",
+        "value" : "CSV"
+      }, {
+        "name" : "conf.dataFormatConfig.csvHeader",
+        "value" : "NO_HEADER"
+      }, {
+        "name" : "conf.dataFormatConfig.csvAllowExtraColumns",
+        "value" : false
+      }, {
+        "name" : "conf.dataFormatConfig.csvExtraColumnPrefix",
+        "value" : "_extra_"
+      }, {
+        "name" : "conf.dataFormatConfig.csvMaxObjectLen",
+        "value" : 1024
+      }, {
+        "name" : "conf.dataFormatConfig.csvCustomDelimiter",
+        "value" : "|"
+      }, {
+        "name" : "conf.dataFormatConfig.multiCharacterFieldDelimiter",
+        "value" : "||"
+      }, {
+        "name" : "conf.dataFormatConfig.multiCharacterLineDelimiter",
+        "value" : "${str:unescapeJava('\\\\n')}"
+      }, {
+        "name" : "conf.dataFormatConfig.csvCustomEscape",
+        "value" : "\\"
+      }, {
+        "name" : "conf.dataFormatConfig.csvCustomQuote",
+        "value" : "\""
+      }, {
+        "name" : "conf.dataFormatConfig.csvEnableComments",
+        "value" : false
+      }, {
+        "name" : "conf.dataFormatConfig.csvCommentMarker",
+        "value" : "#"
+      }, {
+        "name" : "conf.dataFormatConfig.csvIgnoreEmptyLines",
+        "value" : true
+      }, {
+        "name" : "conf.dataFormatConfig.csvRecordType",
+        "value" : "LIST_MAP"
+      }, {
+        "name" : "conf.dataFormatConfig.csvSkipStartLines",
+        "value" : 0
+      }, {
+        "name" : "conf.dataFormatConfig.parseNull",
+        "value" : false
+      }, {
+        "name" : "conf.dataFormatConfig.nullConstant",
+        "value" : "\\\\N"
+      }, {
+        "name" : "conf.dataFormatConfig.xmlRecordElement",
+        "value" : null
+      }, {
+        "name" : "conf.dataFormatConfig.includeFieldXpathAttributes",
+        "value" : false
+      }, {
+        "name" : "conf.dataFormatConfig.xPathNamespaceContext",
+        "value" : [ ]
+      }, {
+        "name" : "conf.dataFormatConfig.outputFieldAttributes",
+        "value" : false
+      }, {
+        "name" : "conf.dataFormatConfig.xmlMaxObjectLen",
+        "value" : 4096
+      }, {
+        "name" : "conf.dataFormatConfig.logMode",
+        "value" : "COMMON_LOG_FORMAT"
+      }, {
+        "name" : "conf.dataFormatConfig.logMaxObjectLen",
+        "value" : 1024
+      }, {
+        "name" : "conf.dataFormatConfig.retainOriginalLine",
+        "value" : false
+      }, {
+        "name" : "conf.dataFormatConfig.customLogFormat",
+        "value" : "%h %l %u %t \"%r\" %>s %b"
+      }, {
+        "name" : "conf.dataFormatConfig.regex",
+        "value" : "^(\\S+) (\\S+) (\\S+) \\[([\\w:/]+\\s[+\\-]\\d{4})\\] \"(\\S+) (\\S+) (\\S+)\" (\\d{3}) (\\d+)"
+      }, {
+        "name" : "conf.dataFormatConfig.fieldPathsToGroupName",
+        "value" : [ {
+          "fieldPath" : "/",
+          "group" : 1
+        } ]
+      }, {
+        "name" : "conf.dataFormatConfig.grokPatternDefinition",
+        "value" : null
+      }, {
+        "name" : "conf.dataFormatConfig.grokPattern",
+        "value" : "%{COMMONAPACHELOG}"
+      }, {
+        "name" : "conf.dataFormatConfig.onParseError",
+        "value" : "ERROR"
+      }, {
+        "name" : "conf.dataFormatConfig.maxStackTraceLines",
+        "value" : 50
+      }, {
+        "name" : "conf.dataFormatConfig.enableLog4jCustomLogFormat",
+        "value" : false
+      }, {
+        "name" : "conf.dataFormatConfig.log4jCustomLogFormat",
+        "value" : "%r [%t] %-5p %c %x - %m%n"
+      }, {
+        "name" : "conf.dataFormatConfig.avroSchemaSource",
+        "value" : null
+      }, {
+        "name" : "conf.dataFormatConfig.avroSchema",
+        "value" : null
+      }, {
+        "name" : "conf.dataFormatConfig.schemaRegistryUrls",
+        "value" : [ ]
+      }, {
+        "name" : "conf.dataFormatConfig.schemaLookupMode",
+        "value" : "SUBJECT"
+      }, {
+        "name" : "conf.dataFormatConfig.subject",
+        "value" : null
+      }, {
+        "name" : "conf.dataFormatConfig.schemaId",
+        "value" : null
+      }, {
+        "name" : "conf.dataFormatConfig.protoDescriptorFile",
+        "value" : null
+      }, {
+        "name" : "conf.dataFormatConfig.messageType",
+        "value" : null
+      }, {
+        "name" : "conf.dataFormatConfig.isDelimited",
+        "value" : true
+      }, {
+        "name" : "conf.dataFormatConfig.binaryMaxObjectLen",
+        "value" : 1024
+      }, {
+        "name" : "conf.dataFormatConfig.datagramMode",
+        "value" : "SYSLOG"
+      }, {
+        "name" : "conf.dataFormatConfig.typesDbPath",
+        "value" : null
+      }, {
+        "name" : "conf.dataFormatConfig.convertTime",
+        "value" : false
+      }, {
+        "name" : "conf.dataFormatConfig.excludeInterval",
+        "value" : true
+      }, {
+        "name" : "conf.dataFormatConfig.authFilePath",
+        "value" : null
+      }, {
+        "name" : "conf.dataFormatConfig.netflowOutputValuesMode",
+        "value" : "RAW_AND_INTERPRETED"
+      }, {
+        "name" : "conf.dataFormatConfig.maxTemplateCacheSize",
+        "value" : -1
+      }, {
+        "name" : "conf.dataFormatConfig.templateCacheTimeoutMs",
+        "value" : -1
+      }, {
+        "name" : "conf.dataFormatConfig.netflowOutputValuesModeDatagram",
+        "value" : "RAW_AND_INTERPRETED"
+      }, {
+        "name" : "conf.dataFormatConfig.maxTemplateCacheSizeDatagram",
+        "value" : -1
+      }, {
+        "name" : "conf.dataFormatConfig.templateCacheTimeoutMsDatagram",
+        "value" : -1
+      }, {
+        "name" : "conf.dataFormatConfig.wholeFileMaxObjectLen",
+        "value" : 8192
+      }, {
+        "name" : "conf.dataFormatConfig.rateLimit",
+        "value" : "-1"
+      }, {
+        "name" : "conf.dataFormatConfig.verifyChecksum",
+        "value" : false
+      }, {
+        "name" : "conf.dataFormatConfig.excelHeader",
+        "value" : null
+      }, {
+        "name" : "conf.dataFormatConfig.excelSkipCellsWithNoHeader",
+        "value" : false
+      }, {
+        "name" : "conf.dataFormatConfig.excelReadAllSheets",
+        "value" : true
+      }, {
+        "name" : "conf.dataFormatConfig.excelSheetNames",
+        "value" : [ ]
+      }, {
+        "name" : "conf.outputField",
+        "value" : "/awayteam-historical-stats"
+      }, {
+        "name" : "conf.headerOutputLocation",
+        "value" : "NONE"
+      }, {
+        "name" : "conf.headerAttributePrefix",
+        "value" : null
+      }, {
+        "name" : "conf.headerOutputField",
+        "value" : null
+      }, {
+        "name" : "conf.dataFormat",
+        "value" : "JSON"
+      }, {
+        "name" : "conf.resourceUrl",
+        "value" : "http://167.71.58.55/api/v1/flat-matches/${record:value('/league_id')}/${record:value('/visitorteam_id')}/${record:value('/time_starting_at_date')}/${record:value('/time_status')}/historical-stats"
+      }, {
+        "name" : "conf.headers",
+        "value" : [ ]
+      }, {
+        "name" : "conf.httpMethod",
+        "value" : "GET"
+      }, {
+        "name" : "conf.methodExpression",
+        "value" : null
+      }, {
+        "name" : "conf.requestBody",
+        "value" : null
+      }, {
+        "name" : "conf.defaultRequestContentType",
+        "value" : "application/json"
+      }, {
+        "name" : "conf.client.transferEncoding",
+        "value" : "BUFFERED"
+      }, {
+        "name" : "conf.client.httpCompression",
+        "value" : "NONE"
+      }, {
+        "name" : "conf.client.connectTimeoutMillis",
+        "value" : 0
+      }, {
+        "name" : "conf.client.readTimeoutMillis",
+        "value" : 0
+      }, {
+        "name" : "conf.client.numThreads",
+        "value" : 1
+      }, {
+        "name" : "conf.client.authType",
+        "value" : "NONE"
+      }, {
+        "name" : "conf.client.useOAuth2",
+        "value" : false
+      }, {
+        "name" : "conf.client.oauth.consumerKey",
+        "value" : ""
+      }, {
+        "name" : "conf.client.oauth.consumerSecret",
+        "value" : ""
+      }, {
+        "name" : "conf.client.oauth.token",
+        "value" : ""
+      }, {
+        "name" : "conf.client.oauth.tokenSecret",
+        "value" : ""
+      }, {
+        "name" : "conf.client.oauth2.credentialsGrantType",
+        "value" : null
+      }, {
+        "name" : "conf.client.oauth2.tokenUrl",
+        "value" : null
+      }, {
+        "name" : "conf.client.oauth2.clientId",
+        "value" : ""
+      }, {
+        "name" : "conf.client.oauth2.clientSecret",
+        "value" : ""
+      }, {
+        "name" : "conf.client.oauth2.username",
+        "value" : ""
+      }, {
+        "name" : "conf.client.oauth2.password",
+        "value" : ""
+      }, {
+        "name" : "conf.client.oauth2.resourceOwnerClientId",
+        "value" : ""
+      }, {
+        "name" : "conf.client.oauth2.resourceOwnerClientSecret",
+        "value" : ""
+      }, {
+        "name" : "conf.client.oauth2.algorithm",
+        "value" : "NONE"
+      }, {
+        "name" : "conf.client.oauth2.key",
+        "value" : ""
+      }, {
+        "name" : "conf.client.oauth2.jwtClaims",
+        "value" : null
+      }, {
+        "name" : "conf.client.oauth2.transferEncoding",
+        "value" : "BUFFERED"
+      }, {
+        "name" : "conf.client.oauth2.additionalValues",
+        "value" : [ { } ]
+      }, {
+        "name" : "conf.client.basicAuth.username",
+        "value" : ""
+      }, {
+        "name" : "conf.client.basicAuth.password",
+        "value" : ""
+      }, {
+        "name" : "conf.client.useProxy",
+        "value" : false
+      }, {
+        "name" : "conf.client.proxy.uri",
+        "value" : null
+      }, {
+        "name" : "conf.client.proxy.username",
+        "value" : ""
+      }, {
+        "name" : "conf.client.proxy.password",
+        "value" : ""
+      }, {
+        "name" : "conf.client.tlsConfig.tlsEnabled",
+        "value" : false
+      }, {
+        "name" : "conf.client.tlsConfig.keyStoreFilePath",
+        "value" : null
+      }, {
+        "name" : "conf.client.tlsConfig.keyStoreType",
+        "value" : "JKS"
+      }, {
+        "name" : "conf.client.tlsConfig.keyStorePassword",
+        "value" : ""
+      }, {
+        "name" : "conf.client.tlsConfig.keyStoreAlgorithm",
+        "value" : "SunX509"
+      }, {
+        "name" : "conf.client.tlsConfig.trustStoreFilePath",
+        "value" : null
+      }, {
+        "name" : "conf.client.tlsConfig.trustStoreType",
+        "value" : "JKS"
+      }, {
+        "name" : "conf.client.tlsConfig.trustStorePassword",
+        "value" : ""
+      }, {
+        "name" : "conf.client.tlsConfig.trustStoreAlgorithm",
+        "value" : "SunX509"
+      }, {
+        "name" : "conf.client.tlsConfig.useDefaultProtocols",
+        "value" : true
+      }, {
+        "name" : "conf.client.tlsConfig.protocols",
+        "value" : [ ]
+      }, {
+        "name" : "conf.client.tlsConfig.useDefaultCiperSuites",
+        "value" : true
+      }, {
+        "name" : "conf.client.tlsConfig.cipherSuites",
+        "value" : [ ]
+      }, {
+        "name" : "conf.client.requestLoggingConfig.enableRequestLogging",
+        "value" : false
+      }, {
+        "name" : "conf.client.requestLoggingConfig.logLevel",
+        "value" : "INFO"
+      }, {
+        "name" : "conf.client.requestLoggingConfig.verbosity",
+        "value" : "PAYLOAD_ANY"
+      }, {
+        "name" : "conf.client.requestLoggingConfig.maxEntitySize",
+        "value" : 0
+      }, {
+        "name" : "conf.rateLimit",
+        "value" : 0
+      }, {
+        "name" : "conf.maxRequestCompletionSecs",
+        "value" : 60
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "away team historical-stats",
+        "xPos" : 968.202392578125,
+        "yPos" : 605.5154418945312,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "FieldRemover_03OutputLane15842818889510" ],
+      "outputLanes" : [ "HTTPClient_04OutputLane15848010587760" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "DataParser_04",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_parser_DataParserDProcessor",
+      "stageVersion" : "2",
+      "configuration" : [ {
+        "name" : "configs.fieldPathToParse",
+        "value" : "/awayteam-historical-stats"
+      }, {
+        "name" : "configs.parsedFieldPath",
+        "value" : "/awayteam-historical"
+      }, {
+        "name" : "configs.multipleValuesBehavior",
+        "value" : "FIRST_ONLY"
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "awayteam-historical-stats",
+        "xPos" : 1131.8189086914062,
+        "yPos" : 606.5274429321289,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "HTTPClient_04OutputLane15848010587760" ],
+      "outputLanes" : [ "DataParser_04OutputLane15848013199710" ],
+      "eventLanes" : [ ],
+      "services" : [ {
+        "service" : "com.streamsets.pipeline.api.service.dataformats.DataFormatParserService",
+        "serviceVersion" : 1,
+        "configuration" : [ {
+          "name" : "dataFormat",
+          "value" : "JSON"
+        }, {
+          "name" : "dataFormatConfig.compression",
+          "value" : "NONE"
+        }, {
+          "name" : "dataFormatConfig.filePatternInArchive",
+          "value" : "*"
+        }, {
+          "name" : "dataFormatConfig.charset",
+          "value" : "UTF-8"
+        }, {
+          "name" : "dataFormatConfig.removeCtrlChars",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.textMaxLineLen",
+          "value" : 1024
+        }, {
+          "name" : "dataFormatConfig.useCustomDelimiter",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.customDelimiter",
+          "value" : "\\r\\n"
+        }, {
+          "name" : "dataFormatConfig.includeCustomDelimiterInTheText",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.jsonContent",
+          "value" : "MULTIPLE_OBJECTS"
+        }, {
+          "name" : "dataFormatConfig.jsonMaxObjectLen",
+          "value" : 4096
+        }, {
+          "name" : "dataFormatConfig.csvFileFormat",
+          "value" : "CSV"
+        }, {
+          "name" : "dataFormatConfig.csvHeader",
+          "value" : "NO_HEADER"
+        }, {
+          "name" : "dataFormatConfig.csvAllowExtraColumns",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.csvExtraColumnPrefix",
+          "value" : "_extra_"
+        }, {
+          "name" : "dataFormatConfig.csvMaxObjectLen",
+          "value" : 1024
+        }, {
+          "name" : "dataFormatConfig.csvCustomDelimiter",
+          "value" : "|"
+        }, {
+          "name" : "dataFormatConfig.multiCharacterFieldDelimiter",
+          "value" : "||"
+        }, {
+          "name" : "dataFormatConfig.multiCharacterLineDelimiter",
+          "value" : "${str:unescapeJava('\\\\n')}"
+        }, {
+          "name" : "dataFormatConfig.csvCustomEscape",
+          "value" : "\\"
+        }, {
+          "name" : "dataFormatConfig.csvCustomQuote",
+          "value" : "\""
+        }, {
+          "name" : "dataFormatConfig.csvEnableComments",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.csvCommentMarker",
+          "value" : "#"
+        }, {
+          "name" : "dataFormatConfig.csvIgnoreEmptyLines",
+          "value" : true
+        }, {
+          "name" : "dataFormatConfig.csvRecordType",
+          "value" : "LIST_MAP"
+        }, {
+          "name" : "dataFormatConfig.csvSkipStartLines",
+          "value" : 0
+        }, {
+          "name" : "dataFormatConfig.parseNull",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.nullConstant",
+          "value" : "\\\\N"
+        }, {
+          "name" : "dataFormatConfig.xmlRecordElement",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.includeFieldXpathAttributes",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.xPathNamespaceContext",
+          "value" : [ ]
+        }, {
+          "name" : "dataFormatConfig.outputFieldAttributes",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.xmlMaxObjectLen",
+          "value" : 4096
+        }, {
+          "name" : "dataFormatConfig.logMode",
+          "value" : "COMMON_LOG_FORMAT"
+        }, {
+          "name" : "dataFormatConfig.logMaxObjectLen",
+          "value" : 1024
+        }, {
+          "name" : "dataFormatConfig.retainOriginalLine",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.customLogFormat",
+          "value" : "%h %l %u %t \"%r\" %>s %b"
+        }, {
+          "name" : "dataFormatConfig.regex",
+          "value" : "^(\\S+) (\\S+) (\\S+) \\[([\\w:/]+\\s[+\\-]\\d{4})\\] \"(\\S+) (\\S+) (\\S+)\" (\\d{3}) (\\d+)"
+        }, {
+          "name" : "dataFormatConfig.fieldPathsToGroupName",
+          "value" : [ {
+            "fieldPath" : "/",
+            "group" : 1
+          } ]
+        }, {
+          "name" : "dataFormatConfig.grokPatternDefinition",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.grokPattern",
+          "value" : "%{COMMONAPACHELOG}"
+        }, {
+          "name" : "dataFormatConfig.onParseError",
+          "value" : "ERROR"
+        }, {
+          "name" : "dataFormatConfig.maxStackTraceLines",
+          "value" : 50
+        }, {
+          "name" : "dataFormatConfig.enableLog4jCustomLogFormat",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.log4jCustomLogFormat",
+          "value" : "%r [%t] %-5p %c %x - %m%n"
+        }, {
+          "name" : "dataFormatConfig.avroSchemaSource",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.avroSchema",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.schemaRegistryUrls",
+          "value" : [ ]
+        }, {
+          "name" : "dataFormatConfig.schemaLookupMode",
+          "value" : "SUBJECT"
+        }, {
+          "name" : "dataFormatConfig.subject",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.schemaId",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.protoDescriptorFile",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.messageType",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.isDelimited",
+          "value" : true
+        }, {
+          "name" : "dataFormatConfig.binaryMaxObjectLen",
+          "value" : 1024
+        }, {
+          "name" : "dataFormatConfig.datagramMode",
+          "value" : "SYSLOG"
+        }, {
+          "name" : "dataFormatConfig.typesDbPath",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.convertTime",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.excludeInterval",
+          "value" : true
+        }, {
+          "name" : "dataFormatConfig.authFilePath",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.netflowOutputValuesMode",
+          "value" : "RAW_AND_INTERPRETED"
+        }, {
+          "name" : "dataFormatConfig.maxTemplateCacheSize",
+          "value" : -1
+        }, {
+          "name" : "dataFormatConfig.templateCacheTimeoutMs",
+          "value" : -1
+        }, {
+          "name" : "dataFormatConfig.netflowOutputValuesModeDatagram",
+          "value" : "RAW_AND_INTERPRETED"
+        }, {
+          "name" : "dataFormatConfig.maxTemplateCacheSizeDatagram",
+          "value" : -1
+        }, {
+          "name" : "dataFormatConfig.templateCacheTimeoutMsDatagram",
+          "value" : -1
+        }, {
+          "name" : "dataFormatConfig.wholeFileMaxObjectLen",
+          "value" : 8192
+        }, {
+          "name" : "dataFormatConfig.rateLimit",
+          "value" : "-1"
+        }, {
+          "name" : "dataFormatConfig.verifyChecksum",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.excelHeader",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.excelSkipCellsWithNoHeader",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.excelReadAllSheets",
+          "value" : true
+        }, {
+          "name" : "dataFormatConfig.excelSheetNames",
+          "value" : [ ]
+        }, {
+          "name" : "displayFormats",
+          "value" : "AVRO,DELIMITED,JSON,LOG,NETFLOW,PROTOBUF,SYSLOG,SDC_JSON,XML"
+        } ]
+      } ]
+    }, {
+      "instanceName" : "FieldRemover_04",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_fieldfilter_FieldFilterDProcessor",
+      "stageVersion" : "1",
+      "configuration" : [ {
+        "name" : "filterOperation",
+        "value" : "REMOVE"
+      }, {
+        "name" : "fields",
+        "value" : [ "/awayteam-historical-stats" ]
+      }, {
+        "name" : "constant",
+        "value" : null
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "away team historical stats remover",
+        "xPos" : 1302.8920288085938,
+        "yPos" : 604.6473083496094,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "DataParser_04OutputLane15848013199710" ],
+      "outputLanes" : [ "FieldRemover_04OutputLane15848011072160" ],
       "eventLanes" : [ ],
       "services" : [ ]
     }, {
@@ -2841,12 +3559,12 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Field Flattener 1",
-        "xPos" : 898.3101196289062,
-        "yPos" : 447.15307235717773,
+        "xPos" : 1600.3048095703125,
+        "yPos" : 632.8496780395508,
         "stageType" : "PROCESSOR"
       },
-      "inputLanes" : [ "FieldRemover_03OutputLane15842818889510" ],
-      "outputLanes" : [ "FieldFlattener_01OutputLane15842236712520" ],
+      "inputLanes" : [ "FieldRemover_04OutputLane15848011072160" ],
+      "outputLanes" : [ "FieldFlattener_01OutputLane15848017080740" ],
       "eventLanes" : [ ],
       "services" : [ ]
     }, {
@@ -2954,11 +3672,11 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Upsert to finished matches",
-        "xPos" : 1186.4630737304688,
-        "yPos" : 444.4878120422363,
+        "xPos" : 1863.506103515625,
+        "yPos" : 652.5520782470703,
         "stageType" : "TARGET"
       },
-      "inputLanes" : [ "FieldFlattener_01OutputLane15842236712520" ],
+      "inputLanes" : [ "FieldFlattener_01OutputLane15848017080740" ],
       "outputLanes" : [ ],
       "eventLanes" : [ ],
       "services" : [ ]
@@ -2986,11 +3704,11 @@
       "title" : "PutMongoFlatMatchesToFinishedMatches",
       "description" : "",
       "created" : 1584221318607,
-      "lastModified" : 1584283407666,
+      "lastModified" : 1584801723444,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "eb446a37-b134-4c69-935a-2290c1a09d93",
+      "uuid" : "213621fc-9385-401c-8f5f-3804d73bf2ae",
       "valid" : true,
       "metadata" : {
         "labels" : [ "prod" ]
