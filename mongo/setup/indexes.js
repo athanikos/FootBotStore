@@ -9,3 +9,4 @@
 
 
     db.getCollection("finishedmatches").createIndex({ "id": 1 })
+    db.getCollection("leagues").createIndex({ "id": 1 })
