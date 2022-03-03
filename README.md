@@ -91,7 +91,7 @@ run BuildFullTimeMatchesWithStats.js
 
 # Nifi enabling https 
 
-
+https://www.linkedin.com/pulse/configuring-ssltls-authentication-apache-nifi-dhruv-sahu/
 
 
 
